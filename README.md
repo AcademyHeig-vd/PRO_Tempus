@@ -6,6 +6,7 @@
 
 [![Java CI with Maven](https://github.com/AcademyHeig-vd/PRO-Project/actions/workflows/maven.yml/badge.svg)](https://github.com/AcademyHeig-vd/PRO-Project/actions/workflows/maven.yml)
 [![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](http://ansicolortags.readthedocs.io/?badge=latest)
+[![GitHub tag](https://img.shields.io/github/tag/Naereen/StrapDown.js.svg)](https://GitHub.com/Naereen/StrapDown.js/tags/)
 
 
 
