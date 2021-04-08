@@ -16,7 +16,7 @@ Google drive : https://drive.google.com/drive/folders/16hgVjggeGgG7rjfjVIXN8Mohf
 
 ## Installation 
 Une fois que vous avez clone le projet, 
-- Vérifier que vous ayez la librairie externe de JavaFx (normalement upload via un dépendance maven)
+- Vérifier que vous ayez la librairie externe de JavaFx (normalement upload via une dépendance maven)
 - Vérifier que vous ayez le plugin SQL
 - Vérifier d'avoir une connexion à la bdd (pour l'instant prendre le script sql qui se trouve dans /database)
 - Vérifier le JDBC Connection String ---> (par défaut) doit être: jdbc:mysql://127.0.0.1:3306/.... avec l'id **root** et le mot de passe **root**
