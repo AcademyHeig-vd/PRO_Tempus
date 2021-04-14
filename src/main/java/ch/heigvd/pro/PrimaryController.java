@@ -12,6 +12,11 @@ public class PrimaryController {
     }
 
     @FXML
+    private void switchToRappel() throws IOException {
+        Tempus.setRoot("rappelAdd");
+    }
+
+    @FXML
     private void switchToProf() throws IOException {
         Tempus.setRoot("profAdd");
     }

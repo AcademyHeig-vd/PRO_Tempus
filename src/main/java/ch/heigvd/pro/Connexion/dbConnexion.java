@@ -14,6 +14,7 @@ public class dbConnexion {
     private static final String DATABASE_PASSWORD = "root";
     private static final String INSERT_QUERY_COURS = "INSERT INTO Periode (idCours,nom,jourSemaine,heureDebut,heureFin,salle) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String INSERT_QUERY_PROF = "INSERT INTO Professeur (nom,prenom,mail) VALUES (?, ?, ?)";
+    private static final String INSERT_QUERY_RAPPEL = "INSERT INTO Rappel (idEvenement,contenu,lien) VALUES (?, ?, ?)";
 
     public Connection getConnexion() throws SQLException, ClassNotFoundException {
         Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
@@ -55,6 +56,29 @@ public class dbConnexion {
             preparedStatement.setString(1, nom);
             preparedStatement.setString(2, prenom);
             preparedStatement.setString(3, mail);
+
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void insertRecordRappel(int idEvenement, String contenu, String lien){
+        // Step 1: Establishing a Connection and
+        // try-with-resource statement will auto close the connection.
+        try (Connection connection = getConnexion();
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_RAPPEL)) {
+            preparedStatement.setInt(1, idEvenement);
+            preparedStatement.setString(2, contenu);
+            preparedStatement.setString(3, lien);
 
 
             System.out.println(preparedStatement);
