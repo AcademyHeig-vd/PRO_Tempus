@@ -17,6 +17,7 @@
                             <columns>
                                 <TableColumn fx:id="col_contenu" prefWidth="75.0" text="Contenu" />
                                 <TableColumn fx:id="col_lien" prefWidth="108.0" text="Lien" />
+                                <TableColumn fx:id="col_heure" prefWidth="75.0" text="Heure" />
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

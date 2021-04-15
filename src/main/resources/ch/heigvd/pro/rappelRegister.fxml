@@ -26,8 +26,10 @@
             <children>
                 <Label text="Contenu" GridPane.rowIndex="1" />
                 <Label text="Lien" GridPane.rowIndex="2" />
+                <Label text="Heure" GridPane.rowIndex="3" />
                 <TextField fx:id="contenuField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="lienField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="heureField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
         </GridPane>
         <ButtonBar layoutX="92.0" layoutY="254.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="254.0">

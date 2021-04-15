@@ -14,7 +14,7 @@ public class dbConnexion {
     private static final String DATABASE_PASSWORD = "root";
     private static final String INSERT_QUERY_COURS = "INSERT INTO Periode (idCours,nom,jourSemaine,heureDebut,heureFin,salle) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String INSERT_QUERY_PROF = "INSERT INTO Professeur (nom,prenom,mail) VALUES (?, ?, ?)";
-    private static final String INSERT_QUERY_RAPPEL = "INSERT INTO Rappel (idEvenement,contenu,lien) VALUES (?, ?, ?)";
+    private static final String INSERT_QUERY_RAPPEL = "INSERT INTO Rappel (idEvenement,contenu,lien,heure) VALUES (?, ?, ?, ?)";
 
     public Connection getConnexion() throws SQLException, ClassNotFoundException {
         Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
@@ -69,7 +69,7 @@ public class dbConnexion {
         }
     }
 
-    public void insertRecordRappel(int idEvenement, String contenu, String lien){
+    public void insertRecordRappel(int idEvenement, String contenu, String lien, String heure){
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
         try (Connection connection = getConnexion();
@@ -79,6 +79,7 @@ public class dbConnexion {
             preparedStatement.setInt(1, idEvenement);
             preparedStatement.setString(2, contenu);
             preparedStatement.setString(3, lien);
+            preparedStatement.setString(4, heure);
 
 
             System.out.println(preparedStatement);

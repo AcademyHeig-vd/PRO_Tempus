@@ -17,6 +17,8 @@ public class RappelRegisterController {
     @FXML
     private TextField lienField;
     @FXML
+    private TextField heureField;
+    @FXML
     private Button submitButton;
 
 
@@ -27,14 +29,16 @@ public class RappelRegisterController {
 
         System.out.println(contenuField.getText());
         System.out.println(lienField.getText());
+        System.out.println(heureField.getText());
 
         if(!inputValid()) return;
 
         String contenu = contenuField.getText();
         String lien = lienField.getText();
+        String heure = heureField.getText();
 
         dbConnexion db = new dbConnexion();
-        db.insertRecordRappel(1, contenu, lien);
+        db.insertRecordRappel(1, contenu, lien, heure);
 
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);

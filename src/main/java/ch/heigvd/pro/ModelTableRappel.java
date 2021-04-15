@@ -2,12 +2,13 @@ package ch.heigvd.pro;
 
 public class ModelTableRappel {
     int idEvenement;
-    String contenu, lien;
+    String contenu, lien, heure;
 
-    public ModelTableRappel(int idEvenement, String contenu, String lien) {
+    public ModelTableRappel(int idEvenement, String contenu, String lien, String heure) {
         this.idEvenement = idEvenement;
         this.contenu = contenu;
         this.lien = lien;
+        this.heure = heure;
     }
 
     public int getIdEvenement() {
@@ -32,5 +33,13 @@ public class ModelTableRappel {
 
     public void setLien(String lien) {
         this.lien = lien;
+    }
+
+    public String getHeure() {
+        return heure;
+    }
+
+    public void setHeure(String heure) {
+        this.heure = heure;
     }
 }

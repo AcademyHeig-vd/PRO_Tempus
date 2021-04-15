@@ -22,8 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33b94604-44f1-4bcb-bd45-69a585fa298c" name="Default Changelist" comment="Ajout de rappels, sans gestion d'ajout de l'événement lié. Création d'un événement avec comme id 1 pour que cela fonctionne. Tous les rappels seront liés à cet événement.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="33b94604-44f1-4bcb-bd45-69a585fa298c" name="Default Changelist" comment="Ajout champ heure dans la BDD">
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/Connexion/dbConnexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/Connexion/dbConnexion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/ModelTableRappel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/ModelTableRappel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/RappelAddController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/RappelAddController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/RappelRegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/RappelRegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ch/heigvd/pro/rappelAdd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ch/heigvd/pro/rappelAdd.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +177,7 @@
       <workItem from="1617898621673" duration="15000" />
       <workItem from="1618395540034" duration="9696000" />
       <workItem from="1618468505958" duration="866000" />
-      <workItem from="1618485996700" duration="831000" />
+      <workItem from="1618485996700" duration="1771000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de rappels, sans gestion d'ajout de l'événement lié. Création d'un événement avec comme id 1 pour que cela fonctionne. Tous les rappels seront liés à cet événement.">
       <created>1618418746390</created>
@@ -189,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618418935208</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Ajout champ heure dans la BDD">
+      <created>1618487109085</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1618487109085</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,7 +220,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ajout de rappels, sans gestion d'ajout de l'événement lié. Création d'un événement avec comme id 1 pour que cela fonctionne. Tous les rappels seront liés à cet événement." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout de rappels, sans gestion d'ajout de l'événement lié. Création d'un événement avec comme id 1 pour que cela fonctionne. Tous les rappels seront liés à cet événement." />
+    <MESSAGE value="Ajout champ heure dans la BDD" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout champ heure dans la BDD" />
   </component>
   <component name="WindowStateProjectService">
     <state x="349" y="361" key="#SQL_Dialects" timestamp="1618396950636">
@@ -248,10 +260,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1618397694403" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1618418941707">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1618487114446">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1618418941707" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1618487114446" />
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618487080115">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1618487080115" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

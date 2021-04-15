@@ -24,6 +24,8 @@ public class RappelAddController {
     private TableColumn<ModelTableRappel,String>col_contenu;
     @FXML
     private TableColumn<ModelTableRappel,String>col_lien;
+    @FXML
+    private TableColumn<ModelTableRappel,String>col_heure;
 
 
     ObservableList<ModelTableRappel> oblist = FXCollections.observableArrayList();
@@ -78,7 +80,7 @@ public class RappelAddController {
             ResultSet rs = conn.createStatement().executeQuery(SQL);
 
             while(rs.next()){
-                oblist.add(new ModelTableRappel(rs.getInt("idEvenement"), rs.getString("contenu"), rs.getString("lien")));
+                oblist.add(new ModelTableRappel(rs.getInt("idEvenement"), rs.getString("contenu"), rs.getString("lien"), rs.getString("heure")));
             }
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
@@ -87,6 +89,7 @@ public class RappelAddController {
 
         col_contenu.setCellValueFactory(new PropertyValueFactory<>("contenu"));
         col_lien.setCellValueFactory(new PropertyValueFactory<>("lien"));
+        col_heure.setCellValueFactory(new PropertyValueFactory<>("heure"));
 
         table.setItems(oblist);
     }
