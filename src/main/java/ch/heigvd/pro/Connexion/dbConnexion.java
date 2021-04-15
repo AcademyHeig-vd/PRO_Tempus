@@ -21,7 +21,7 @@ public class dbConnexion {
         return connection;
     }
 
-    public void insertRecordCours(int idCours, String jourSemaine, String heureDebut, String heureFin, String salle){
+    public void insertRecordPeriode(int idCours, String jourSemaine, String heureDebut, String heureFin, String salle){
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
         try (Connection connection = getConnexion();

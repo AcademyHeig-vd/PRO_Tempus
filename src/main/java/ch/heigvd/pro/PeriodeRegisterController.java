@@ -56,7 +56,7 @@ public class PeriodeRegisterController {
 
         // Connexion a la database
         dbConnexion db = new dbConnexion();
-        db.insertRecordCours(id, jour, heureDebut, heureFin, salle);
+        db.insertRecordPeriode(id, jour, heureDebut, heureFin, salle);
 
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);
