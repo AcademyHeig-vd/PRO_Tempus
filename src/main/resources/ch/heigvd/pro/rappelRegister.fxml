@@ -24,6 +24,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
+
                 <Label text="Contenu" />
                 <Label text="Lien" GridPane.rowIndex="1" />
                 <Label text="Heure" GridPane.rowIndex="2" />
