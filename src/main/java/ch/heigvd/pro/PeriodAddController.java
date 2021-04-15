@@ -77,13 +77,13 @@ public class PeriodAddController {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
 
-            String SQL = "SELECT * FROM pro.Periode";
+            String SQL = "SELECT * FROM pro.Periode INNER JOIN Evenement ON Periode.idCours = Evenement.idEvenement";
             System.out.println("Table name query: \"" + SQL + "\"\n");
 
             ResultSet rs = conn.createStatement().executeQuery(SQL);
 
             while(rs.next()){
-                oblist.add(new ModelTablePeriode(rs.getInt("idPeriode"), rs.getString("nom"), rs.getString("jourSemaine"),
+                oblist.add(new ModelTablePeriode(rs.getInt("idPeriode"), rs.getString("titre"), rs.getString("jourSemaine"),
                         rs.getString("heureDebut"), rs.getString("heureFin"),
                         rs.getString("salle")));
             }
