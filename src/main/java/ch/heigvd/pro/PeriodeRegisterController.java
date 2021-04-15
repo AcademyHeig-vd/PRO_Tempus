@@ -1,14 +1,17 @@
 package ch.heigvd.pro;
 
 import ch.heigvd.pro.Connexion.dbConnexion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -26,6 +29,10 @@ public class PeriodeRegisterController {
     private TextField salleField;
     @FXML
     private Button submitButton;
+    @FXML
+    private ComboBox cours;
+
+    ObservableList oblist = FXCollections.observableArrayList();
 
 
     @FXML
@@ -53,6 +60,28 @@ public class PeriodeRegisterController {
 
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);
+    }
+
+    @FXML
+    public void initialize(){
+        // Ajout d'une liste déroulante avec les différents cours
+        try {
+            dbConnexion db = new dbConnexion();
+            Connection conn = db.getConnexion();
+
+            String SQL = "SELECT titre FROM pro.Evenement";
+            System.out.println("Table name query: \"" + SQL + "\"\n");
+
+            ResultSet rs = conn.createStatement().executeQuery(SQL);
+
+            while(rs.next()){
+                oblist.add(rs.getString("titre"));
+            }
+        } catch (SQLException | ClassNotFoundException e){
+            e.getMessage();
+        }
+
+        cours.setItems(oblist);
     }
 
     private boolean inputValid() throws IOException {
