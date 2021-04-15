@@ -12,7 +12,7 @@ public class dbConnexion {
     private static final String DATABASE_URL = "jdbc:mysql://127.0.0.1:3306/pro?serverTimezone=UTC&useSSL=false";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "root";
-    private static final String INSERT_QUERY_COURS = "INSERT INTO Periode (idCours,nom,jourSemaine,heureDebut,heureFin,salle) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_QUERY_COURS = "INSERT INTO Periode (idCours,jourSemaine,heureDebut,heureFin,salle) VALUES (?, ?, ?, ?, ?)";
     private static final String INSERT_QUERY_PROF = "INSERT INTO Professeur (nom,prenom,mail) VALUES (?, ?, ?)";
 
     public Connection getConnexion() throws SQLException, ClassNotFoundException {
@@ -20,18 +20,17 @@ public class dbConnexion {
         return connection;
     }
 
-    public void insertRecordCours(int idCours, String nom, String jourSemaine, String heureDebut, String heureFin, String salle){
+    public void insertRecordCours(int idCours, String jourSemaine, String heureDebut, String heureFin, String salle){
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
         try (Connection connection = getConnexion();
              // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_COURS)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_COURS)) {
             preparedStatement.setInt(1, idCours);
-            preparedStatement.setString(2, nom);
-            preparedStatement.setString(3, jourSemaine);
-            preparedStatement.setString(4, heureDebut);
-            preparedStatement.setString(5, heureFin);
-            preparedStatement.setString(6, salle);
+            preparedStatement.setString(2, jourSemaine);
+            preparedStatement.setString(3, heureDebut);
+            preparedStatement.setString(4, heureFin);
+            preparedStatement.setString(5, salle);
 
 
             System.out.println(preparedStatement);

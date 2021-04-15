@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Window;
 
 import java.io.IOException;
@@ -17,8 +16,7 @@ import java.sql.SQLException;
 
 public class PeriodeRegisterController {
 
-    @FXML
-    private TextField nomField;
+
     @FXML
     private TextField jourField;
     @FXML
@@ -30,25 +28,27 @@ public class PeriodeRegisterController {
     @FXML
     private Button submitButton;
     @FXML
-    private ComboBox cours;
+    private ComboBox<ModelTableCoursEvenement> cours = new ComboBox<>();
 
-    ObservableList oblist = FXCollections.observableArrayList();
+    ObservableList<ModelTableCoursEvenement> oblist = FXCollections.observableArrayList();
 
 
     @FXML
-    public void register(ActionEvent event) throws IOException {
+    public void register(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
 
         Window owner = submitButton.getScene().getWindow();
+        ModelTableCoursEvenement  coursEvenement = cours.getSelectionModel().getSelectedItem();;
 
-        System.out.println(nomField.getText());
+        if(!inputValid()) return;
+
+        System.out.println(coursEvenement.getIdEvenement());
+        System.out.println(coursEvenement.getTitre());
         System.out.println(jourField.getText());
         System.out.println(heureDebutField.getText());
         System.out.println(heureFinField.getText());
         System.out.println(salleField.getText());
 
-        if(!inputValid()) return;
-
-        String nom = nomField.getText();
+        int id = coursEvenement.getIdEvenement();
         String jour = jourField.getText();
         String heureDebut = heureDebutField.getText();
         String heureFin = heureFinField.getText();
@@ -56,7 +56,7 @@ public class PeriodeRegisterController {
 
         // Connexion a la database
         dbConnexion db = new dbConnexion();
-        db.insertRecordCours(1,nom, jour, heureDebut, heureFin, salle);
+        db.insertRecordCours(id, jour, heureDebut, heureFin, salle);
 
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);
@@ -69,13 +69,14 @@ public class PeriodeRegisterController {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
 
-            String SQL = "SELECT titre FROM pro.Evenement";
+            // Ajouter une condition qui vérifie que titre appartient à cours
+            String SQL = "SELECT * FROM pro.Evenement";
             System.out.println("Table name query: \"" + SQL + "\"\n");
 
             ResultSet rs = conn.createStatement().executeQuery(SQL);
 
             while(rs.next()){
-                oblist.add(rs.getString("titre"));
+                oblist.add(new ModelTableCoursEvenement(rs.getInt("idEvenement"), rs.getString("titre")));
             }
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
@@ -87,9 +88,11 @@ public class PeriodeRegisterController {
     private boolean inputValid() throws IOException {
         Window owner = submitButton.getScene().getWindow();
 
-        if (nomField.getText().isEmpty()) {
+        ModelTableCoursEvenement coursEvenement = cours.getSelectionModel().getSelectedItem();
+
+       if (coursEvenement == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
-                    "S'il-vous-plaît entrez le nom de la période", false);
+                    "S'il-vous-plaît entrez le nom du cours", false);
             return false;
         }
         if (jourField.getText().isEmpty()) {
@@ -116,7 +119,7 @@ public class PeriodeRegisterController {
     }
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message, boolean
-                                  menu) throws IOException {
+            menu) throws IOException {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
