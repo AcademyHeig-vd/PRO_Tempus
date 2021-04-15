@@ -14,6 +14,7 @@
          </font>
       </Label>
       <Button fx:id="buttonCours" mnemonicParsing="false" onAction="#switchToCours" text="Ajouter une période" />
+      <Button fx:id="buttonRappel" mnemonicParsing="false" onAction="#switchToRappel" text="Ajouter un rappel" />
       <Button fx:id="buttonProf" mnemonicParsing="false" onAction="#switchToProf" text="Ajouter un professeur" />
    </children>
    <padding>

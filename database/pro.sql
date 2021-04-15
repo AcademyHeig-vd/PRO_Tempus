@@ -24,6 +24,7 @@ CREATE TABLE Rappel (
                         idEvenement INTEGER UNSIGNED,
                         contenu VARCHAR(255) NOT NULL,
                         lien VARCHAR(255),
+                        heure TIME NOT NULL,
                         CONSTRAINT PK_Rappel PRIMARY KEY (idEvenement)
 )ENGINE = InnoDB;
 
