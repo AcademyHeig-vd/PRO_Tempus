@@ -37,7 +37,6 @@ CREATE TABLE Cours (
 CREATE TABLE Periode (
                          idPeriode INTEGER UNSIGNED AUTO_INCREMENT,
                          idCours INTEGER UNSIGNED,
-                         nom VARCHAR(50) NOT NULL,
                          jourSemaine VARCHAR(8) NOT NULL,
                          heureDebut TIME NOT NULL,
                          heureFin TIME NOT NULL,

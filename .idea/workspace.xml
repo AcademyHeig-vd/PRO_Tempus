@@ -22,12 +22,6 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33b94604-44f1-4bcb-bd45-69a585fa298c" name="Default Changelist" comment="Ajout champ heure dans la BDD">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/Connexion/dbConnexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/Connexion/dbConnexion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/ModelTableRappel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/ModelTableRappel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/RappelAddController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/RappelAddController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/RappelRegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/RappelRegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ch/heigvd/pro/rappelAdd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ch/heigvd/pro/rappelAdd.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,6 +139,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.App" />
@@ -175,9 +180,6 @@
       <workItem from="1617892657901" duration="5351000" />
       <workItem from="1617898573663" duration="25000" />
       <workItem from="1617898621673" duration="15000" />
-      <workItem from="1618395540034" duration="9696000" />
-      <workItem from="1618468505958" duration="866000" />
-      <workItem from="1618485996700" duration="1771000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de rappels, sans gestion d'ajout de l'événement lié. Création d'un événement avec comme id 1 pour que cela fonctionne. Tous les rappels seront liés à cet événement.">
       <created>1618418746390</created>
@@ -216,58 +218,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ajout de rappels, sans gestion d'ajout de l'événement lié. Création d'un événement avec comme id 1 pour que cela fonctionne. Tous les rappels seront liés à cet événement." />
-    <MESSAGE value="Ajout champ heure dans la BDD" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout champ heure dans la BDD" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="349" y="361" key="#SQL_Dialects" timestamp="1618396950636">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="349" y="361" key="#SQL_Dialects/0.0.1920.1040@0.0.1920.1040" timestamp="1618396950636" />
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1618397352345">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1618397352345" />
-    <state x="633" y="2" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1618401493529">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="633" y="2" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1618401493529" />
-    <state x="740" y="261" key="FileChooserDialogImpl" timestamp="1618397690368">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1618397690368" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1618422682990">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1618422682990" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1618422682990">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1618422682990" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1618422682989">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1618422682989" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1618422682990">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1618422682990" />
-    <state x="461" y="165" key="SettingsEditor" timestamp="1618397694403">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1618397694403" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1618487114446">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1618487114446" />
-    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618487080115">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1618487080115" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
