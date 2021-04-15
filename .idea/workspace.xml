@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="33b94604-44f1-4bcb-bd45-69a585fa298c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1qo4h29JIbbunHKBl02FIVShlIY" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.12413793" />
+    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Noemie Plancherel\Downloads\Telegram Desktop\pro_1\pro.zip\PRO_Tempus\src\main\resources\ch\heigvd\pro\GestionCours" />
+      <recent name="C:\Users\Noemie Plancherel\Downloads\Telegram Desktop\pro_1\pro.zip\PRO_Tempus\lib" />
+      <recent name="$PROJECT_DIR$/images" />
+      <recent name="$PROJECT_DIR$/src/main/java/ch/heigvd/pro" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ch.heigvd.pro" />
+      <recent name="ch.heigvd.pro.GestionCours" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ch.heigvd.pro.GestionCours.App" />
+      <module name="PRO_Tempus" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.heigvd.pro.gestionCours.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ch.heigvd.pro.gestionCours.App" />
+      <module name="PRO_Tempus" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.heigvd.pro.gestionCours.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="ch.heigvd.pro.Tempus" />
+      <module name="PRO_Tempus-main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tempus" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ch.heigvd.pro.Tempus" />
+      <module name="PRO_Tempus" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.heigvd.pro.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.App" />
+      <item itemvalue="Application.Tempus" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Tempus" />
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="33b94604-44f1-4bcb-bd45-69a585fa298c" name="Default Changelist" comment="" />
+      <created>1617732727078</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617732727078</updated>
+      <workItem from="1617732729103" duration="8729000" />
+      <workItem from="1617802764992" duration="21044000" />
+      <workItem from="1617826054447" duration="63000" />
+      <workItem from="1617826654962" duration="128000" />
+      <workItem from="1617827158823" duration="1281000" />
+      <workItem from="1617829680497" duration="556000" />
+      <workItem from="1617892081112" duration="565000" />
+      <workItem from="1617892657901" duration="5351000" />
+      <workItem from="1617898573663" duration="25000" />
+      <workItem from="1617898621673" duration="15000" />
+      <workItem from="1617899985916" duration="51000" />
+      <workItem from="1618139226170" duration="12000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
