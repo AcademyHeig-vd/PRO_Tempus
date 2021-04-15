@@ -7,7 +7,7 @@ import java.io.IOException;
 public class PrimaryController {
 
     @FXML
-    private void switchToCours() throws IOException {
+    private void switchToPeriode() throws IOException {
         Tempus.setRoot("periodeAdd");
     }
 
