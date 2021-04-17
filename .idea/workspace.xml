@@ -3,8 +3,41 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="33b94604-44f1-4bcb-bd45-69a585fa298c" name="Default Changelist" comment="" />
+    <list default="true" id="33b94604-44f1-4bcb-bd45-69a585fa298c" name="Default Changelist" comment="Création des fichiers">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/Connexion/dbConnexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/Connexion/dbConnexion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/CoursAddController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/CoursAddController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/CoursRegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/CoursRegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/ModelTableCours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/ModelTableCours.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/PeriodeRegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/PeriodeRegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ch/heigvd/pro/coursRegister.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ch/heigvd/pro/coursRegister.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/CoursAddController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/CoursAddController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/CoursRegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/CoursRegisterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/ModelTableCours.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/ModelTableCours.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/coursRegister.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/coursRegister.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +51,14 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
       <filtered-out-file-type name="LOCAL_BRANCH" />
@@ -26,7 +67,15 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.2\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1qo4h29JIbbunHKBl02FIVShlIY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -37,6 +86,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -83,10 +138,8 @@
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="11" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="ch.heigvd.pro.Tempus" />
-      <module name="PRO_Tempus-main" />
+      <module name="PRO_Tempus" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -104,6 +157,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.App" />
@@ -113,6 +177,9 @@
       <list>
         <item itemvalue="Application.Tempus" />
         <item itemvalue="Application.App" />
+        <item itemvalue="Application.Tempus" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.Tempus" />
       </list>
     </recent_temporary>
   </component>
@@ -134,13 +201,163 @@
       <workItem from="1617892657901" duration="5351000" />
       <workItem from="1617898573663" duration="25000" />
       <workItem from="1617898621673" duration="15000" />
-      <workItem from="1617899985916" duration="51000" />
-      <workItem from="1618139226170" duration="12000" />
+      <workItem from="1618395540034" duration="9696000" />
+      <workItem from="1618468505958" duration="866000" />
+      <workItem from="1618485996700" duration="1771000" />
+      <workItem from="1618503223802" duration="1401000" />
+      <workItem from="1618657531366" duration="10885000" />
+      <workItem from="1618676582542" duration="8002000" />
     </task>
+    <task id="LOCAL-00001" summary="Ajout de rappels, sans gestion d'ajout de l'événement lié. Création d'un événement avec comme id 1 pour que cela fonctionne. Tous les rappels seront liés à cet événement.">
+      <created>1618418746390</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1618418746390</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Ajout de rappels, sans gestion d'ajout de l'événement lié. Création d'un événement avec comme id 1 pour que cela fonctionne. Tous les rappels seront liés à cet événement.">
+      <created>1618418935208</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1618418935208</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Ajout champ heure dans la BDD">
+      <created>1618487109085</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1618487109085</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Correction bug champ heure">
+      <created>1618502903112</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1618502903112</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Correction bug champ heure">
+      <created>1618503325537</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1618503325537</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Ajustement nom de méthode pour les périodes">
+      <created>1618503847533</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1618503847533</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Création d'un événement lié au rappel">
+      <created>1618678792447</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1618678792447</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Création d'un événement lié au rappel">
+      <created>1618685946319</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1618685946319</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Création des fichiers">
+      <created>1618686024336</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1618686024336</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ajout de rappels, sans gestion d'ajout de l'événement lié. Création d'un événement avec comme id 1 pour que cela fonctionne. Tous les rappels seront liés à cet événement." />
+    <MESSAGE value="Ajout champ heure dans la BDD" />
+    <MESSAGE value="Correction bug champ heure" />
+    <MESSAGE value="Ajustement nom de méthode pour les périodes" />
+    <MESSAGE value="Création d'un événement lié au rappel" />
+    <MESSAGE value="Création des fichiers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Création des fichiers" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser" timestamp="1618687773096">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1618687773096" />
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1618689674220">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1618689674220" />
+    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1618689674220">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1618689674220" />
+    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1618689674220">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1618689674220" />
+    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1618689674220">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1618689674220" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1618689678858">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1618689678858" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1618689678857">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1618689678857" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1618689678857">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1618689678857" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1618689678858">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1618689678858" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1618686029435">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1618686029435" />
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618678606446">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1618678606446" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1618503787461">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1618503787461" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/heigvd/pro/CoursAddController.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
