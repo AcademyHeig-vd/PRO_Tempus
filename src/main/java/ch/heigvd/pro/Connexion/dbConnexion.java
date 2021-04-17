@@ -14,6 +14,7 @@ public class dbConnexion {
     private static final String DATABASE_PASSWORD = "root";
     private static final String INSERT_QUERY_COURS = "INSERT INTO Periode (idCours,jourSemaine,heureDebut,heureFin,salle) VALUES (?, ?, ?, ?, ?)";
     private static final String INSERT_QUERY_PROF = "INSERT INTO Professeur (nom,prenom,mail) VALUES (?, ?, ?)";
+    private static final String INSERT_QUERY_EVENEMENT = "INSERT INTO Evenement (titre,dateDebut,dateEcheance,description) VALUES (?, ?, ?, ?)";
     private static final String INSERT_QUERY_RAPPEL = "INSERT INTO Rappel (idEvenement,contenu,lien,heure) VALUES (?, ?, ?, ?)";
 
     public Connection getConnexion() throws SQLException, ClassNotFoundException {
@@ -66,6 +67,37 @@ public class dbConnexion {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public int insertRecordEvenement(String titre, String dateDebut, String dateEcheance, String description){
+        // Step 1: Establishing a Connection and
+        // try-with-resource statement will auto close the connection.
+        try (Connection connection = getConnexion();
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_EVENEMENT, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setString(1, titre);
+            preparedStatement.setString(2, dateDebut);
+            preparedStatement.setString(3, dateEcheance);
+            preparedStatement.setString(4, description);
+
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            int generatedId = 0;
+            if (rs.next()) {
+                generatedId = rs.getInt(1);
+            }
+            return generatedId;
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
     public void insertRecordRappel(int idEvenement, String contenu, String lien, String heure){
