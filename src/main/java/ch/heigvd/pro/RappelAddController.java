@@ -21,11 +21,17 @@ public class RappelAddController {
     @FXML
     private TableView<ModelTableRappel> table;
     @FXML
+    private TableColumn<ModelTableRappel,String>col_titre;
+    @FXML
+    private TableColumn<ModelTableRappel,String>col_date;
+    @FXML
+    private TableColumn<ModelTableRappel,String>col_heure;
+    @FXML
+    private TableColumn<ModelTableRappel,String>col_description;
+    @FXML
     private TableColumn<ModelTableRappel,String>col_contenu;
     @FXML
     private TableColumn<ModelTableRappel,String>col_lien;
-    @FXML
-    private TableColumn<ModelTableRappel,String>col_heure;
 
 
     ObservableList<ModelTableRappel> oblist = FXCollections.observableArrayList();
@@ -60,7 +66,7 @@ public class RappelAddController {
 
             // Suppression database
             PreparedStatement stmt = null;
-            stmt = connection.prepareStatement("DELETE FROM Rappel where idEvenement = ?");
+            stmt = connection.prepareStatement("DELETE FROM Evenement where idEvenement = ?");
             stmt.setInt(1, selectedIndex.getIdEvenement());
             stmt.execute();
 
@@ -75,21 +81,24 @@ public class RappelAddController {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
 
-            String SQL = "SELECT * FROM pro.Rappel";
+            String SQL = "SELECT * FROM pro.Rappel INNER JOIN Evenement ON Rappel.idEvenement = Evenement.idEvenement";
             System.out.println("Table name query: \"" + SQL + "\"\n");
             ResultSet rs = conn.createStatement().executeQuery(SQL);
 
             while(rs.next()){
-                oblist.add(new ModelTableRappel(rs.getInt("idEvenement"), rs.getString("contenu"), rs.getString("lien"), rs.getString("heure")));
+                oblist.add(new ModelTableRappel(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateEcheance"), rs.getString("heure"), rs.getString("description"), rs.getString("contenu"), rs.getString("lien")));
             }
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }
 
 
+        col_titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        col_date.setCellValueFactory(new PropertyValueFactory<>("dateEcheance"));
+        col_heure.setCellValueFactory(new PropertyValueFactory<>("heure"));
+        col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
         col_contenu.setCellValueFactory(new PropertyValueFactory<>("contenu"));
         col_lien.setCellValueFactory(new PropertyValueFactory<>("lien"));
-        col_heure.setCellValueFactory(new PropertyValueFactory<>("heure"));
 
         table.setItems(oblist);
     }

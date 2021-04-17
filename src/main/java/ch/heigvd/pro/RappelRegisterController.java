@@ -13,11 +13,17 @@ import java.sql.SQLException;
 
 public class RappelRegisterController {
     @FXML
+    private TextField titreField;
+    @FXML
+    private TextField dateField;
+    @FXML
+    private TextField heureField;
+    @FXML
+    private TextField descriptionField;
+    @FXML
     private TextField contenuField;
     @FXML
     private TextField lienField;
-    @FXML
-    private TextField heureField;
     @FXML
     private Button submitButton;
 
@@ -27,18 +33,27 @@ public class RappelRegisterController {
 
         Window owner = submitButton.getScene().getWindow();
 
+        System.out.println(titreField.getText());
+        System.out.println(dateField.getText());
+        System.out.println(heureField.getText());
+        System.out.println(descriptionField.getText());
         System.out.println(contenuField.getText());
         System.out.println(lienField.getText());
-        System.out.println(heureField.getText());
+
 
         if(!inputValid()) return;
 
+        String titre = titreField.getText();
+        String date = dateField.getText();
+        String heure = heureField.getText();
+        String description = descriptionField.getText();
         String contenu = contenuField.getText();
         String lien = lienField.getText();
-        String heure = heureField.getText();
 
         dbConnexion db = new dbConnexion();
-        db.insertRecordRappel(1, contenu, lien, heure);
+
+        int idEvenement = db.insertRecordEvenement(titre, date, date, description);
+        db.insertRecordRappel(idEvenement, contenu, lien, heure);
 
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);
@@ -47,14 +62,24 @@ public class RappelRegisterController {
     private boolean inputValid() throws IOException {
         Window owner = submitButton.getScene().getWindow();
 
+        if (titreField.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "S'il-vous-plaît entrez un titre", false);
+            return false;
+        }
+        if (dateField.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "S'il-vous-plaît entrez une date", false);
+            return false;
+        }
+        if (heureField.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "S'il-vous-plaît entrez une heure", false);
+            return false;
+        }
         if (contenuField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez un contenu", false);
-            return false;
-        }
-        if (lienField.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
-                    "S'il-vous-plaît entrez un lien", false);
             return false;
         }
 
