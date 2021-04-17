@@ -34,7 +34,7 @@
                 <TextField fx:id="dateDebutField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="dateEcheanceField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <ComboBox fx:id="professeurField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <ComboBox fx:id="professeur" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             </children>
         </GridPane>
         <ButtonBar layoutX="92.0" layoutY="254.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="254.0">

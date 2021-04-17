@@ -37,7 +37,7 @@ public class PeriodeRegisterController {
     public void register(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
 
         Window owner = submitButton.getScene().getWindow();
-        ModelTableCoursEvenement  coursEvenement = cours.getSelectionModel().getSelectedItem();;
+        ModelTableCoursEvenement  coursEvenement = cours.getSelectionModel().getSelectedItem();
 
         if(!inputValid()) return;
 
