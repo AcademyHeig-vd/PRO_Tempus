@@ -74,6 +74,7 @@ public class CoursAddController {
 
     @FXML
     private void initialize() {
+
         try {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
