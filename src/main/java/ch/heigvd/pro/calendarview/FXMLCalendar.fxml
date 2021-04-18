@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="650.0" prefWidth="81.0" style="-fx-background-color: #0277BD;">
+         <children>
+            <Button alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="382.0" prefWidth="81.0" style="-fx-background-color: #0277BD;" styleClass="dash-btn" text="burger" textAlignment="CENTER" />
+            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: #0277BD;" styleClass="dash-btn" text="+" />
+            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: #0277BD;" styleClass="dash-btn" text="mail" />
+            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: #0277BD;" styleClass="dash-btn" text="calendar" />
+            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: #0277BD;" styleClass="dash-btn" text="burger" />
+            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: #0277BD;" styleClass="dash-btn" text="burger" />
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="81.0" style="-fx-background-color: #0277BD;" styleClass="dash-btn" text="burger" />
+         </children>
+      </VBox>
+      <AnchorPane prefHeight="723.0" prefWidth="989.0">
+         <children>
+            <Label layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="329.0" text="Calendrier">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox layoutX="14.0" layoutY="33.0" prefHeight="60.0" prefWidth="967.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="61.0" prefWidth="58.0" style="-fx-background-color: #fffffff;" styleClass="dash-btn" text="Bouton de tri" />
+                  <Button mnemonicParsing="false" prefHeight="61.0" prefWidth="58.0" style="-fx-background-color: #fffffff;" styleClass="dash-btn" text="Bouton de tri" />
+                  <Label prefHeight="60.0" prefWidth="269.0" text="Janvier 2021" />
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="84.0" style="-fx-background-color: #fffffff;" styleClass="dash-btn" text="Aujourd'hui" />
+                  <Label prefHeight="60.0" prefWidth="2.0" />
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="119.0" style="-fx-background-color: #fffffff;" styleClass="dash-btn" text="Jour" />
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="132.0" style="-fx-background-color: #fffffff;" styleClass="dash-btn" text="Semaine" />
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="143.0" style="-fx-background-color: #fffffff;" styleClass="dash-btn" text="Mois" />
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="109.0" style="-fx-background-color: #fffffff;" styleClass="dash-btn" text=":::" />
+               </children>
+            </HBox>
+            <Pane layoutX="14.0" layoutY="142.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #ABCDEF;" />
+            <Label layoutX="14.0" layoutY="105.0" prefHeight="27.0" prefWidth="113.0" text="Dimanche">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="135.0" layoutY="105.0" prefHeight="27.0" prefWidth="113.0" text="Lundi">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="256.0" layoutY="105.0" prefHeight="27.0" prefWidth="113.0" text="Mardi">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="378.0" layoutY="105.0" prefHeight="27.0" prefWidth="113.0" text="Mercredi">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Pane layoutX="135.0" layoutY="142.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #ABCDEF;" />
+            <Pane layoutX="256.0" layoutY="142.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #ABCDEF;" />
+            <Pane layoutX="378.0" layoutY="142.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #ABCDEF;" />
+            <Pane layoutX="498.0" layoutY="142.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #ABCDEF;" />
+            <Pane layoutX="618.0" layoutY="142.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Label layoutX="498.0" layoutY="105.0" prefHeight="27.0" prefWidth="113.0" text="Jeudi">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="618.0" layoutY="105.0" prefHeight="27.0" prefWidth="113.0" text="Vendredi">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="740.0" layoutY="105.0" prefHeight="27.0" prefWidth="113.0" text="Samedi">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Pane layoutX="740.0" layoutY="142.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="14.0" layoutY="240.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="135.0" layoutY="240.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="256.0" layoutY="240.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="378.0" layoutY="240.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="498.0" layoutY="240.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="618.0" layoutY="240.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="740.0" layoutY="240.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="15.0" layoutY="332.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="136.0" layoutY="332.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="257.0" layoutY="332.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="379.0" layoutY="332.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="499.0" layoutY="332.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="619.0" layoutY="332.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="741.0" layoutY="332.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="15.0" layoutY="423.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="136.0" layoutY="423.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="257.0" layoutY="423.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="379.0" layoutY="423.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="499.0" layoutY="423.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="619.0" layoutY="423.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="741.0" layoutY="423.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="16.0" layoutY="514.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="137.0" layoutY="514.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="258.0" layoutY="514.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="380.0" layoutY="514.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="500.0" layoutY="514.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="620.0" layoutY="514.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="742.0" layoutY="514.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="17.0" layoutY="607.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="138.0" layoutY="607.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="259.0" layoutY="607.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="381.0" layoutY="607.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="501.0" layoutY="607.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="621.0" layoutY="607.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+            <Pane layoutX="743.0" layoutY="607.0" prefHeight="85.0" prefWidth="113.0" style="-fx-background-color: #3d76b6;">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="69.0" text="01/01" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

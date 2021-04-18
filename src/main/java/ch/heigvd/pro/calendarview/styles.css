@@ -1,0 +1,12 @@
+* {
+    -fx-primary : #ffffff;
+    -fx-primarytext: gray;
+}
+.dash_btn:hover{
+    -fx-border-color:-fx-primary;
+    -fx-border-width: 0px 0px 0px 4px;
+}
+
+.btn_li:hover{
+    -fx-background-color: #0x77BD
+}
