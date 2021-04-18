@@ -13,6 +13,8 @@ import java.sql.SQLException;
 
 public class ProfRegisterController {
     @FXML
+    private TextField acronymeField;
+    @FXML
     private TextField nomField;
     @FXML
     private TextField prenomField;
@@ -27,18 +29,20 @@ public class ProfRegisterController {
 
         Window owner = submitButton.getScene().getWindow();
 
+        System.out.println(acronymeField.getText());
         System.out.println(nomField.getText());
         System.out.println(prenomField.getText());
         System.out.println(mailField.getText());
 
         if(!inputValid()) return;
 
+        String acronyme = acronymeField.getText();
         String nom = nomField.getText();
         String prenom = prenomField.getText();
         String mail = mailField.getText();
 
         dbConnexion db = new dbConnexion();
-        db.insertRecordProf(nom, prenom, mail);
+        db.insertRecordProf(acronyme, nom, prenom, mail);
 
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);
@@ -47,6 +51,11 @@ public class ProfRegisterController {
     private boolean inputValid() throws IOException {
         Window owner = submitButton.getScene().getWindow();
 
+        if (acronymeField.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "S'il-vous-plaît entrez un acronyme", false);
+            return false;
+        }
         if (nomField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez un nom", false);
