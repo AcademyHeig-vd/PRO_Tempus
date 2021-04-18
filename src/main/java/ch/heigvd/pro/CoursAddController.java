@@ -79,12 +79,12 @@ public class CoursAddController {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
 
-            String SQL = "SELECT * FROM pro.Cours INNER JOIN Evenement ON Cours.idEvenement = Evenement.idEvenement INNER JOIN Professeur ON Cours.idProfesseur = Professeur.idProfesseur";
+            String SQL = "SELECT * FROM pro.Cours INNER JOIN Evenement ON Cours.idEvenement = Evenement.idEvenement INNER JOIN Professeur ON Cours.acronyme = Professeur.acronyme";
             System.out.println("Table name query: \"" + SQL + "\"\n");
             ResultSet rs = conn.createStatement().executeQuery(SQL);
 
             while(rs.next()){
-                oblist.add(new ModelTableCours(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateDebut"), rs.getString("dateEcheance"), rs.getString("description"), rs.getInt("idProfesseur")));
+                oblist.add(new ModelTableCours(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateDebut"), rs.getString("dateEcheance"), rs.getString("description"), rs.getString("acronyme")));
             }
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
@@ -95,7 +95,7 @@ public class CoursAddController {
         col_dateDebut.setCellValueFactory(new PropertyValueFactory<>("dateDebut"));
         col_dateEcheance.setCellValueFactory(new PropertyValueFactory<>("dateEcheance"));
         col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        col_professeur.setCellValueFactory(new PropertyValueFactory<>("idProfesseur"));
+        col_professeur.setCellValueFactory(new PropertyValueFactory<>("acronyme"));
 
         table.setItems(oblist);
     }

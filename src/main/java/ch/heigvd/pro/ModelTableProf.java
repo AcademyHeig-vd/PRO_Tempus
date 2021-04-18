@@ -1,22 +1,21 @@
 package ch.heigvd.pro;
 
 public class ModelTableProf {
-    int idProfesseur;
-    String nom, prenom, mail;
+    String acronyme, nom, prenom, mail;
 
-    public ModelTableProf(int idProfesseur, String nom, String prenom, String mail) {
-        this.idProfesseur = idProfesseur;
+    public ModelTableProf(String acronyme, String nom, String prenom, String mail) {
+        this.acronyme = acronyme;
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
     }
 
-    public int getIdProfesseur() {
-        return idProfesseur;
+    public String getAcronyme() {
+        return acronyme;
     }
 
-    public void setIdProfesseur(int idProfesseur) {
-        this.idProfesseur = idProfesseur;
+    public void setAcronyme(String acronyme) {
+        this.acronyme = acronyme;
     }
 
     public String getNom() {

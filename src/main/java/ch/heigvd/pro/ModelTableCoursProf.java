@@ -1,32 +1,22 @@
 package ch.heigvd.pro;
 
 public class ModelTableCoursProf {
-    private int idProfesseur;
-    private String nom;
+    private String acronyme;
 
-    public ModelTableCoursProf(int idProfesseur, String nom) {
-        this.idProfesseur = idProfesseur;
-        this.nom = nom;
+    public ModelTableCoursProf(String acronyme) {
+        this.acronyme = acronyme;
     }
 
-    public int getIdProfesseur() {
-        return idProfesseur;
+    public String getAcronyme() {
+        return acronyme;
     }
 
-    public void setIdProfesseur(int idEvenement) {
-        this.idProfesseur = idEvenement;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setAcronyme(String acronyme) {
+        this.acronyme = acronyme;
     }
 
     @Override
     public String toString() {
-        return nom;
+        return acronyme;
     }
 }

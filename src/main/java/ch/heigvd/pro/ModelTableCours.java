@@ -1,17 +1,17 @@
 package ch.heigvd.pro;
 
 public class ModelTableCours {
-    int idEvenement, idProfesseur;
+    int idEvenement;
 
-    String titre, dateDebut, dateEcheance, description;
+    String titre, dateDebut, dateEcheance, description, acronyme;
 
-    public ModelTableCours(int idEvenement, String titre, String dateDebut, String dateEcheance, String description, int idProfesseur) {
+    public ModelTableCours(int idEvenement, String titre, String dateDebut, String dateEcheance, String description, String acronyme) {
         this.idEvenement = idEvenement;
         this.titre = titre;
         this.dateDebut = dateDebut;
         this.dateEcheance = dateEcheance;
         this.description = description;
-        this.idProfesseur = idProfesseur;
+        this.acronyme = acronyme;
     }
 
     public int getIdEvenement() {
@@ -22,12 +22,12 @@ public class ModelTableCours {
         this.idEvenement = idEvenement;
     }
 
-    public int getIdProfesseur() {
-        return idProfesseur;
+    public String getAcronyme() {
+        return acronyme;
     }
 
-    public void setIdProfesseur(int idProfesseur) {
-        this.idProfesseur = idProfesseur;
+    public void setAcronyme(String acronyme) {
+        this.acronyme = acronyme;
     }
 
     public String getTitre() {

@@ -41,14 +41,13 @@ public class CoursRegisterController {
 
         if(!inputValid()) return;
 
-        System.out.println(coursProf.getIdProfesseur());
-        System.out.println(coursProf.getNom());
+        System.out.println(coursProf.getAcronyme());
         System.out.println(titreField.getText());
         System.out.println(dateDebutField.getText());
         System.out.println(dateEcheanceField.getText());
         System.out.println(descriptionField.getText());
 
-        int idProfesseur = coursProf.getIdProfesseur();
+        String acronyme = coursProf.getAcronyme();
         String titre = titreField.getText();
         String dateDebut = dateDebutField.getText();
         String dateEcheance = dateEcheanceField.getText();
@@ -57,7 +56,7 @@ public class CoursRegisterController {
         dbConnexion db = new dbConnexion();
 
         int idEvenement = db.insertRecordEvenement(titre, dateDebut, dateEcheance, description);
-        db.insertRecordCours(idEvenement, idProfesseur);
+        db.insertRecordCours(idEvenement, acronyme);
 
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);
@@ -70,13 +69,13 @@ public class CoursRegisterController {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
 
-            String SQL = "SELECT * FROM pro.Professeur";
+            String SQL = "SELECT acronyme FROM pro.Professeur";
             System.out.println("Table name query: \"" + SQL + "\"\n");
 
             ResultSet rs = conn.createStatement().executeQuery(SQL);
 
             while(rs.next()){
-                oblist.add(new ModelTableCoursProf(rs.getInt("idProfesseur"), rs.getString("nom")));
+                oblist.add(new ModelTableCoursProf(rs.getString("acronyme")));
             }
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();

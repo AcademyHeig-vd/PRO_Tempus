@@ -21,6 +21,8 @@ public class ProfAddController {
     @FXML
     private TableView<ModelTableProf> table;
     @FXML
+    private TableColumn<ModelTableProf,String>col_acronyme;
+    @FXML
     private TableColumn<ModelTableProf,String>col_nom;
     @FXML
     private TableColumn<ModelTableProf,String>col_prenom;
@@ -60,8 +62,8 @@ public class ProfAddController {
 
             // Suppression database
             PreparedStatement stmt = null;
-            stmt = connection.prepareStatement("DELETE FROM Professeur where idProfesseur = ?");
-            stmt.setInt(1, selectedIndex.getIdProfesseur());
+            stmt = connection.prepareStatement("DELETE FROM Professeur where acronyme = ?");
+            stmt.setString(1, selectedIndex.getAcronyme());
             stmt.execute();
 
         } catch (Exception e){
@@ -80,7 +82,7 @@ public class ProfAddController {
             ResultSet rs = conn.createStatement().executeQuery(SQL);
 
             while(rs.next()){
-                oblist.add(new ModelTableProf(rs.getInt("idProfesseur"), rs.getString("nom"), rs.getString("prenom"),
+                oblist.add(new ModelTableProf(rs.getString("acronyme"), rs.getString("nom"), rs.getString("prenom"),
                         rs.getString("mail")));
             }
         } catch (SQLException | ClassNotFoundException e){
@@ -88,6 +90,7 @@ public class ProfAddController {
         }
 
 
+        col_acronyme.setCellValueFactory(new PropertyValueFactory<>("acronyme"));
         col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         col_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         col_mail.setCellValueFactory(new PropertyValueFactory<>("mail"));

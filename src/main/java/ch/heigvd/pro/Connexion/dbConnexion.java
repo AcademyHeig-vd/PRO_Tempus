@@ -13,17 +13,17 @@ public class dbConnexion {
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "root";
     private static final String INSERT_QUERY_PERIODE = "INSERT INTO Periode (idCours,jourSemaine,heureDebut,heureFin,salle) VALUES (?, ?, ?, ?, ?)";
-    private static final String INSERT_QUERY_PROF = "INSERT INTO Professeur (nom,prenom,mail) VALUES (?, ?, ?)";
+    private static final String INSERT_QUERY_PROF = "INSERT INTO Professeur (acronyme,nom,prenom,mail) VALUES (?, ?, ?, ?)";
     private static final String INSERT_QUERY_EVENEMENT = "INSERT INTO Evenement (titre,dateDebut,dateEcheance,description) VALUES (?, ?, ?, ?)";
     private static final String INSERT_QUERY_RAPPEL = "INSERT INTO Rappel (idEvenement,contenu,lien,heure) VALUES (?, ?, ?, ?)";
-    private static final String INSERT_QUERY_COURS = "INSERT INTO Cours (idEvenement,idProfesseur) VALUES (?, ?)";
+    private static final String INSERT_QUERY_COURS = "INSERT INTO Cours (idEvenement,acronyme) VALUES (?, ?)";
 
     public Connection getConnexion() throws SQLException, ClassNotFoundException {
         Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
         return connection;
     }
 
-    public void insertRecordCours(int idEvenement, int idProfesseur){
+    public void insertRecordCours(int idEvenement, String acronyme){
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
         try (Connection connection = getConnexion();
@@ -31,7 +31,7 @@ public class dbConnexion {
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_COURS)) {
             preparedStatement.setInt(1, idEvenement);
-            preparedStatement.setInt(2, idProfesseur);
+            preparedStatement.setString(2, acronyme);
 
 
             System.out.println(preparedStatement);
@@ -69,16 +69,17 @@ public class dbConnexion {
         }
     }
 
-    public void insertRecordProf(String nom, String prenom, String mail){
+    public void insertRecordProf(String acronyme, String nom, String prenom, String mail){
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
         try (Connection connection = getConnexion();
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_PROF)) {
-            preparedStatement.setString(1, nom);
-            preparedStatement.setString(2, prenom);
-            preparedStatement.setString(3, mail);
+            preparedStatement.setString(1, acronyme);
+            preparedStatement.setString(2, nom);
+            preparedStatement.setString(3, prenom);
+            preparedStatement.setString(4, mail);
 
 
             System.out.println(preparedStatement);

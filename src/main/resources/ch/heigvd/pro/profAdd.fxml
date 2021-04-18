@@ -15,6 +15,7 @@
                     <children>
                         <TableView fx:id="table" layoutX="-25.0" layoutY="20.0" prefHeight="200.0" prefWidth="432.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
+                                <TableColumn fx:id="col_acronyme" prefWidth="75.0" text="Acronyme" />
                                 <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom" />
                                 <TableColumn fx:id="col_prenom" prefWidth="108.0" text="Prénom" />
                                 <TableColumn fx:id="col_mail" prefWidth="75.0" text="E-mail" />
