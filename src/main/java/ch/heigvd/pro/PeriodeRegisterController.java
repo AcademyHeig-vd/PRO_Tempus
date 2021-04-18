@@ -69,8 +69,7 @@ public class PeriodeRegisterController {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
 
-            // Ajouter une condition qui vérifie que titre appartient à cours
-            String SQL = "SELECT * FROM pro.Evenement";
+            String SQL = "SELECT * FROM pro.Evenement INNER JOIN Cours ON Evenement.idEvenement = Cours.idEvenement";
             System.out.println("Table name query: \"" + SQL + "\"\n");
 
             ResultSet rs = conn.createStatement().executeQuery(SQL);
