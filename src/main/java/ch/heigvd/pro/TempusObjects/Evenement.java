@@ -1,4 +1,4 @@
-package ch.heigvd.pro.calendarview;
+package ch.heigvd.pro.TempusObjects;
 
 import ch.heigvd.pro.Connexion.dbConnexion;
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
-public class Rappel {
+public class Evenement {
     final int id;
     String titre;
     Date echeance;
@@ -19,7 +19,7 @@ public class Rappel {
     String contenu;
     String lien;
 
-    public Rappel(int id, String titre, Date echeance, String heure, String descritpion,String contenu, String lien){
+    public Evenement(int id, String titre, Date echeance, String heure, String descritpion, String contenu, String lien){
         this.id = id;
         this.descritpion = descritpion;
         this.titre = titre;
@@ -93,8 +93,8 @@ public class Rappel {
 
     }
 
-    public static List<Rappel> initializeAllRappel(Date date) throws SQLException, ClassNotFoundException {
-        List<Rappel> rappels = new ArrayList<>();
+    public static List<Evenement> initializeAllRappel(Date date) throws SQLException, ClassNotFoundException {
+        List<Evenement> rappels = new ArrayList<>();
         String SQL = "SELECT * FROM pro.Rappel INNER JOIN Evenement ON Rappel.idEvenement = Evenement.idEvenement";
 
         dbConnexion db = new dbConnexion();
@@ -102,7 +102,7 @@ public class Rappel {
 
         ResultSet rs = conn.createStatement().executeQuery(SQL);
         while(rs.next()){
-            rappels.add(new Rappel(rs.getInt("idEvenement"), rs.getString("titre"), rs.getDate("dateEcheance"), rs.getString("heure"), rs.getString("description"), rs.getString("contenu"), rs.getString("lien")));
+            rappels.add(new Evenement(rs.getInt("idEvenement"), rs.getString("titre"), rs.getDate("dateEcheance"), rs.getString("heure"), rs.getString("description"), rs.getString("contenu"), rs.getString("lien")));
         }
         return rappels;
 

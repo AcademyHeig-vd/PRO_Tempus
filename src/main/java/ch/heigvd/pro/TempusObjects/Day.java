@@ -1,27 +1,23 @@
-package ch.heigvd.pro.calendarview;
-
-import ch.heigvd.pro.Connexion.dbConnexion;
+package ch.heigvd.pro.TempusObjects;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Day {
     Date date;
-    List<Rappel> rappels;
+    List<Evenement> rappels;
 
-    public Day(Date date, List<Rappel> rappels){
+    public Day(Date date, List<Evenement> rappels){
         this.date = date;
         this.rappels = rappels;
     }
 
-    public void addRappel(Rappel rappel){
+    public void addRappel(Evenement rappel){
         rappels.add(rappel);
     }
 
-    public void deleteRappel(Rappel rappel) throws SQLException, ClassNotFoundException {
-        Rappel.deleteRappel(rappel.getId());
+    public void deleteRappel(Evenement rappel) throws SQLException, ClassNotFoundException {
+        Evenement.deleteRappel(rappel.getId());
         rappels.remove(rappel);
     }
 
@@ -35,7 +31,7 @@ public class Day {
 
     public void getAllRappelsOfDay() throws SQLException, ClassNotFoundException {
         rappels.clear();
-        List<Rappel> newRappel = Rappel.initializeAllRappel(date);
+        List<Evenement> newRappel = Evenement.initializeAllRappel(date);
         this.rappels = newRappel;
     }
 
