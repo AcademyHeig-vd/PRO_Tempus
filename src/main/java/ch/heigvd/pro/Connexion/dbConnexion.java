@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class dbConnexion {
 
-    private static final String DATABASE_URL = "jdbc:mysql://127.0.0.1:3306/pro?serverTimezone=UTC&useSSL=false";
+    private static final String DATABASE_URL = "jdbc:mysql://192.168.99.100:3306/PRO?serverTimezone=UTC&useSSL=false";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "root";
     private static final String INSERT_QUERY_COURS = "INSERT INTO Periode (idCours,nom,jourSemaine,heureDebut,heureFin,salle) VALUES (?, ?, ?, ?, ?, ?)";
