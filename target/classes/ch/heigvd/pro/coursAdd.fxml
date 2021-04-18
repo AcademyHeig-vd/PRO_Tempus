@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.heigvd.pro.ProfAddController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.heigvd.pro.CoursAddController">
     <children>
         <SplitPane layoutX="150.0" layoutY="103.0" prefHeight="400.0" prefWidth="468.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="132.0" AnchorPane.topAnchor="0.0">
             <items>
@@ -15,10 +15,11 @@
                     <children>
                         <TableView fx:id="table" layoutX="-25.0" layoutY="20.0" prefHeight="200.0" prefWidth="432.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
-                                <TableColumn fx:id="col_acronyme" prefWidth="75.0" text="Acronyme" />
-                                <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom" />
-                                <TableColumn fx:id="col_prenom" prefWidth="108.0" text="Prénom" />
-                                <TableColumn fx:id="col_mail" prefWidth="75.0" text="E-mail" />
+                                <TableColumn fx:id="col_titre" prefWidth="75.0" text="Titre" />
+                                <TableColumn fx:id="col_dateDebut" prefWidth="75.0" text="Date début" />
+                                <TableColumn fx:id="col_dateEcheance" prefWidth="75.0" text="Date échéance" />
+                                <TableColumn fx:id="col_description" prefWidth="75.0" text="Description" />
+                                <TableColumn fx:id="col_professeur" prefWidth="75.0" text="Professeur" />
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

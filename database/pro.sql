@@ -13,11 +13,11 @@ CREATE TABLE Evenement (
 )ENGINE = InnoDB;
 
 CREATE TABLE Professeur (
-                            idProfesseur INTEGER UNSIGNED AUTO_INCREMENT,
+                            acronyme VARCHAR(3) NOT NULL,
                             nom VARCHAR(50) NOT NULL,
                             prenom VARCHAR(50) NOT NULL,
                             mail VARCHAR(255) NOT NULL,
-                            CONSTRAINT PK_Professeur PRIMARY KEY (idProfesseur)
+                            CONSTRAINT PK_Professeur PRIMARY KEY (acronyme)
 )ENGINE = InnoDB;
 
 CREATE TABLE Rappel (
@@ -30,7 +30,7 @@ CREATE TABLE Rappel (
 
 CREATE TABLE Cours (
                        idEvenement INTEGER UNSIGNED,
-                       idProfesseur INTEGER UNSIGNED,
+                       acronyme VARCHAR(3),
                        CONSTRAINT PK_Cours PRIMARY KEY (idEvenement)
 )ENGINE = InnoDB;
 
@@ -73,8 +73,8 @@ ALTER TABLE Cours
             ON DELETE CASCADE
             ON UPDATE CASCADE,
 	ADD CONSTRAINT FK_Cours_idProfesseur
-		FOREIGN KEY (idProfesseur)
-		REFERENCES Professeur (idProfesseur)
+		FOREIGN KEY (acronyme)
+		REFERENCES Professeur (acronyme)
 		ON DELETE SET NULL
 		ON UPDATE SET NULL;
 

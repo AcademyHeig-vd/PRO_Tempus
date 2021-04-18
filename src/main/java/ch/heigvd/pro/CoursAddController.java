@@ -16,25 +16,26 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
-public class ProfAddController {
+public class CoursAddController {
 
     @FXML
-    private TableView<ModelTableProf> table;
+    private TableView<ModelTableCours> table;
     @FXML
-    private TableColumn<ModelTableProf,String>col_acronyme;
+    private TableColumn<ModelTableCours,String>col_titre;
     @FXML
-    private TableColumn<ModelTableProf,String>col_nom;
+    private TableColumn<ModelTableCours,String>col_dateDebut;
     @FXML
-    private TableColumn<ModelTableProf,String>col_prenom;
+    private TableColumn<ModelTableCours,String>col_dateEcheance;
     @FXML
-    private TableColumn<ModelTableProf,String>col_mail;
+    private TableColumn<ModelTableCours,String>col_description;
+    @FXML
+    private TableColumn<ModelTableCours,String>col_professeur;
 
-
-    ObservableList<ModelTableProf> oblist = FXCollections.observableArrayList();
+    ObservableList<ModelTableCours> oblist = FXCollections.observableArrayList();
 
     @FXML
     private void newEntry() throws IOException {
-        Tempus.setRoot("profRegister");
+        Tempus.setRoot("coursRegister");
     }
 
     @FXML
@@ -44,7 +45,7 @@ public class ProfAddController {
 
     @FXML
     private void delete() {
-        ModelTableProf selectedIndex = (ModelTableProf) table.getSelectionModel().getSelectedItem();
+        ModelTableCours selectedIndex = (ModelTableCours) table.getSelectionModel().getSelectedItem();
 
         try {
             // Connexion a la database
@@ -54,7 +55,7 @@ public class ProfAddController {
             if(table.getSelectionModel().getSelectedIndex() < 0){
                 // Rien n'a été sélectionné
                 showAlert(Alert.AlertType.WARNING, "Aucune sélection",
-                        "Aucune personne n'a été séléctionnée !");
+                        "Aucun cours n'a été séléctionnée !");
                 return;
             }
             // Suppression application
@@ -62,8 +63,8 @@ public class ProfAddController {
 
             // Suppression database
             PreparedStatement stmt = null;
-            stmt = connection.prepareStatement("DELETE FROM Professeur where acronyme = ?");
-            stmt.setString(1, selectedIndex.getAcronyme());
+            stmt = connection.prepareStatement("DELETE FROM Evenement where idEvenement = ?");
+            stmt.setInt(1, selectedIndex.getIdEvenement());
             stmt.execute();
 
         } catch (Exception e){
@@ -73,27 +74,28 @@ public class ProfAddController {
 
     @FXML
     private void initialize() {
+
         try {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
 
-            String SQL = "SELECT * FROM pro.Professeur";
+            String SQL = "SELECT * FROM pro.Cours INNER JOIN Evenement ON Cours.idEvenement = Evenement.idEvenement INNER JOIN Professeur ON Cours.acronyme = Professeur.acronyme";
             System.out.println("Table name query: \"" + SQL + "\"\n");
             ResultSet rs = conn.createStatement().executeQuery(SQL);
 
             while(rs.next()){
-                oblist.add(new ModelTableProf(rs.getString("acronyme"), rs.getString("nom"), rs.getString("prenom"),
-                        rs.getString("mail")));
+                oblist.add(new ModelTableCours(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateDebut"), rs.getString("dateEcheance"), rs.getString("description"), rs.getString("acronyme")));
             }
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }
 
 
-        col_acronyme.setCellValueFactory(new PropertyValueFactory<>("acronyme"));
-        col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        col_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        col_mail.setCellValueFactory(new PropertyValueFactory<>("mail"));
+        col_titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        col_dateDebut.setCellValueFactory(new PropertyValueFactory<>("dateDebut"));
+        col_dateEcheance.setCellValueFactory(new PropertyValueFactory<>("dateEcheance"));
+        col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        col_professeur.setCellValueFactory(new PropertyValueFactory<>("acronyme"));
 
         table.setItems(oblist);
     }

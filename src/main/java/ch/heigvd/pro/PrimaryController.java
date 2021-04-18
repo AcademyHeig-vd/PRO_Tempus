@@ -20,4 +20,9 @@ public class PrimaryController {
     private void switchToProf() throws IOException {
         Tempus.setRoot("profAdd");
     }
+
+    @FXML
+    private void switchToCours() throws IOException {
+        Tempus.setRoot("coursAdd");
+    }
 }
