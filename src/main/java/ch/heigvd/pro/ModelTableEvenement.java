@@ -1,10 +1,10 @@
 package ch.heigvd.pro;
 
-public class ModelTableCoursEvenement {
+public class ModelTableEvenement {
     private int idEvenement;
     private String titre;
 
-    public ModelTableCoursEvenement(int idEvenement, String titre) {
+    public ModelTableEvenement(int idEvenement, String titre) {
         this.idEvenement = idEvenement;
         this.titre = titre;
     }

@@ -28,16 +28,16 @@ public class PeriodeRegisterController {
     @FXML
     private Button submitButton;
     @FXML
-    private ComboBox<ModelTableCoursEvenement> cours = new ComboBox<>();
+    private ComboBox<ModelTableEvenement> cours = new ComboBox<>();
 
-    ObservableList<ModelTableCoursEvenement> oblist = FXCollections.observableArrayList();
+    ObservableList<ModelTableEvenement> oblist = FXCollections.observableArrayList();
 
 
     @FXML
     public void register(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
 
         Window owner = submitButton.getScene().getWindow();
-        ModelTableCoursEvenement  coursEvenement = cours.getSelectionModel().getSelectedItem();;
+        ModelTableEvenement coursEvenement = cours.getSelectionModel().getSelectedItem();;
 
         if(!inputValid()) return;
 
@@ -76,7 +76,7 @@ public class PeriodeRegisterController {
             ResultSet rs = conn.createStatement().executeQuery(SQL);
 
             while(rs.next()){
-                oblist.add(new ModelTableCoursEvenement(rs.getInt("idEvenement"), rs.getString("titre")));
+                oblist.add(new ModelTableEvenement(rs.getInt("idEvenement"), rs.getString("titre")));
             }
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
@@ -88,7 +88,7 @@ public class PeriodeRegisterController {
     private boolean inputValid() throws IOException {
         Window owner = submitButton.getScene().getWindow();
 
-        ModelTableCoursEvenement coursEvenement = cours.getSelectionModel().getSelectedItem();
+        ModelTableEvenement coursEvenement = cours.getSelectionModel().getSelectedItem();
 
        if (coursEvenement == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
