@@ -26,6 +26,7 @@ public class dbConnexion {
     public void insertRecordCours(int idEvenement, String acronyme){
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
+        /cnx
         try (Connection connection = getConnexion();
 
              // Step 2:Create a statement using connection object
