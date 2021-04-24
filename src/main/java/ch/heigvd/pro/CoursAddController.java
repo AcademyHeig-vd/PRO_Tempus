@@ -17,7 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 
 public class CoursAddController {
-
     @FXML
     private TableView<ModelTableCours> table;
     @FXML

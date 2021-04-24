@@ -90,5 +90,4 @@ public class ProfRegisterController {
     private void OKButton() throws IOException {
         Tempus.setRoot("profAdd");
     }
-
 }
