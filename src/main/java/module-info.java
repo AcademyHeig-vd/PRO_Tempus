@@ -6,6 +6,4 @@ module ch.heigvd.pro {
     opens ch.heigvd.pro to javafx.fxml;
     exports ch.heigvd.pro;
 
-    exports ch.heigvd.pro.calendarview;
-    opens ch.heigvd.pro.calendarview to javafx.graphics;
 }
