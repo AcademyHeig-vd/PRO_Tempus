@@ -1,6 +1,8 @@
-package ch.heigvd.pro;
+package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Connexion.dbConnexion;
+import ch.heigvd.pro.Tempus;
+import ch.heigvd.pro.model.ModelTableCoursProf;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -69,7 +71,7 @@ public class CoursRegisterController {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
 
-            String SQL = "SELECT acronyme FROM pro.Professeur";
+            String SQL = "SELECT acronyme FROM Professeur";
             System.out.println("Table name query: \"" + SQL + "\"\n");
 
             ResultSet rs = conn.createStatement().executeQuery(SQL);
@@ -121,12 +123,12 @@ public class CoursRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.setRoot("coursAdd");
+        if(menu) Tempus.setRoot("view/coursAdd");
     }
 
     @FXML
     private void OKButton() throws IOException {
-        Tempus.setRoot("coursAdd");
+        Tempus.setRoot("view/coursAdd");
     }
 
 }

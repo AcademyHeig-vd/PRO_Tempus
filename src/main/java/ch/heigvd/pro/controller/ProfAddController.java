@@ -1,4 +1,4 @@
-package ch.heigvd.pro;
+package ch.heigvd.pro.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import ch.heigvd.pro.Tempus;
+import ch.heigvd.pro.model.ModelTableProf;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -34,12 +36,12 @@ public class ProfAddController {
 
     @FXML
     private void newEntry() throws IOException {
-        Tempus.setRoot("profRegister");
+        Tempus.setRoot("view/profRegister");
     }
 
     @FXML
     private void switchToPrimary() throws IOException {
-        Tempus.setRoot("primary");
+        Tempus.setRoot("view/primary");
     }
 
     @FXML
@@ -77,7 +79,7 @@ public class ProfAddController {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
 
-            String SQL = "SELECT * FROM pro.Professeur";
+            String SQL = "SELECT * FROM Professeur";
             System.out.println("Table name query: \"" + SQL + "\"\n");
             ResultSet rs = conn.createStatement().executeQuery(SQL);
 

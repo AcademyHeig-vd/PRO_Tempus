@@ -1,6 +1,7 @@
-package ch.heigvd.pro;
+package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Connexion.dbConnexion;
+import ch.heigvd.pro.Tempus;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -94,12 +95,12 @@ public class RappelRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.setRoot("rappelAdd");
+        if(menu) Tempus.setRoot("view/rappelAdd");
     }
 
     @FXML
     private void OKButton() throws IOException {
-        Tempus.setRoot("rappelAdd");
+        Tempus.setRoot("view/rappelAdd");
     }
 
 }

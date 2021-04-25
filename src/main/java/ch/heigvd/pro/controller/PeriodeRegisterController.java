@@ -1,6 +1,8 @@
-package ch.heigvd.pro;
+package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Connexion.dbConnexion;
+import ch.heigvd.pro.model.ModelTableCoursEvenement;
+import ch.heigvd.pro.Tempus;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -69,7 +71,7 @@ public class PeriodeRegisterController {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
 
-            String SQL = "SELECT * FROM pro.Evenement INNER JOIN Cours ON Evenement.idEvenement = Cours.idEvenement";
+            String SQL = "SELECT * FROM Evenement INNER JOIN Cours ON Evenement.idEvenement = Cours.idEvenement";
             System.out.println("Table name query: \"" + SQL + "\"\n");
 
             ResultSet rs = conn.createStatement().executeQuery(SQL);
@@ -125,12 +127,12 @@ public class PeriodeRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.setRoot("periodeAdd");
+        if(menu) Tempus.setRoot("view/periodeAdd");
     }
 
     @FXML
     private void OKButton() throws IOException {
-        Tempus.setRoot("periodeAdd");
+        Tempus.setRoot("view/periodeAdd");
     }
 
 

@@ -1,4 +1,4 @@
-package ch.heigvd.pro;
+package ch.heigvd.pro.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import ch.heigvd.pro.model.ModelTablePeriode;
+import ch.heigvd.pro.Tempus;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,7 +16,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Window;
 
 
 public class PeriodAddController {
@@ -36,12 +37,12 @@ public class PeriodAddController {
 
     @FXML
     private void newEntry() throws IOException {
-        Tempus.setRoot("periodeRegister");
+        Tempus.setRoot("view/periodeRegister");
     }
 
     @FXML
     private void switchToPrimary() throws IOException {
-        Tempus.setRoot("primary");
+        Tempus.setRoot("view/primary");
     }
 
     @FXML
@@ -77,7 +78,7 @@ public class PeriodAddController {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
 
-            String SQL = "SELECT * FROM pro.Periode INNER JOIN Evenement ON Periode.idCours = Evenement.idEvenement";
+            String SQL = "SELECT * FROM Periode INNER JOIN Evenement ON Periode.idCours = Evenement.idEvenement";
             System.out.println("Table name query: \"" + SQL + "\"\n");
 
             ResultSet rs = conn.createStatement().executeQuery(SQL);

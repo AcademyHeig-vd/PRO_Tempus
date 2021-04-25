@@ -1,6 +1,7 @@
-package ch.heigvd.pro;
+package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Connexion.dbConnexion;
+import ch.heigvd.pro.Tempus;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -83,11 +84,11 @@ public class ProfRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.setRoot("profAdd");
+        if(menu) Tempus.setRoot("view/profAdd");
     }
 
     @FXML
     private void OKButton() throws IOException {
-        Tempus.setRoot("profAdd");
+        Tempus.setRoot("view/profAdd");
     }
 }

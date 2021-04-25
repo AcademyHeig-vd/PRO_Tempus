@@ -1,4 +1,4 @@
-package ch.heigvd.pro;
+package ch.heigvd.pro.model;
 
 public class ModelTablePeriode {
     int id;
