@@ -2,6 +2,7 @@ package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Connexion.dbConnexion;
 import ch.heigvd.pro.Tempus;
+import ch.heigvd.pro.model.ModelTableCours;
 import ch.heigvd.pro.model.ModelTableCoursProf;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,8 +59,8 @@ public class CoursRegisterController {
         dbConnexion db = new dbConnexion();
 
         int idEvenement = db.insertRecordEvenement(titre, dateDebut, dateEcheance, description);
-        db.insertRecordCours(idEvenement, acronyme);
-
+        //db.insertRecordCours(idEvenement, acronyme);
+        ModelTableCours.insertCoursInDB(idEvenement, acronyme);
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);
     }

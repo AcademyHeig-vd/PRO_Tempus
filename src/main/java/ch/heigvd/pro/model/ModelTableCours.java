@@ -1,5 +1,14 @@
 package ch.heigvd.pro.model;
 
+import ch.heigvd.pro.Connexion.dbConnexion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class ModelTableCours {
     int idEvenement;
 
@@ -12,6 +21,59 @@ public class ModelTableCours {
         this.dateEcheance = dateEcheance;
         this.description = description;
         this.acronyme = acronyme;
+    }
+
+    public static ObservableList<ModelTableCours> getAllCours() throws SQLException, ClassNotFoundException {
+        ObservableList<ModelTableCours> oblist = FXCollections.observableArrayList();
+
+        dbConnexion db = new dbConnexion();
+        Connection conn = db.getConnexion();
+
+        String SQL = "SELECT * FROM Cours " +
+                "INNER JOIN Evenement " +
+                "   ON Cours.idEvenement = Evenement.idEvenement " +
+                "INNER JOIN Professeur " +
+                "   ON Cours.acronyme = Professeur.acronyme";
+
+        System.out.println("Table name query: \"" + SQL + "\"\n");
+        ResultSet rs = conn.createStatement().executeQuery(SQL);
+
+
+        while (rs.next()) {
+            oblist.add(new ModelTableCours(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateDebut"), rs.getString("dateEcheance"), rs.getString("description"), rs.getString("acronyme")));
+        }
+        return oblist;
+    }
+
+    public void deleteFromDB() throws SQLException, ClassNotFoundException {
+        // Connexion a la database
+        dbConnexion db = new dbConnexion();
+        Connection connection = db.getConnexion();
+
+        // Suppression database
+        PreparedStatement stmt = null;
+        stmt = connection.prepareStatement("DELETE FROM Evenement where idEvenement = ?");
+        stmt.setInt(1, idEvenement);
+        stmt.execute();
+    }
+
+    public static void insertCoursInDB(int idEvenement, String acronyme)  {
+        try {
+            dbConnexion db = new dbConnexion();
+            Connection connection = db.getConnexion();
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_COURS);
+            preparedStatement.setInt(1, idEvenement);
+            preparedStatement.setString(2, acronyme);
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public int getIdEvenement() {

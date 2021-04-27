@@ -17,6 +17,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import static ch.heigvd.pro.model.ModelTableCours.getAllCours;
+
 
 public class CoursAddController {
     @FXML
@@ -48,25 +50,18 @@ public class CoursAddController {
     private void delete() {
         ModelTableCours selectedIndex = (ModelTableCours) table.getSelectionModel().getSelectedItem();
 
+        if(table.getSelectionModel().getSelectedIndex() < 0){
+            // Rien n'a été sélectionné
+            showAlert(Alert.AlertType.WARNING, "Aucune sélection",
+                    "Aucun cours n'a été séléctionnée !");
+            return;
+        }
         try {
-            // Connexion a la database
-            dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            // Suppression base de donnée
+            selectedIndex.deleteFromDB();
 
-            if(table.getSelectionModel().getSelectedIndex() < 0){
-                // Rien n'a été sélectionné
-                showAlert(Alert.AlertType.WARNING, "Aucune sélection",
-                        "Aucun cours n'a été séléctionnée !");
-                return;
-            }
             // Suppression application
             table.getItems().remove(selectedIndex);
-
-            // Suppression database
-            PreparedStatement stmt = null;
-            stmt = connection.prepareStatement("DELETE FROM Evenement where idEvenement = ?");
-            stmt.setInt(1, selectedIndex.getIdEvenement());
-            stmt.execute();
 
         } catch (Exception e){
             e.printStackTrace();
@@ -75,22 +70,11 @@ public class CoursAddController {
 
     @FXML
     private void initialize() {
-
         try {
-            dbConnexion db = new dbConnexion();
-            Connection conn = db.getConnexion();
-
-            String SQL = "SELECT * FROM Cours INNER JOIN Evenement ON Cours.idEvenement = Evenement.idEvenement INNER JOIN Professeur ON Cours.acronyme = Professeur.acronyme";
-            System.out.println("Table name query: \"" + SQL + "\"\n");
-            ResultSet rs = conn.createStatement().executeQuery(SQL);
-
-            while(rs.next()){
-                oblist.add(new ModelTableCours(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateDebut"), rs.getString("dateEcheance"), rs.getString("description"), rs.getString("acronyme")));
-            }
+            oblist.addAll(getAllCours());
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }
-
 
         col_titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         col_dateDebut.setCellValueFactory(new PropertyValueFactory<>("dateDebut"));
@@ -100,6 +84,7 @@ public class CoursAddController {
 
         table.setItems(oblist);
     }
+
 
     private static void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
