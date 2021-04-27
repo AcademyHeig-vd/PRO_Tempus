@@ -5,46 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51dc6fb7-27c0-4c6f-8f78-90abb9539b6c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/Connexion/dbConnexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/Connexion/dbConnexion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/CoursAddController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/CoursAddController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/CoursRegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/CoursRegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/PeriodAddController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/PeriodAddController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/model/ModelTableCours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/model/ModelTableCours.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PRO_Tempus-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/PRO_Tempus-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/Connexion/dbConnexion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/Connexion/dbConnexion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/CoursAddController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/CoursRegisterController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/ModelTableCours.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/ModelTableCoursEvenement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/ModelTablePeriode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/ModelTableProf.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/ModelTableRappel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/PeriodAddController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/PeriodeRegisterController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/PrimaryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/ProfAddController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/ProfRegisterController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/RappelAddController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/RappelRegisterController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/Tempus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/Tempus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/calendarview/Calendar.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/calendarview/CalendarView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/calendarview/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/coursAdd.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/coursRegister.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/periodeAdd.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/periodeRegister.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/primary.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/profAdd.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/profRegister.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/rappelAdd.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ch/heigvd/pro/rappelRegister.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,11 +83,22 @@
       <workItem from="1619431224447" duration="160000" />
       <workItem from="1619431400268" duration="82000" />
       <workItem from="1619431496653" duration="4611000" />
-      <workItem from="1619529448578" duration="3419000" />
+      <workItem from="1619529448578" duration="6344000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

@@ -13,10 +13,33 @@ public class dbConnexion {
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "root";
     public static final String INSERT_QUERY_PERIODE = "INSERT INTO Periode (idCours,jourSemaine,heureDebut,heureFin,salle) VALUES (?, ?, ?, ?, ?)";
-    public static final String INSERT_QUERY_PROF = "INSERT INTO Professeur (acronyme,nom,prenom,mail) VALUES (?, ?, ?, ?)";
     public static final String INSERT_QUERY_EVENEMENT = "INSERT INTO Evenement (titre,dateDebut,dateEcheance,description) VALUES (?, ?, ?, ?)";
     public static final String INSERT_QUERY_RAPPEL = "INSERT INTO Rappel (idEvenement,contenu,lien,heure) VALUES (?, ?, ?, ?)";
+
+    /* QUERY POUR COURS */
     public static final String INSERT_QUERY_COURS = "INSERT INTO Cours (idEvenement,acronyme) VALUES (?, ?)";
+    public static final String DELETE_QUERY_COURS = "DELETE FROM Evenement WHERE idEvenement = ?";
+    public static final String SELECT_QUERY_ALL_COURS = "SELECT * FROM Cours " +
+            "INNER JOIN Evenement " +
+            "   ON Cours.idEvenement = Evenement.idEvenement " +
+            "INNER JOIN Professeur " +
+            "   ON Cours.acronyme = Professeur.acronyme";
+    /* FIN QUERY COURS */
+
+    /* QUERY POUR PROFESSEUR */
+    public static final String SELECT_QUERY_ACRONYM_PROF = "SELECT acronyme FROM Professeur";
+    public static final String INSERT_QUERY_PROF = "INSERT INTO Professeur (acronyme,nom,prenom,mail) VALUES (?, ?, ?, ?)";
+    /* FIN QUERY PROFESSEUR */
+
+    /* QUERY POUR PERIODE */
+    public static final String DELETE_QUERY_PERIODE = "DELETE FROM Periode where idPeriode = ?";
+    public static final String SELECT_QUERY_ALL_PERIODE =
+            "SELECT * FROM Periode " +
+            "INNER JOIN Evenement " +
+            "   ON Periode.idCours = Evenement.idEvenement";
+
+    /* FIN QUERY PERIODE */
+
 
     public Connection getConnexion() throws SQLException, ClassNotFoundException {
         Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);

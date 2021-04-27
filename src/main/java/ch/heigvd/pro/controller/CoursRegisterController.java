@@ -72,7 +72,7 @@ public class CoursRegisterController {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
 
-            String SQL = "SELECT acronyme FROM Professeur";
+            String SQL = dbConnexion.SELECT_QUERY_ACRONYM_PROF;
             System.out.println("Table name query: \"" + SQL + "\"\n");
 
             ResultSet rs = conn.createStatement().executeQuery(SQL);

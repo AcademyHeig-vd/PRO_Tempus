@@ -63,7 +63,7 @@ public class PeriodAddController {
             table.getItems().remove(selectedIndex);
 
             PreparedStatement stmt = null;
-            stmt = connection.prepareStatement("DELETE FROM Periode where idPeriode = ?");
+            stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_PERIODE);
             stmt.setInt(1, selectedIndex.getId());
             stmt.execute();
 
@@ -78,7 +78,7 @@ public class PeriodAddController {
             dbConnexion db = new dbConnexion();
             Connection conn = db.getConnexion();
 
-            String SQL = "SELECT * FROM Periode INNER JOIN Evenement ON Periode.idCours = Evenement.idEvenement";
+            String SQL = dbConnexion.SELECT_QUERY_ALL_PERIODE;
             System.out.println("Table name query: \"" + SQL + "\"\n");
 
             ResultSet rs = conn.createStatement().executeQuery(SQL);

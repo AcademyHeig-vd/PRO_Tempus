@@ -29,15 +29,10 @@ public class ModelTableCours {
         dbConnexion db = new dbConnexion();
         Connection conn = db.getConnexion();
 
-        String SQL = "SELECT * FROM Cours " +
-                "INNER JOIN Evenement " +
-                "   ON Cours.idEvenement = Evenement.idEvenement " +
-                "INNER JOIN Professeur " +
-                "   ON Cours.acronyme = Professeur.acronyme";
+        String SQL = dbConnexion.SELECT_QUERY_ALL_COURS;
 
         System.out.println("Table name query: \"" + SQL + "\"\n");
         ResultSet rs = conn.createStatement().executeQuery(SQL);
-
 
         while (rs.next()) {
             oblist.add(new ModelTableCours(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateDebut"), rs.getString("dateEcheance"), rs.getString("description"), rs.getString("acronyme")));
