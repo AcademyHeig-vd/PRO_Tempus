@@ -89,6 +89,6 @@ public class ProfRegisterController {
 
     @FXML
     private void OKButton() throws IOException {
-        Tempus.setRoot("view/profAdd");
+        Tempus.setRoot("view/primary");
     }
 }

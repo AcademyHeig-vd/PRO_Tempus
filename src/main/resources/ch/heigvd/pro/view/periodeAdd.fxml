@@ -30,8 +30,7 @@
         </items>
       </SplitPane>
       <ButtonBar layoutX="-43.0" layoutY="421.0" prefHeight="40.0" prefWidth="299.0" AnchorPane.bottomAnchor="-61.0" AnchorPane.leftAnchor="-43.0" AnchorPane.rightAnchor="53.0" />
-    <Button layoutX="486.0" layoutY="120.0" mnemonicParsing="false" onAction="#newEntry" prefWidth="100.0" text="Nouveau" AnchorPane.rightAnchor="14.0" />
-      <Button layoutX="486.0" layoutY="175.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="100.0" text="Supprimer" AnchorPane.rightAnchor="14.0" />
-      <Button layoutX="486.0" layoutY="226.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="25.0" prefWidth="100.0" text="Menu Principal" AnchorPane.rightAnchor="14.0" />
+    <Button layoutX="486.0" layoutY="144.0" mnemonicParsing="false" onAction="#newEntry" prefWidth="100.0" text="Nouveau" AnchorPane.rightAnchor="14.0" />
+      <Button layoutX="486.0" layoutY="188.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="100.0" text="Supprimer" AnchorPane.rightAnchor="14.0" />
    </children>
 </AnchorPane>

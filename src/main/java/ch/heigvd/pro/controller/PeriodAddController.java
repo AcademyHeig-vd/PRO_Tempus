@@ -41,11 +41,6 @@ public class PeriodAddController {
     }
 
     @FXML
-    private void switchToPrimary() throws IOException {
-        Tempus.setRoot("view/primary");
-    }
-
-    @FXML
     private void delete(){
         ModelTablePeriode selectedIndex = (ModelTablePeriode) table.getSelectionModel().getSelectedItem();
 

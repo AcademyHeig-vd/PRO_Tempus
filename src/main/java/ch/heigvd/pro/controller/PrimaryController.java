@@ -1,29 +1,30 @@
 package ch.heigvd.pro.controller;
 
-import ch.heigvd.pro.Tempus;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class PrimaryController {
 
     @FXML
-    private void switchToPeriode() throws IOException {
-        Tempus.setRoot("view/periodeAdd");
-    }
+    TabPane tabPane;
 
     @FXML
-    private void switchToRappel() throws IOException {
-        Tempus.setRoot("view/rappelAdd");
-    }
+    Tab cours;
 
     @FXML
-    private void switchToProf() throws IOException {
-        Tempus.setRoot("view/profAdd");
-    }
+    Tab periode;
 
     @FXML
-    private void switchToCours() throws IOException {
-        Tempus.setRoot("view/coursAdd");
-    }
+    Tab professeur;
+
+    @FXML
+    Tab rappel;
+
+
 }

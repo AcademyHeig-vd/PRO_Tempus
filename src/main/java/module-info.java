@@ -10,5 +10,4 @@ module ch.heigvd.pro {
     opens ch.heigvd.pro.controller to javafx.fxml;
     exports ch.heigvd.pro.controller;
 
-
 }

@@ -100,7 +100,7 @@ public class RappelRegisterController {
 
     @FXML
     private void OKButton() throws IOException {
-        Tempus.setRoot("view/rappelAdd");
+        Tempus.setRoot("view/primary");
     }
 
 }

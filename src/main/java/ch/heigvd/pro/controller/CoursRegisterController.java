@@ -129,7 +129,7 @@ public class CoursRegisterController {
 
     @FXML
     private void OKButton() throws IOException {
-        Tempus.setRoot("view/coursAdd");
+        Tempus.setRoot("view/primary");
     }
 
 }

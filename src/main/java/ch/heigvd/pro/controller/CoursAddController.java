@@ -35,15 +35,15 @@ public class CoursAddController {
     private TableColumn<ModelTableCours,String>col_professeur;
 
     ObservableList<ModelTableCours> oblist = FXCollections.observableArrayList();
+    private PrimaryController primaryController;
+
+    public void injectPrimaryController(PrimaryController primaryController) {
+        this.primaryController = primaryController;
+    }
 
     @FXML
     private void newEntry() throws IOException {
         Tempus.setRoot("view/coursRegister");
-    }
-
-    @FXML
-    private void switchToPrimary() throws IOException {
-        Tempus.setRoot("view/primary");
     }
 
     @FXML

@@ -132,7 +132,7 @@ public class PeriodeRegisterController {
 
     @FXML
     private void OKButton() throws IOException {
-        Tempus.setRoot("view/periodeAdd");
+        Tempus.setRoot("view/primary");
     }
 
 

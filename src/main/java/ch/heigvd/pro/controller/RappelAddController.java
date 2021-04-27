@@ -44,11 +44,6 @@ public class RappelAddController {
     }
 
     @FXML
-    private void switchToPrimary() throws IOException {
-        Tempus.setRoot("view/primary");
-    }
-
-    @FXML
     private void delete() {
         ModelTableRappel selectedIndex = (ModelTableRappel) table.getSelectionModel().getSelectedItem();
 

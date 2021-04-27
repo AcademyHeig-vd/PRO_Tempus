@@ -40,11 +40,6 @@ public class ProfAddController {
     }
 
     @FXML
-    private void switchToPrimary() throws IOException {
-        Tempus.setRoot("view/primary");
-    }
-
-    @FXML
     private void delete() {
         ModelTableProf selectedIndex = (ModelTableProf) table.getSelectionModel().getSelectedItem();
 
