@@ -17,8 +17,8 @@ public class Tempus extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setTitle("Tempus");
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        stage.setTitle("view/Tempus");
+        scene = new Scene(loadFXML("view/primary"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
