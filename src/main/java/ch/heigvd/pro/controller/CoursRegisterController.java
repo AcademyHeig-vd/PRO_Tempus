@@ -19,6 +19,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static ch.heigvd.pro.controller.validation.UserInput.checkDate;
+
 public class CoursRegisterController {
     @FXML
     private TextField titreField;
@@ -100,6 +102,10 @@ public class CoursRegisterController {
         if (dateDebutField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une date de début", false);
+            return false;
+        } else if(!checkDate(dateDebutField.getText())) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "La date de début est incorrecte, doit être au format jj.mm.aaaa", false);
             return false;
         }
         if (dateEcheanceField.getText().isEmpty()) {
