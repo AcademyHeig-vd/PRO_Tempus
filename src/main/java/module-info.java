@@ -9,5 +9,7 @@ module ch.heigvd.pro {
     exports ch.heigvd.pro.model;
     opens ch.heigvd.pro.controller to javafx.fxml;
     exports ch.heigvd.pro.controller;
+    opens ch.heigvd.pro.view to javafx.fxml;
+    exports ch.heigvd.pro.view;
 
 }
