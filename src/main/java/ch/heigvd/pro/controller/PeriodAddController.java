@@ -50,22 +50,17 @@ public class PeriodAddController {
         ModelTablePeriode selectedIndex = (ModelTablePeriode) table.getSelectionModel().getSelectedItem();
 
         try {
-            dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
-
             if(table.getSelectionModel().getSelectedIndex() < 0){
                 // Rien a été sélectionné
                 showAlert(Alert.AlertType.WARNING, "Aucune sélection",
                         "Aucun cours n'a été séléctionné !");
                 return;
             }
+            //suppression de la db
+            selectedIndex.deleteFromDB();
 
+            //suppression locale
             table.getItems().remove(selectedIndex);
-
-            PreparedStatement stmt = null;
-            stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_PERIODE);
-            stmt.setInt(1, selectedIndex.getId());
-            stmt.execute();
 
         } catch (Exception e){
             e.printStackTrace();
@@ -75,23 +70,10 @@ public class PeriodAddController {
     @FXML
     private void initialize() {
         try {
-            dbConnexion db = new dbConnexion();
-            Connection conn = db.getConnexion();
-
-            String SQL = dbConnexion.SELECT_QUERY_ALL_PERIODE;
-            System.out.println("Table name query: \"" + SQL + "\"\n");
-
-            ResultSet rs = conn.createStatement().executeQuery(SQL);
-
-            while(rs.next()){
-                oblist.add(new ModelTablePeriode(rs.getInt("idPeriode"), rs.getString("titre"), rs.getString("jourSemaine"),
-                        rs.getString("heureDebut"), rs.getString("heureFin"),
-                        rs.getString("salle")));
-            }
+            oblist.addAll(ModelTablePeriode.getAllPeriodeFromDB());
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }
-
 
         col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         col_jour.setCellValueFactory(new PropertyValueFactory<>("jourSemaine"));

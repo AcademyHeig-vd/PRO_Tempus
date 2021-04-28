@@ -2,6 +2,8 @@ package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Connexion.dbConnexion;
 import ch.heigvd.pro.Tempus;
+import ch.heigvd.pro.model.ModelTablePeriode;
+import ch.heigvd.pro.model.ModelTableProf;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -30,11 +32,6 @@ public class ProfRegisterController {
 
         Window owner = submitButton.getScene().getWindow();
 
-        System.out.println(acronymeField.getText());
-        System.out.println(nomField.getText());
-        System.out.println(prenomField.getText());
-        System.out.println(mailField.getText());
-
         if(!inputValid()) return;
 
         String acronyme = acronymeField.getText();
@@ -42,11 +39,14 @@ public class ProfRegisterController {
         String prenom = prenomField.getText();
         String mail = mailField.getText();
 
-        dbConnexion db = new dbConnexion();
-        db.insertRecordProf(acronyme, nom, prenom, mail);
-
-        showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
-                "La nouvelle entrée a été effectuée !", true);
+        boolean ok_request = ModelTableProf.insertProfInDB(acronyme, nom, prenom, mail);
+        if (ok_request)
+            showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
+                    "La nouvelle entrée a été effectuée !", true);
+        else{
+            showAlert(Alert.AlertType.ERROR, owner, "Ajout échoué",
+                    "Erreur lors de l'insertion", true);
+        }
     }
 
     private boolean inputValid() throws IOException {

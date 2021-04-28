@@ -1,9 +1,6 @@
 package ch.heigvd.pro.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import ch.heigvd.pro.Tempus;
@@ -11,13 +8,10 @@ import ch.heigvd.pro.model.ModelTableCours;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import ch.heigvd.pro.Connexion.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import static ch.heigvd.pro.model.ModelTableCours.getAllCours;
 
 
 public class CoursAddController {
@@ -71,7 +65,7 @@ public class CoursAddController {
     @FXML
     private void initialize() {
         try {
-            oblist.addAll(getAllCours());
+            oblist.addAll(ModelTableCours.getAllCoursFromDB());
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }

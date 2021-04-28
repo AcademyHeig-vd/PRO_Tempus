@@ -2,6 +2,7 @@ package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Connexion.dbConnexion;
 import ch.heigvd.pro.Tempus;
+import ch.heigvd.pro.model.ModelTableRappel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -34,14 +35,6 @@ public class RappelRegisterController {
 
         Window owner = submitButton.getScene().getWindow();
 
-        System.out.println(titreField.getText());
-        System.out.println(dateField.getText());
-        System.out.println(heureField.getText());
-        System.out.println(descriptionField.getText());
-        System.out.println(contenuField.getText());
-        System.out.println(lienField.getText());
-
-
         if(!inputValid()) return;
 
         String titre = titreField.getText();
@@ -53,11 +46,17 @@ public class RappelRegisterController {
 
         dbConnexion db = new dbConnexion();
 
+        //TODO : modifier emplacement cette fonction après merge avec Lev
         int idEvenement = db.insertRecordEvenement(titre, date, date, description);
-        db.insertRecordRappel(idEvenement, contenu, lien, heure);
 
-        showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
-                "La nouvelle entrée a été effectuée !", true);
+        boolean ok_request = ModelTableRappel.insertRecordRappel(idEvenement, contenu, lien, heure);
+        if (ok_request)
+            showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
+                    "La nouvelle entrée a été effectuée !", true);
+        else{
+            showAlert(Alert.AlertType.ERROR, owner, "Ajout échoué",
+                    "Erreur lors de l'insertion", true);
+        }
     }
 
     private boolean inputValid() throws IOException {

@@ -6,20 +6,18 @@ package ch.heigvd.pro.Connexion;
 
 import java.sql.*;
 
-
 public class dbConnexion {
-
+    /* PARAMETRES CONNEXION */
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/PRO?serverTimezone=UTC&useSSL=false";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "root";
-    public static final String INSERT_QUERY_PERIODE = "INSERT INTO Periode (idCours,jourSemaine,heureDebut,heureFin,salle) VALUES (?, ?, ?, ?, ?)";
-    public static final String INSERT_QUERY_EVENEMENT = "INSERT INTO Evenement (titre,dateDebut,dateEcheance,description) VALUES (?, ?, ?, ?)";
-    public static final String INSERT_QUERY_RAPPEL = "INSERT INTO Rappel (idEvenement,contenu,lien,heure) VALUES (?, ?, ?, ?)";
+    /* FIN PARAMETRE CONNEXION
 
     /* QUERY POUR COURS */
     public static final String INSERT_QUERY_COURS = "INSERT INTO Cours (idEvenement,acronyme) VALUES (?, ?)";
     public static final String DELETE_QUERY_COURS = "DELETE FROM Evenement WHERE idEvenement = ?";
-    public static final String SELECT_QUERY_ALL_COURS = "SELECT * FROM Cours " +
+    public static final String SELECT_QUERY_ALL_COURS =
+            "SELECT * FROM Cours " +
             "INNER JOIN Evenement " +
             "   ON Cours.idEvenement = Evenement.idEvenement " +
             "INNER JOIN Professeur " +
@@ -29,17 +27,37 @@ public class dbConnexion {
     /* QUERY POUR PROFESSEUR */
     public static final String SELECT_QUERY_ACRONYM_PROF = "SELECT acronyme FROM Professeur";
     public static final String INSERT_QUERY_PROF = "INSERT INTO Professeur (acronyme,nom,prenom,mail) VALUES (?, ?, ?, ?)";
+    public static final String DELETE_QUERY_PROF = "DELETE FROM Professeur where acronyme = ?";
+    public static final String SELECT_QUERY_ALL_PROF = "SELECT * FROM Professeur";
     /* FIN QUERY PROFESSEUR */
 
     /* QUERY POUR PERIODE */
+    public static final String INSERT_QUERY_PERIODE =
+            "INSERT INTO Periode (idCours,jourSemaine,heureDebut,heureFin,salle) VALUES (?, ?, ?, ?, ?)";
     public static final String DELETE_QUERY_PERIODE = "DELETE FROM Periode where idPeriode = ?";
     public static final String SELECT_QUERY_ALL_PERIODE =
             "SELECT * FROM Periode " +
             "INNER JOIN Evenement " +
             "   ON Periode.idCours = Evenement.idEvenement";
-
     /* FIN QUERY PERIODE */
 
+    /* QUERY POUR EVENEMENT */
+    public static final String INSERT_QUERY_EVENEMENT =
+            "INSERT INTO Evenement (titre,dateDebut,dateEcheance,description) VALUES (?, ?, ?, ?)";
+    public static final String SELECT_QUERY_ALL_EVENEMENT_COURS =
+            "SELECT * FROM Evenement " +
+            "INNER JOIN Cours " +
+                    "ON Evenement.idEvenement = Cours.idEvenement";
+    /* FIN QUERY EVENEMENT */
+
+    /* QUERY POUR RAPPEL */
+    public static final String INSERT_QUERY_RAPPEL = "INSERT INTO Rappel (idEvenement,contenu,lien,heure) VALUES (?, ?, ?, ?)";
+    public static final String DELETE_QUERY_RAPPEL = "DELETE FROM Evenement where idEvenement = ?";
+    public static final String SELECT_QUERY_ALL_RAPPEL =
+                    "SELECT * FROM Rappel " +
+                    "INNER JOIN Evenement " +
+                            "ON Rappel.idEvenement = Evenement.idEvenement";
+    /* FIN QUERY RAPPEL */
 
     public Connection getConnexion() throws SQLException, ClassNotFoundException {
         Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
@@ -57,7 +75,6 @@ public class dbConnexion {
             preparedStatement.setInt(1, idEvenement);
             preparedStatement.setString(2, acronyme);
 
-            System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -68,53 +85,6 @@ public class dbConnexion {
         }
     }
 
-    public void insertRecordPeriode(int idCours, String jourSemaine, String heureDebut, String heureFin, String salle){
-        // Step 1: Establishing a Connection and
-        // try-with-resource statement will auto close the connection.
-        try (Connection connection = getConnexion();
-             // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_PERIODE)) {
-            preparedStatement.setInt(1, idCours);
-            preparedStatement.setString(2, jourSemaine);
-            preparedStatement.setString(3, heureDebut);
-            preparedStatement.setString(4, heureFin);
-            preparedStatement.setString(5, salle);
-
-
-            System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            // print SQL exception information
-            printSQLException(e);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void insertRecordProf(String acronyme, String nom, String prenom, String mail){
-        // Step 1: Establishing a Connection and
-        // try-with-resource statement will auto close the connection.
-        try (Connection connection = getConnexion();
-
-             // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_PROF)) {
-            preparedStatement.setString(1, acronyme);
-            preparedStatement.setString(2, nom);
-            preparedStatement.setString(3, prenom);
-            preparedStatement.setString(4, mail);
-
-
-            System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            // print SQL exception information
-            printSQLException(e);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
     public int insertRecordEvenement(String titre, String dateDebut, String dateEcheance, String description){
         // Step 1: Establishing a Connection and
@@ -147,29 +117,6 @@ public class dbConnexion {
         return -1;
     }
 
-    public void insertRecordRappel(int idEvenement, String contenu, String lien, String heure){
-        // Step 1: Establishing a Connection and
-        // try-with-resource statement will auto close the connection.
-        try (Connection connection = getConnexion();
-
-             // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_RAPPEL)) {
-            preparedStatement.setInt(1, idEvenement);
-            preparedStatement.setString(2, contenu);
-            preparedStatement.setString(3, lien);
-            preparedStatement.setString(4, heure);
-
-
-            System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            // print SQL exception information
-            printSQLException(e);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void printSQLException(SQLException ex) {
         for (Throwable e: ex) {

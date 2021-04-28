@@ -3,6 +3,7 @@ package ch.heigvd.pro.controller;
 import ch.heigvd.pro.Connexion.dbConnexion;
 import ch.heigvd.pro.model.ModelTableCoursEvenement;
 import ch.heigvd.pro.Tempus;
+import ch.heigvd.pro.model.ModelTablePeriode;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,13 +44,6 @@ public class PeriodeRegisterController {
 
         if(!inputValid()) return;
 
-        System.out.println(coursEvenement.getIdEvenement());
-        System.out.println(coursEvenement.getTitre());
-        System.out.println(jourField.getText());
-        System.out.println(heureDebutField.getText());
-        System.out.println(heureFinField.getText());
-        System.out.println(salleField.getText());
-
         int id = coursEvenement.getIdEvenement();
         String jour = jourField.getText();
         String heureDebut = heureDebutField.getText();
@@ -57,32 +51,24 @@ public class PeriodeRegisterController {
         String salle = salleField.getText();
 
         // Connexion a la database
-        dbConnexion db = new dbConnexion();
-        db.insertRecordPeriode(id, jour, heureDebut, heureFin, salle);
-
+        boolean ok_request = ModelTablePeriode.insertRecordPeriode(id, jour, heureDebut, heureFin, salle);
+        if (ok_request)
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);
+        else{
+            showAlert(Alert.AlertType.ERROR, owner, "Ajout échoué",
+                    "Erreur lors de l'insertion", true);
+        }
     }
 
     @FXML
     public void initialize(){
         // Ajout d'une liste déroulante avec les différents cours
         try {
-            dbConnexion db = new dbConnexion();
-            Connection conn = db.getConnexion();
-
-            String SQL = "SELECT * FROM Evenement INNER JOIN Cours ON Evenement.idEvenement = Cours.idEvenement";
-            System.out.println("Table name query: \"" + SQL + "\"\n");
-
-            ResultSet rs = conn.createStatement().executeQuery(SQL);
-
-            while(rs.next()){
-                oblist.add(new ModelTableCoursEvenement(rs.getInt("idEvenement"), rs.getString("titre")));
-            }
+            oblist.addAll(ModelTableCoursEvenement.selectAllFromDB());
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }
-
         cours.setItems(oblist);
     }
 
