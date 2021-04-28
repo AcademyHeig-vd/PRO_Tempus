@@ -1,5 +1,13 @@
 package ch.heigvd.pro.model;
 
+import ch.heigvd.pro.Connexion.dbConnexion;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class ModelTableRappel {
     int idEvenement;
 
@@ -13,6 +21,74 @@ public class ModelTableRappel {
         this.description = description;
         this.contenu = contenu;
         this.lien = lien;
+    }
+
+    /**
+     * Supprime le rappel de la base de donnée
+     * @throws SQLException echec de la requête
+     * @throws ClassNotFoundException classe non trouvée
+     */
+    public void deleteFromDB() throws SQLException, ClassNotFoundException {
+        dbConnexion db = new dbConnexion();
+        Connection connection = db.getConnexion();
+        PreparedStatement stmt = null;
+        stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_RAPPEL);
+        stmt.setInt(1, idEvenement);
+        stmt.execute();
+    }
+
+    /**
+     * Liste tous les rappels de l'application avec toute les information de l'événements
+     * @return ArrayList<ModelTableRappel>
+     * @throws SQLException echec de la requête
+     * @throws ClassNotFoundException classe non trouvée
+     */
+    public static ArrayList<ModelTableRappel> selectAllRappelFromDB() throws SQLException, ClassNotFoundException {
+        ArrayList<ModelTableRappel> rappels = new ArrayList<>();
+        dbConnexion db = new dbConnexion();
+        Connection conn = db.getConnexion();
+
+        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_RAPPEL);
+        while(rs.next()){
+            rappels.add(new ModelTableRappel(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateEcheance"), rs.getString("heure"), rs.getString("description"), rs.getString("contenu"), rs.getString("lien")));
+        }
+        return rappels;
+    }
+
+    /**
+     * Insertion d'un rappel dans la base de donnée
+     * @param idEvenement idEvenement
+     * @param contenu contenu
+     * @param lien lien
+     * @param heure heure
+     * @return vrai si l'insertion a réussi
+     */
+    public static boolean insertRecordRappel(int idEvenement, String contenu, String lien, String heure){
+        // Step 1: Establishing a Connection and
+        // try-with-resource statement will auto close the connection.
+        try {
+            dbConnexion db = new dbConnexion();
+            Connection connection = db.getConnexion();
+
+             // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_RAPPEL);
+            preparedStatement.setInt(1, idEvenement);
+            preparedStatement.setString(2, contenu);
+            preparedStatement.setString(3, lien);
+            preparedStatement.setString(4, heure);
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            // print SQL exception information
+            dbConnexion.printSQLException(e);
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public int getIdEvenement() {

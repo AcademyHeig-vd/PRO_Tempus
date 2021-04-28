@@ -49,25 +49,17 @@ public class RappelAddController {
         ModelTableRappel selectedIndex = (ModelTableRappel) table.getSelectionModel().getSelectedItem();
 
         try {
-            // Connexion a la database
-            dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
-
             if(table.getSelectionModel().getSelectedIndex() < 0){
                 // Rien n'a été sélectionné
                 showAlert(Alert.AlertType.WARNING, "Aucune sélection",
                         "Aucun rappel n'a été séléctionnée !");
                 return;
             }
+            // Suppression database
+            selectedIndex.deleteFromDB();
+
             // Suppression application
             table.getItems().remove(selectedIndex);
-
-            // Suppression database
-            PreparedStatement stmt = null;
-            stmt = connection.prepareStatement("DELETE FROM Evenement where idEvenement = ?");
-            stmt.setInt(1, selectedIndex.getIdEvenement());
-            stmt.execute();
-
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -76,16 +68,7 @@ public class RappelAddController {
     @FXML
     private void initialize() {
         try {
-            dbConnexion db = new dbConnexion();
-            Connection conn = db.getConnexion();
-
-            String SQL = "SELECT * FROM Rappel INNER JOIN Evenement ON Rappel.idEvenement = Evenement.idEvenement";
-            System.out.println("Table name query: \"" + SQL + "\"\n");
-            ResultSet rs = conn.createStatement().executeQuery(SQL);
-
-            while(rs.next()){
-                oblist.add(new ModelTableRappel(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateEcheance"), rs.getString("heure"), rs.getString("description"), rs.getString("contenu"), rs.getString("lien")));
-            }
+            oblist.addAll(ModelTableRappel.selectAllRappelFromDB());
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }

@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ModelTableCours {
     int idEvenement;
@@ -23,23 +24,31 @@ public class ModelTableCours {
         this.acronyme = acronyme;
     }
 
-    public static ObservableList<ModelTableCours> getAllCours() throws SQLException, ClassNotFoundException {
-        ObservableList<ModelTableCours> oblist = FXCollections.observableArrayList();
+    /**
+     * Récupère tous les cours de la dase de donnée
+     * @return ArrayList des cours trouvé
+     * @throws SQLException si la base de donnée est invalide
+     * @throws ClassNotFoundException la non trouvée
+     */
+    public static ArrayList<ModelTableCours> getAllCoursFromDB() throws SQLException, ClassNotFoundException {
+        ArrayList<ModelTableCours> cours = new ArrayList<>();
 
         dbConnexion db = new dbConnexion();
         Connection conn = db.getConnexion();
 
-        String SQL = dbConnexion.SELECT_QUERY_ALL_COURS;
-
-        System.out.println("Table name query: \"" + SQL + "\"\n");
-        ResultSet rs = conn.createStatement().executeQuery(SQL);
+        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_COURS);
 
         while (rs.next()) {
-            oblist.add(new ModelTableCours(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateDebut"), rs.getString("dateEcheance"), rs.getString("description"), rs.getString("acronyme")));
+            cours.add(new ModelTableCours(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateDebut"), rs.getString("dateEcheance"), rs.getString("description"), rs.getString("acronyme")));
         }
-        return oblist;
+        return cours;
     }
 
+    /**
+     * Supprime l'objet courrant de la base de donnée
+     * @throws SQLException echec de la suppression
+     * @throws ClassNotFoundException une classe non trouvable
+     */
     public void deleteFromDB() throws SQLException, ClassNotFoundException {
         // Connexion a la database
         dbConnexion db = new dbConnexion();
@@ -52,7 +61,13 @@ public class ModelTableCours {
         stmt.execute();
     }
 
-    public static void insertCoursInDB(int idEvenement, String acronyme)  {
+    /**
+     * Crée un cours dans la base de donnée avec un événement déjà existant
+     * @param idEvenement id de l'événement parent
+     * @param acronyme acronyme de l'enseignant du cours
+     * @return vrai si l'insertion a réussi.
+     */
+    public static boolean insertCoursInDB(int idEvenement, String acronyme)  {
         try {
             dbConnexion db = new dbConnexion();
             Connection connection = db.getConnexion();
@@ -60,15 +75,16 @@ public class ModelTableCours {
             preparedStatement.setInt(1, idEvenement);
             preparedStatement.setString(2, acronyme);
 
-            System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             preparedStatement.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            return true;
+        } catch (SQLException e) {
+            dbConnexion.printSQLException(e);
+            return false;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }
-
     }
 
     public int getIdEvenement() {

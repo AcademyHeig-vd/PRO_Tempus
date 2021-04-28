@@ -45,24 +45,17 @@ public class ProfAddController {
         ModelTableProf selectedIndex = (ModelTableProf) table.getSelectionModel().getSelectedItem();
 
         try {
-            // Connexion a la database
-            dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
-
             if(table.getSelectionModel().getSelectedIndex() < 0){
                 // Rien n'a été sélectionné
                 showAlert(Alert.AlertType.WARNING, "Aucune sélection",
                         "Aucune personne n'a été séléctionnée !");
                 return;
             }
+            // Suppression database
+            selectedIndex.deleteFromDB();
+
             // Suppression application
             table.getItems().remove(selectedIndex);
-
-            // Suppression database
-            PreparedStatement stmt = null;
-            stmt = connection.prepareStatement("DELETE FROM Professeur where acronyme = ?");
-            stmt.setString(1, selectedIndex.getAcronyme());
-            stmt.execute();
 
         } catch (Exception e){
             e.printStackTrace();
@@ -72,21 +65,10 @@ public class ProfAddController {
     @FXML
     private void initialize() {
         try {
-            dbConnexion db = new dbConnexion();
-            Connection conn = db.getConnexion();
-
-            String SQL = "SELECT * FROM Professeur";
-            System.out.println("Table name query: \"" + SQL + "\"\n");
-            ResultSet rs = conn.createStatement().executeQuery(SQL);
-
-            while(rs.next()){
-                oblist.add(new ModelTableProf(rs.getString("acronyme"), rs.getString("nom"), rs.getString("prenom"),
-                        rs.getString("mail")));
-            }
+            oblist.addAll(ModelTableProf.selectAllProfFromDB());
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }
-
 
         col_acronyme.setCellValueFactory(new PropertyValueFactory<>("acronyme"));
         col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
