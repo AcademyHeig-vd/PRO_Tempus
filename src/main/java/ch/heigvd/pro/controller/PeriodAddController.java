@@ -61,6 +61,9 @@ public class PeriodAddController {
             //suppression locale
             table.getItems().remove(selectedIndex);
 
+            // Update les onglets
+            Tempus.updateTab();
+
         } catch (Exception e){
             e.printStackTrace();
         }

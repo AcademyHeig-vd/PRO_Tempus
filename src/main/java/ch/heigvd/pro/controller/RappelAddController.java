@@ -63,6 +63,10 @@ public class RappelAddController {
 
             // Suppression application
             table.getItems().remove(selectedIndex);
+
+            // Update les onglets
+            Tempus.updateTab();
+            
         } catch (Exception e){
             e.printStackTrace();
         }
