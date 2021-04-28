@@ -1,6 +1,6 @@
 package ch.heigvd.pro.controller;
 
-import ch.heigvd.pro.Connexion.dbConnexion;
+import ch.heigvd.pro.connexion.dbConnexion;
 import ch.heigvd.pro.Tempus;
 
 import ch.heigvd.pro.model.ModelTableRappel;

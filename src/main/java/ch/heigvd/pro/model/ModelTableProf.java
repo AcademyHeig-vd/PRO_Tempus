@@ -1,15 +1,12 @@
 package ch.heigvd.pro.model;
 
-import ch.heigvd.pro.Connexion.dbConnexion;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import ch.heigvd.pro.connexion.dbConnexion;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ModelTableProf {
     String acronyme, nom, prenom, mail;

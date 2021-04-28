@@ -1,8 +1,6 @@
 package ch.heigvd.pro.model;
 
-import ch.heigvd.pro.Connexion.dbConnexion;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import ch.heigvd.pro.connexion.dbConnexion;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

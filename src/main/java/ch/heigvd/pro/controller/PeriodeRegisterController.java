@@ -1,6 +1,5 @@
 package ch.heigvd.pro.controller;
 
-import ch.heigvd.pro.Connexion.dbConnexion;
 import ch.heigvd.pro.model.ModelTableCoursEvenement;
 import ch.heigvd.pro.Tempus;
 import ch.heigvd.pro.model.ModelTablePeriode;
@@ -12,8 +11,6 @@ import javafx.scene.control.*;
 import javafx.stage.Window;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 

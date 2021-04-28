@@ -2,7 +2,7 @@
  * https://www.sourcecodeexamples.net/2020/04/javafx-jdbc-mysql-database-example.html
  */
 
-package ch.heigvd.pro.Connexion;
+package ch.heigvd.pro.connexion;
 
 import java.sql.*;
 

@@ -1,14 +1,10 @@
 package ch.heigvd.pro.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import ch.heigvd.pro.model.ModelTableRappel;
 import ch.heigvd.pro.Tempus;
-import ch.heigvd.pro.Connexion.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

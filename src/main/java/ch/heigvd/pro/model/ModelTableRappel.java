@@ -1,6 +1,6 @@
 package ch.heigvd.pro.model;
 
-import ch.heigvd.pro.Connexion.dbConnexion;
+import ch.heigvd.pro.connexion.dbConnexion;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

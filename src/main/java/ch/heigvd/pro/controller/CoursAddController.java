@@ -5,8 +5,6 @@ import java.sql.SQLException;
 
 import ch.heigvd.pro.Tempus;
 import ch.heigvd.pro.model.ModelTableCours;
-import static ch.heigvd.pro.model.ModelTableCours.getAllCours;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

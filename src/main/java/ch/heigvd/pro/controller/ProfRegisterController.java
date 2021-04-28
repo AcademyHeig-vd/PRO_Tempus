@@ -1,9 +1,7 @@
 package ch.heigvd.pro.controller;
 
-import ch.heigvd.pro.Connexion.dbConnexion;
 import ch.heigvd.pro.Tempus;
 
-import ch.heigvd.pro.model.ModelTablePeriode;
 import ch.heigvd.pro.model.ModelTableProf;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
