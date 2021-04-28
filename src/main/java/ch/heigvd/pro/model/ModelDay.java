@@ -1,11 +1,11 @@
-package sample.Day;
+package ch.heigvd.pro.model;
 
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import sample.ModelEvenement;
 
-import java.sql.*;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 public class ModelDay {

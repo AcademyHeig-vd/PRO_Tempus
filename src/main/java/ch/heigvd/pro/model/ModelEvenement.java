@@ -1,16 +1,9 @@
-package sample;
+package ch.heigvd.pro.model;
 
 
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.sql.Date;
-import java.util.List;
 
 
 //TODO mettre en simpleStringProperty lors de l'initialisation pour pouvoir passer une string au constructeur

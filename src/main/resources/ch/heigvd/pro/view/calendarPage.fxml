@@ -19,7 +19,8 @@
             <AnchorPane fx:id="calendarSpace" layoutY="131.0" prefHeight="679.0" prefWidth="1050.0" />
             <Button fx:id="previousMonth" layoutY="34.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #fffffff;" styleClass="dash-btn" text="Mois précédent" />
             <Button fx:id="nextMonth" layoutX="136.0" layoutY="34.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #fffffff;" styleClass="dash-btn" text="Mois suivant" />
-            <Button fx:id="toWeek" layoutX="909.0" layoutY="34.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #fffffff;" styleClass="dash-btn" text="Vu par semaine" />
+            <Button fx:id="toWeek" layoutX="796.0" layoutY="34.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #fffffff;" styleClass="dash-btn" text="Vu par semaine" />
+            <Button fx:id="toMainMenu" layoutX="909.0" layoutY="34.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #fffffff;" styleClass="dash-btn" text="Menu Principal" />
             <Text fx:id="monthYearLabel" layoutX="249.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="217.7939453125">
                <font>
                   <Font name="Eras Bold ITC" size="18.0" />
