@@ -17,6 +17,7 @@
       <Button fx:id="buttonPeriode" mnemonicParsing="false" onAction="#switchToPeriode" text="Ajouter une période" />
       <Button fx:id="buttonRappel" mnemonicParsing="false" onAction="#switchToRappel" text="Ajouter un rappel" />
       <Button fx:id="buttonProf" mnemonicParsing="false" onAction="#switchToProf" text="Ajouter un professeur" />
+      <Button fx:id="buttonCalendar" mnemonicParsing="false" onAction="#switchToCalendar" text="Consulter le calendrier" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="20.0" top="15.0" />

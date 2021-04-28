@@ -1,6 +1,7 @@
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
@@ -25,5 +26,9 @@ public class PrimaryController {
     @FXML
     private void switchToCours() throws IOException {
         Tempus.setRoot("view/coursAdd");
+    }
+
+    public void switchToCalendar() throws IOException {
+        Tempus.getScene().setRoot(CalendarPageControler.loadFromFXMLDocument());
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="102.0" prefWidth="138.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/">
+   <children>
+      <VBox prefHeight="103.0" prefWidth="100.0">
+         <children>
+            <Text fx:id="dateLabel" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.2612762451172" />
+            <TableView fx:id="evenementTable" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="nameEvenement" prefWidth="140.0" text="Rappels" />
+              </columns>
+            </TableView>
+         </children></VBox>
+   </children>
+</AnchorPane>
