@@ -25,6 +25,10 @@ public class ProfRegisterController {
     private Button submitButton;
 
 
+    /**
+     * Formulaire qui permet d'entrer toutes les informations liées à un cours
+     * @throws IOException
+     */
     @FXML
     public void register(ActionEvent event) throws IOException {
 
@@ -39,7 +43,7 @@ public class ProfRegisterController {
 
         boolean ok_request = ModelTableProf.insertProfInDB(acronyme, nom, prenom, mail);
         if (ok_request)
-            showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
+            showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
                     "La nouvelle entrée a été effectuée !", true);
         else{
             showAlert(Alert.AlertType.ERROR, owner, "Ajout échoué",
@@ -47,6 +51,11 @@ public class ProfRegisterController {
         }
     }
 
+    /**
+     * Vérifie les entrées utilisateurs
+     * @return Retourne false si l'entrée est vide ou invalide
+     * @throws IOException
+     */
     private boolean inputValid() throws IOException {
         Window owner = submitButton.getScene().getWindow();
 
@@ -74,6 +83,24 @@ public class ProfRegisterController {
         return true;
     }
 
+    /**
+     * Bouton de validation/annulation qui nous fait revenir à l'onglet précédent
+     * @throws IOException
+     */
+    @FXML
+    private void OKButton() throws IOException {
+        Tempus.changeTab(3);
+    }
+
+    /**
+     * Fonction qui affiche une fenêtre d'alerte lors d'une action
+     * @param alertType Type d'alerte à afficher
+     * @param owner Bouton submit
+     * @param title Titre de la fenêtre
+     * @param message Message à afficher
+     * @param menu True si il est nécessaire de retourner au précédent onglet
+     * @throws IOException
+     */
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message, boolean
                                   menu) throws IOException {
         Alert alert = new Alert(alertType);
@@ -83,10 +110,5 @@ public class ProfRegisterController {
         alert.initOwner(owner);
         alert.show();
         if(menu) Tempus.changeTab(3);
-    }
-
-    @FXML
-    private void OKButton() throws IOException {
-        Tempus.changeTab(3);
     }
 }

@@ -34,8 +34,12 @@ public class CoursRegisterController {
 
     ObservableList<ModelTableCoursProf> oblist = FXCollections.observableArrayList();
 
+    /**
+     * Formulaire qui permet d'entrer toutes les informations liées à un cours
+     * @throws IOException
+     */
     @FXML
-    public void register(ActionEvent event) throws IOException {
+    public void register() throws IOException {
 
         Window owner = submitButton.getScene().getWindow();
 
@@ -55,7 +59,7 @@ public class CoursRegisterController {
         //db.insertRecordCours(idEvenement, acronyme);
         boolean ok_request = ModelTableCours.insertCoursInDB(idEvenement, acronyme);
         if (ok_request)
-            showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
+            showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
                     "La nouvelle entrée a été effectuée !", true);
         else{
             showAlert(Alert.AlertType.ERROR, owner, "Ajout échoué",
@@ -63,6 +67,9 @@ public class CoursRegisterController {
         }
     }
 
+    /**
+     * Méthode automatiquement appelée lors de l'invocation du FXML, permet d'afficher tous les champs du formulaire
+     */
     @FXML
     public void initialize(){
         // Ajout d'une liste déroulante avec les différents professeurs
@@ -74,6 +81,11 @@ public class CoursRegisterController {
         professeur.setItems(oblist);
     }
 
+    /**
+     * Vérifie les entrées utilisateurs
+     * @return Retourne false si l'entrée est vide ou invalide
+     * @throws IOException
+     */
     private boolean inputValid() throws IOException {
         Window owner = submitButton.getScene().getWindow();
 
@@ -103,6 +115,24 @@ public class CoursRegisterController {
         return true;
     }
 
+    /**
+     * Bouton de validation/annulation qui nous fait revenir à l'onglet précédent
+     * @throws IOException
+     */
+    @FXML
+    private void OKButton() throws IOException {
+        Tempus.changeTab(1);
+    }
+
+    /**
+     * Fonction qui affiche une fenêtre d'alerte lors d'une action
+     * @param alertType Type d'alerte à afficher
+     * @param owner Bouton submit
+     * @param title Titre de la fenêtre
+     * @param message Message à afficher
+     * @param menu True si il est nécessaire de retourner au précédent onglet
+     * @throws IOException
+     */
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message, boolean
             menu) throws IOException {
         Alert alert = new Alert(alertType);
@@ -112,11 +142,6 @@ public class CoursRegisterController {
         alert.initOwner(owner);
         alert.show();
         if(menu) Tempus.changeTab(1);
-    }
-
-    @FXML
-    private void OKButton() throws IOException {
-        Tempus.changeTab(1);
     }
 
 }

@@ -7,20 +7,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * JavaFX App
- */
 public class Tempus extends Application {
 
     private static Scene scene;
     private static TabPane tabPane;
     private static AnchorPane root;
+    private static Tab main;
+    private static Tab cours;
+    private static Tab periode;
+    private static Tab prof;
+    private static Tab rappel;
+    private static Tab calendrier;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -29,21 +33,18 @@ public class Tempus extends Application {
         tabPane = new TabPane();
 
         // Ajout de tous les onglets
-        Tab main = new Tab("Main");
-        Tab cours = new Tab("Cours");
-        Tab periode = new Tab("Période");
-        Tab prof = new Tab("Professeur");
-        Tab rappel = new Tab("Rappel");
-        Tab calendrier = new Tab("Calendrier");
+        main = new Tab("Main");
+        cours = new Tab("Cours");
+        periode = new Tab("Période");
+        prof = new Tab("Professeur");
+        rappel = new Tab("Rappel");
+        calendrier = new Tab("Calendrier");
 
         VBox v1 = new VBox();
 
         // Load de toutes les classes
-        main.setContent(loadFXML("view/primary"));
-        cours.setContent(loadFXML("view/coursAdd"));
-        periode.setContent(loadFXML("view/periodeAdd"));
-        prof.setContent(loadFXML("view/profAdd"));
-        rappel.setContent(loadFXML("view/rappelAdd"));
+        updateTab();
+
         // TODO: à contrôler que l'appel au calendrier est correct
         calendrier.setContent(CalendarPageControler.loadFromFXMLDocument());
 
@@ -61,12 +62,23 @@ public class Tempus extends Application {
         root.getChildren().addAll(v1);
         scene = new Scene(root, 640, 480);
         stage.setScene(scene);
+        // Icone de l'application, à tester
+        //stage.getIcons().add(new Image("file:images/logo.png"));
         stage.show();
+    }
+
+    public static void updateTab() throws IOException {
+        main.setContent(loadFXML("view/primary"));
+        cours.setContent(loadFXML("view/coursAdd"));
+        periode.setContent(loadFXML("view/periodeAdd"));
+        prof.setContent(loadFXML("view/profAdd"));
+        rappel.setContent(loadFXML("view/rappelAdd"));
     }
 
     public static void changeTab(int index) throws IOException {
         scene.setRoot(root);
         tabPane.getSelectionModel().select(index);
+        updateTab();
     }
 
     public static void setRoot(String fxml) throws IOException {
@@ -80,9 +92,5 @@ public class Tempus extends Application {
 
     public static void main(String[] args) {
         launch();
-    }
-
-    public static Scene getScene() {
-        return scene;
     }
 }

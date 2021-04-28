@@ -30,11 +30,18 @@ public class CoursAddController {
 
     ObservableList<ModelTableCours> oblist = FXCollections.observableArrayList();
 
+    /**
+     * Méthode qui permet d'ajouter un cours à la base de donnée, une fenêtre avec un formulaire va s'ouvrir
+     * @throws IOException
+     */
     @FXML
     private void newEntry() throws IOException {
         Tempus.setRoot("view/coursRegister");
     }
 
+    /**
+     * Méthode afin de supprimer une entrée
+     */
     @FXML
     private void delete() {
         ModelTableCours selectedIndex = (ModelTableCours) table.getSelectionModel().getSelectedItem();
@@ -57,6 +64,9 @@ public class CoursAddController {
         }
     }
 
+    /**
+     * Méthode automatiquement appelée lors de l'invocation du FXML, permet de set les données dans la table
+     */
     @FXML
     private void initialize() {
         try {
@@ -74,7 +84,12 @@ public class CoursAddController {
         table.setItems(oblist);
     }
 
-
+    /**
+     * Méthode qui permet d'afficher une alerte
+     * @param alertType Le type d'alerte (fenêtre)
+     * @param title Titre de la fenêtre d'alerte
+     * @param message Message à afficher dans la fenêtre
+     */
     private static void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

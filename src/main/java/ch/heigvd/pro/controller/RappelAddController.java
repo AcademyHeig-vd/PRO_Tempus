@@ -35,11 +35,18 @@ public class RappelAddController {
 
     ObservableList<ModelTableRappel> oblist = FXCollections.observableArrayList();
 
+    /**
+     * Méthode qui permet d'ajouter un cours à la base de donnée, une fenêtre avec un formulaire va s'ouvrir
+     * @throws IOException
+     */
     @FXML
     private void newEntry() throws IOException {
         Tempus.setRoot("view/rappelRegister");
     }
 
+    /**
+     * Méthode afin de supprimer une entrée
+     */
     @FXML
     private void delete() {
         ModelTableRappel selectedIndex = (ModelTableRappel) table.getSelectionModel().getSelectedItem();
@@ -61,6 +68,9 @@ public class RappelAddController {
         }
     }
 
+    /**
+     * Méthode automatiquement appelée lors de l'invocation du FXML, permet de set les données dans la table
+     */
     @FXML
     private void initialize() {
         try {
@@ -80,6 +90,12 @@ public class RappelAddController {
         table.setItems(oblist);
     }
 
+    /**
+     * Méthode qui permet d'afficher une alerte
+     * @param alertType Le type d'alerte (fenêtre)
+     * @param title Titre de la fenêtre d'alerte
+     * @param message Message à afficher dans la fenêtre
+     */
     private static void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

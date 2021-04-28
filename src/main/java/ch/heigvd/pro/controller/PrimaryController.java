@@ -29,7 +29,7 @@ public class PrimaryController {
     }
 
     public void switchToCalendar() throws IOException {
-        Tempus.getScene().setRoot(CalendarPageControler.loadFromFXMLDocument());
+       // Tempus.getScene().setRoot(CalendarPageControler.loadFromFXMLDocument());
     }
 
 }
