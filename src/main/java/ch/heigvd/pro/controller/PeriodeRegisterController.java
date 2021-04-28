@@ -60,7 +60,7 @@ public class PeriodeRegisterController {
         dbConnexion db = new dbConnexion();
         db.insertRecordPeriode(id, jour, heureDebut, heureFin, salle);
 
-        showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
+        showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);
     }
 
@@ -127,7 +127,7 @@ public class PeriodeRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.setRoot("view/periodeAdd");
+        if(menu) Tempus.setRoot("view/primary");
     }
 
     @FXML

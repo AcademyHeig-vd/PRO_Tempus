@@ -4,6 +4,7 @@ import ch.heigvd.pro.Connexion.dbConnexion;
 import ch.heigvd.pro.Tempus;
 import ch.heigvd.pro.model.ModelTableCours;
 import ch.heigvd.pro.model.ModelTableCoursProf;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -61,7 +62,7 @@ public class CoursRegisterController {
         int idEvenement = db.insertRecordEvenement(titre, dateDebut, dateEcheance, description);
         //db.insertRecordCours(idEvenement, acronyme);
         ModelTableCours.insertCoursInDB(idEvenement, acronyme);
-        showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
+        showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);
     }
 
@@ -124,7 +125,7 @@ public class CoursRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.setRoot("view/coursAdd");
+        if(menu) Tempus.setRoot("view/primary");
     }
 
     @FXML

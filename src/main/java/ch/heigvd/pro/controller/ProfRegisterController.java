@@ -2,6 +2,7 @@ package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Connexion.dbConnexion;
 import ch.heigvd.pro.Tempus;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -10,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class ProfRegisterController {
     @FXML
@@ -45,7 +45,7 @@ public class ProfRegisterController {
         dbConnexion db = new dbConnexion();
         db.insertRecordProf(acronyme, nom, prenom, mail);
 
-        showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
+        showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);
     }
 
@@ -84,7 +84,7 @@ public class ProfRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.setRoot("view/profAdd");
+        if(menu) Tempus.setRoot("view/primary");
     }
 
     @FXML

@@ -8,10 +8,11 @@ import java.sql.SQLException;
 
 import ch.heigvd.pro.Tempus;
 import ch.heigvd.pro.model.ModelTableProf;
+import ch.heigvd.pro.Connexion.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import ch.heigvd.pro.Connexion.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;

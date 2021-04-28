@@ -2,6 +2,7 @@ package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Connexion.dbConnexion;
 import ch.heigvd.pro.Tempus;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -10,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class RappelRegisterController {
     @FXML
@@ -56,7 +56,7 @@ public class RappelRegisterController {
         int idEvenement = db.insertRecordEvenement(titre, date, date, description);
         db.insertRecordRappel(idEvenement, contenu, lien, heure);
 
-        showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
+        showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);
     }
 
@@ -95,7 +95,7 @@ public class RappelRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.setRoot("view/rappelAdd");
+        if(menu) Tempus.setRoot("view/primary");
     }
 
     @FXML
