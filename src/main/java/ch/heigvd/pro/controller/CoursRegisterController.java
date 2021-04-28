@@ -111,12 +111,12 @@ public class CoursRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.setRoot("view/primary");
+        if(menu) Tempus.changeTab(1);
     }
 
     @FXML
     private void OKButton() throws IOException {
-        Tempus.setRoot("view/primary");
+        Tempus.changeTab(1);
     }
 
 }

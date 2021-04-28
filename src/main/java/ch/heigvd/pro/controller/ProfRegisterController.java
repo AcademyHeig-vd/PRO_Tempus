@@ -82,11 +82,11 @@ public class ProfRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.setRoot("view/primary");
+        if(menu) Tempus.changeTab(3);
     }
 
     @FXML
     private void OKButton() throws IOException {
-        Tempus.setRoot("view/primary");
+        Tempus.changeTab(3);
     }
 }

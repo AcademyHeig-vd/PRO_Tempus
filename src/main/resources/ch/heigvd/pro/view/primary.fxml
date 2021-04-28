@@ -1,58 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ch.heigvd.pro.controller.PrimaryController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
-      <TabPane fx:id="tabPane" layoutX="100.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <tabs>
-          <Tab closable="false" text="Main">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Text layoutX="181.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bievenue sur Tempus">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </Text>
-                        <ImageView fitHeight="199.0" fitWidth="272.0" layoutX="164.0" layoutY="74.0">
-                           <image>
-                              <Image url="@../../../../../../../images/Tempus.png" />
-                           </image>
-                        </ImageView>
-                        <Text layoutX="166.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Projet réalisé dans le cadre du cours PRO" />
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab fx:id="cours" closable="false" text="Cours">
-              <content>
-                  <fx:include fx:id="cours1" source="coursAdd.fxml" />
-              </content>
-          </Tab>
-            <Tab fx:id="periode" closable="false" text="Période">
-                <content>
-                    <fx:include fx:id="periode1" source="periodeAdd.fxml" />
-                </content>
-            </Tab>
-            <Tab fx:id="professeur" closable="false" text="Professeur">
-                <content>
-                    <fx:include fx:id="professeur1" source="profAdd.fxml" />
-                </content>
-            </Tab>
-            <Tab fx:id="rappel" closable="false" text="Rappel">
-                <content>
-                    <fx:include fx:id="rappel1" source="rappelAdd.fxml" />
-                </content>
-            </Tab>
-            <Tab closable="false" text="Calendrier" />
-        </tabs>
-      </TabPane>
+      <Text layoutX="141.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue sur Tempus !">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

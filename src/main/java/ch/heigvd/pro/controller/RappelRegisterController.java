@@ -94,12 +94,12 @@ public class RappelRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.setRoot("view/primary");
+        if(menu) Tempus.changeTab(4);
     }
 
     @FXML
     private void OKButton() throws IOException {
-        Tempus.setRoot("view/primary");
+        Tempus.changeTab(4);
     }
 
 }
