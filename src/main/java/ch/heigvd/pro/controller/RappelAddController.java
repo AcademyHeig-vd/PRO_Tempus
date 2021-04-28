@@ -66,7 +66,6 @@ public class RappelAddController {
 
             // Update les onglets
             Tempus.updateTab();
-            
         } catch (Exception e){
             e.printStackTrace();
         }

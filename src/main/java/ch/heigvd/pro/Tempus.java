@@ -45,9 +45,6 @@ public class Tempus extends Application {
         // Load de toutes les classes
         updateTab();
 
-        // TODO: à contrôler que l'appel au calendrier est correct
-        calendrier.setContent(CalendarPageControler.loadFromFXMLDocument());
-
         // Ne pas permette aux users de fermer les onglets
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
@@ -73,6 +70,7 @@ public class Tempus extends Application {
         periode.setContent(loadFXML("view/periodeAdd"));
         prof.setContent(loadFXML("view/profAdd"));
         rappel.setContent(loadFXML("view/rappelAdd"));
+        calendrier.setContent(CalendarPageControler.loadFromFXMLDocument());
     }
 
     public static void changeTab(int index) throws IOException {
