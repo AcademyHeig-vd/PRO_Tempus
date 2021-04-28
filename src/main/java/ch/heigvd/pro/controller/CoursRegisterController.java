@@ -15,8 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CoursRegisterController {
@@ -44,12 +42,6 @@ public class CoursRegisterController {
 
         if(!inputValid()) return;
 
-        System.out.println(coursProf.getAcronyme());
-        System.out.println(titreField.getText());
-        System.out.println(dateDebutField.getText());
-        System.out.println(dateEcheanceField.getText());
-        System.out.println(descriptionField.getText());
-
         String acronyme = coursProf.getAcronyme();
         String titre = titreField.getText();
         String dateDebut = dateDebutField.getText();
@@ -57,33 +49,27 @@ public class CoursRegisterController {
         String description = descriptionField.getText();
 
         dbConnexion db = new dbConnexion();
-
+        //TODO : à déplacer quand merge avec Lev
         int idEvenement = db.insertRecordEvenement(titre, dateDebut, dateEcheance, description);
         //db.insertRecordCours(idEvenement, acronyme);
-        ModelTableCours.insertCoursInDB(idEvenement, acronyme);
-        showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
-                "La nouvelle entrée a été effectuée !", true);
+        boolean ok_request = ModelTableCours.insertCoursInDB(idEvenement, acronyme);
+        if (ok_request)
+            showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
+                    "La nouvelle entrée a été effectuée !", true);
+        else{
+            showAlert(Alert.AlertType.ERROR, owner, "Ajout échoué",
+                    "Erreur lors de l'insertion", true);
+        }
     }
 
     @FXML
     public void initialize(){
         // Ajout d'une liste déroulante avec les différents professeurs
         try {
-            dbConnexion db = new dbConnexion();
-            Connection conn = db.getConnexion();
-
-            String SQL = dbConnexion.SELECT_QUERY_ACRONYM_PROF;
-            System.out.println("Table name query: \"" + SQL + "\"\n");
-
-            ResultSet rs = conn.createStatement().executeQuery(SQL);
-
-            while(rs.next()){
-                oblist.add(new ModelTableCoursProf(rs.getString("acronyme")));
-            }
+            oblist.addAll(ModelTableCoursProf.getAllAcronymProf());
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }
-
         professeur.setItems(oblist);
     }
 
