@@ -21,10 +21,5 @@ public class PrimaryController {
 
     @FXML
     Tab rappel;
-
-
-    @FXML
-    private void initialize(){}
-
-
+    
 }
