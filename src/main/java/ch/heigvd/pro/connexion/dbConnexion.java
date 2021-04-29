@@ -44,8 +44,8 @@ public class dbConnexion {
     public static final String SELECT_QUERY_ALL_PERIODE_BETWEEN =
             "SELECT * FROM Periode " +
             "INNER JOIN Evenement " +
-            "   ON Periode.idCours = Evenement.idEvenement" +
-            "WHERE ? BETWEEN dateDebut AND dateFin";
+            "   ON Periode.idCours = Evenement.idEvenement " +
+            "WHERE ? BETWEEN dateDebut AND dateEcheance";
 
     /* QUERY POUR EVENEMENT */
     public static final String INSERT_QUERY_EVENEMENT =

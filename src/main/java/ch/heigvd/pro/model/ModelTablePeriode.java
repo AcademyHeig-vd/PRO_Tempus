@@ -16,6 +16,7 @@ public class ModelTablePeriode {
 
     public enum Jour {
         LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE;
+
         Jour getJour(String jour){
             switch (jour){
                 case "lundi" : return Jour.LUNDI;
@@ -82,8 +83,9 @@ public class ModelTablePeriode {
         Connection conn = db.getConnexion();
 
         PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.SELECT_QUERY_ALL_PERIODE_BETWEEN);
-        preparedStatement.setDate(1, java.sql.Date.valueOf(day.toString())); //date du debut
 
+        preparedStatement.setString(1, day.toString()); //date du debut
+        System.out.println(preparedStatement);
         ResultSet rs = preparedStatement.executeQuery();
         while(rs.next()){
             ModelTablePeriode periode = new ModelTablePeriode(rs.getInt("idPeriode"),
