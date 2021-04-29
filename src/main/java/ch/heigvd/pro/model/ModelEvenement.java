@@ -41,7 +41,8 @@ public class ModelEvenement {
         ArrayList<ModelTablePeriode> periodes = ModelTablePeriode.getAllPeriodeIn(day);
         ModelTablePeriode.Jour jour = ModelTablePeriode.Jour.LUNDI; // doit être initilisé
         for (ModelTablePeriode periode : periodes){
-            if (day.toLocalDate().getDayOfWeek().getValue() == jour.getJour(periode.getJourSemaine()).ordinal()){
+            jour = jour.getJour(periode.getJourSemaine());
+            if (jour != null && day.toLocalDate().getDayOfWeek().getValue() == jour.ordinal()){
                 evenements.add(new ModelEvenement(-1, new SimpleStringProperty(periode.getNom()), null,
                         periode.getHeureDebut(), "Cours", null, null));
             }
