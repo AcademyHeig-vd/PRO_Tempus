@@ -114,4 +114,8 @@ public class DayViewDetailedController {
         alert.show();
     }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
 }
