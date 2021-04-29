@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="25.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ch.heigvd.pro.controller.PrimaryController">
+<AnchorPane prefHeight="850.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/">
    <children>
-      <Label alignment="CENTER" text="Menu principal pour la gestion des cours">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Button fx:id="buttonCours" mnemonicParsing="false" onAction="#switchToCours" text="Ajouter un cours" />
-      <Button fx:id="buttonPeriode" mnemonicParsing="false" onAction="#switchToPeriode" text="Ajouter une période" />
-      <Button fx:id="buttonRappel" mnemonicParsing="false" onAction="#switchToRappel" text="Ajouter un rappel" />
-      <Button fx:id="buttonProf" mnemonicParsing="false" onAction="#switchToProf" text="Ajouter un professeur" />
-      <Button fx:id="buttonCalendar" mnemonicParsing="false" onAction="#switchToCalendar" text="Consulter le calendrier" />
+      <BorderPane layoutX="133.0" layoutY="100.0" prefHeight="850.0" prefWidth="1150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue sur Tempus !" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+         </center>
+      </BorderPane>
    </children>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="20.0" top="15.0" />
-   </padding>
-</VBox>
+</AnchorPane>

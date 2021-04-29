@@ -1,17 +1,14 @@
 package ch.heigvd.pro.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import ch.heigvd.pro.Tempus;
 import ch.heigvd.pro.model.ModelTableProf;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import ch.heigvd.pro.Connexion.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -34,16 +31,18 @@ public class ProfAddController {
 
     ObservableList<ModelTableProf> oblist = FXCollections.observableArrayList();
 
+    /**
+     * Méthode qui permet d'ajouter un cours à la base de donnée, une fenêtre avec un formulaire va s'ouvrir
+     * @throws IOException
+     */
     @FXML
     private void newEntry() throws IOException {
         Tempus.setRoot("view/profRegister");
     }
 
-    @FXML
-    private void switchToPrimary() throws IOException {
-        Tempus.setRoot("view/primary");
-    }
-
+    /**
+     * Méthode afin de supprimer une entrée
+     */
     @FXML
     private void delete() {
         ModelTableProf selectedIndex = (ModelTableProf) table.getSelectionModel().getSelectedItem();
@@ -61,11 +60,17 @@ public class ProfAddController {
             // Suppression application
             table.getItems().remove(selectedIndex);
 
+            // Update les onglets
+            Tempus.updateTab();
+
         } catch (Exception e){
             e.printStackTrace();
         }
     }
 
+    /**
+     * Méthode automatiquement appelée lors de l'invocation du FXML, permet de set les données dans la table
+     */
     @FXML
     private void initialize() {
         try {
@@ -82,6 +87,12 @@ public class ProfAddController {
         table.setItems(oblist);
     }
 
+    /**
+     * Méthode qui permet d'afficher une alerte
+     * @param alertType Le type d'alerte (fenêtre)
+     * @param title Titre de la fenêtre d'alerte
+     * @param message Message à afficher dans la fenêtre
+     */
     private static void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

@@ -12,5 +12,4 @@ module ch.heigvd.pro {
     opens ch.heigvd.pro.view to javafx.fxml;
     exports ch.heigvd.pro.view;
 
-
 }

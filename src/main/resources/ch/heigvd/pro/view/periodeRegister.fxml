@@ -37,7 +37,7 @@
             <ComboBox fx:id="cours" prefWidth="150.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <ButtonBar layoutX="92.0" layoutY="254.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="254.0">
+      <ButtonBar layoutX="92.0" layoutY="254.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="8.0">
         <buttons>
           <Button fx:id="submitButton" mnemonicParsing="false" onAction="#register" text="OK" />
             <Button mnemonicParsing="false" onAction="#OKButton" text="Annuler" />

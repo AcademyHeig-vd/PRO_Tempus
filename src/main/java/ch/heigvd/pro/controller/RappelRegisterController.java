@@ -1,7 +1,8 @@
 package ch.heigvd.pro.controller;
 
-import ch.heigvd.pro.Connexion.dbConnexion;
+import ch.heigvd.pro.connexion.dbConnexion;
 import ch.heigvd.pro.Tempus;
+
 import ch.heigvd.pro.model.ModelTableRappel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class RappelRegisterController {
     @FXML
@@ -30,6 +30,10 @@ public class RappelRegisterController {
     private Button submitButton;
 
 
+    /**
+     * Formulaire qui permet d'entrer toutes les informations liées à un cours
+     * @throws IOException
+     */
     @FXML
     public void register(ActionEvent event) throws IOException {
 
@@ -51,7 +55,7 @@ public class RappelRegisterController {
 
         boolean ok_request = ModelTableRappel.insertRecordRappel(idEvenement, contenu, lien, heure);
         if (ok_request)
-            showAlert(Alert.AlertType.CONFIRMATION, owner, "Ajout réussi!",
+            showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
                     "La nouvelle entrée a été effectuée !", true);
         else{
             showAlert(Alert.AlertType.ERROR, owner, "Ajout échoué",
@@ -59,6 +63,11 @@ public class RappelRegisterController {
         }
     }
 
+    /**
+     * Vérifie les entrées utilisateurs
+     * @return Retourne false si l'entrée est vide ou invalide
+     * @throws IOException
+     */
     private boolean inputValid() throws IOException {
         Window owner = submitButton.getScene().getWindow();
 
@@ -86,6 +95,24 @@ public class RappelRegisterController {
         return true;
     }
 
+    /**
+     * Bouton de validation/annulation qui nous fait revenir à l'onglet précédent
+     * @throws IOException
+     */
+    @FXML
+    private void OKButton() throws IOException {
+        Tempus.changeTab(4);
+    }
+
+    /**
+     * Fonction qui affiche une fenêtre d'alerte lors d'une action
+     * @param alertType Type d'alerte à afficher
+     * @param owner Bouton submit
+     * @param title Titre de la fenêtre
+     * @param message Message à afficher
+     * @param menu True si il est nécessaire de retourner au précédent onglet
+     * @throws IOException
+     */
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message, boolean
             menu) throws IOException {
         Alert alert = new Alert(alertType);
@@ -94,12 +121,7 @@ public class RappelRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.setRoot("view/rappelAdd");
-    }
-
-    @FXML
-    private void OKButton() throws IOException {
-        Tempus.setRoot("view/rappelAdd");
+        if(menu) Tempus.changeTab(4);
     }
 
 }

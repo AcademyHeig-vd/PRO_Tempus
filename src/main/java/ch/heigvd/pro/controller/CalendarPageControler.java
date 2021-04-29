@@ -111,6 +111,6 @@ public class CalendarPageControler {
      */
     @FXML
     private void switchToPrimary() throws IOException {
-        Tempus.setRoot("view/primary");
+        Tempus.changeTab(0);
     }
 }
