@@ -42,6 +42,8 @@ public class ModelTableCours {
         return cours;
     }
 
+
+
     /**
      * Supprime l'objet courrant de la base de donnée
      * @throws SQLException echec de la suppression

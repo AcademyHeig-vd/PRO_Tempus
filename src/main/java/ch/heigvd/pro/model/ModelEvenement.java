@@ -4,6 +4,7 @@ package ch.heigvd.pro.model;
 import javafx.beans.property.StringProperty;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 
 //TODO mettre en simpleStringProperty lors de l'initialisation pour pouvoir passer une string au constructeur
@@ -16,6 +17,7 @@ public class ModelEvenement {
     private String contenu;
     private String lien;
 
+
     public ModelEvenement(int id, StringProperty titre, Date echeance, String heure, String descritpion, String contenu, String lien){
         this.id = id;
         this.descritpion = descritpion;
@@ -24,6 +26,12 @@ public class ModelEvenement {
         this.heure = heure;
         this.contenu = contenu;
         this.lien = lien;
+    }
+
+    public ArrayList<ModelEvenement> getAllEvenementPerDay(){
+        ArrayList<ModelEvenement> evenements = new ArrayList<>();
+        
+        return evenements;
     }
 
     public int getId() {
