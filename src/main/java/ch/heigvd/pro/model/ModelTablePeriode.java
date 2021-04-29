@@ -1,16 +1,34 @@
 package ch.heigvd.pro.model;
 
 import ch.heigvd.pro.connexion.dbConnexion;
+import javafx.beans.property.SimpleStringProperty;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ModelTablePeriode {
     int id;
-    String nom, jourSemaine, heureDebut, heureFin, salle;
+    String nom;
+    String jourSemaine;
+    String heureDebut;
+    String heureFin;
+    String salle;
+
+    public enum Jour {
+        LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE;
+        Jour getJour(String jour){
+            switch (jour){
+                case "lundi" : return Jour.LUNDI;
+                case "mardi" : return Jour.MARDI;
+                case "mercredi" : return Jour.MERCREDI;
+                case "jeudi" : return Jour.JEUDI;
+                case "vendredi" : return Jour.VENDREDI;
+                case "samedi" : return Jour.SAMEDI;
+                case "dimanche" : return Jour.DIMANCHE;
+            }
+            return null;
+        }
+    }
 
     public ModelTablePeriode(int id, String nom, String jourSemaine, String heureDebut, String heureFin, String salle) {
         this.id = id;
@@ -54,6 +72,27 @@ public class ModelTablePeriode {
                     rs.getString("heureDebut"),
                     rs.getString("heureFin"),
                     rs.getString("salle")));
+        }
+        return periodes;
+    }
+
+    public static ArrayList<ModelTablePeriode> getAllPeriodeIn(Date day) throws SQLException, ClassNotFoundException {
+        ArrayList<ModelTablePeriode> periodes = new ArrayList<>();
+        dbConnexion db = new dbConnexion();
+        Connection conn = db.getConnexion();
+
+        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.SELECT_QUERY_ALL_PERIODE_BETWEEN);
+        preparedStatement.setDate(1, java.sql.Date.valueOf(day.toString())); //date du debut
+
+        ResultSet rs = preparedStatement.executeQuery();
+        while(rs.next()){
+            ModelTablePeriode periode = new ModelTablePeriode(rs.getInt("idPeriode"),
+                    rs.getString("titre"),
+                    rs.getString("jourSemaine"),
+                    rs.getString("heureDebut"),
+                    rs.getString("heureFin"),
+                    rs.getString("salle"));
+            periodes.add(periode);
         }
         return periodes;
     }

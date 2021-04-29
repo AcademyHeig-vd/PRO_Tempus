@@ -39,7 +39,13 @@ public class dbConnexion {
             "SELECT * FROM Periode " +
             "INNER JOIN Evenement " +
             "   ON Periode.idCours = Evenement.idEvenement";
+
     /* FIN QUERY PERIODE */
+    public static final String SELECT_QUERY_ALL_PERIODE_BETWEEN =
+            "SELECT * FROM Periode " +
+            "INNER JOIN Evenement " +
+            "   ON Periode.idCours = Evenement.idEvenement" +
+            "WHERE ? BETWEEN dateDebut AND dateFin";
 
     /* QUERY POUR EVENEMENT */
     public static final String INSERT_QUERY_EVENEMENT =
@@ -57,6 +63,11 @@ public class dbConnexion {
                     "SELECT * FROM Rappel " +
                     "INNER JOIN Evenement " +
                             "ON Rappel.idEvenement = Evenement.idEvenement";
+    public static final String SELECT_QUERY_RAPPEL_PER_DAY =
+            "SELECT * FROM Rappel " +
+                    "INNER JOIN Evenement " +
+                    "   ON Rappel.idEvenement = Evenement.idEvenement "+
+                    "WHERE dateDebut = ?";
     /* FIN QUERY RAPPEL */
 
     public Connection getConnexion() throws SQLException, ClassNotFoundException {

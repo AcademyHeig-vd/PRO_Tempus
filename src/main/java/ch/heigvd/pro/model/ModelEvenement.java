@@ -1,9 +1,12 @@
 package ch.heigvd.pro.model;
 
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.sql.Date;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -28,9 +31,22 @@ public class ModelEvenement {
         this.lien = lien;
     }
 
-    public ArrayList<ModelEvenement> getAllEvenementPerDay(){
+    public ArrayList<ModelEvenement> getAllEvenementPerDay(Date day) throws SQLException, ClassNotFoundException {
+        ArrayList<ModelEvenement> evenements = ModelTableRappel.selectRappelPerDay(day);
+        return evenements;
+    }
+
+    private ArrayList<ModelEvenement> getEvenementFromCoursAndPeriode(Date day) throws SQLException, ClassNotFoundException {
         ArrayList<ModelEvenement> evenements = new ArrayList<>();
-        
+        ArrayList<ModelTablePeriode> periodes = ModelTablePeriode.getAllPeriodeIn(day);
+        ModelTablePeriode.Jour jour = ModelTablePeriode.Jour.LUNDI; // doit être initilisé
+        for (ModelTablePeriode periode : periodes){
+            if (day.toLocalDate().getDayOfWeek().getValue() == jour.getJour(periode.getJourSemaine()).ordinal()){
+                evenements.add(new ModelEvenement(-1, new SimpleStringProperty(periode.getNom()), null,
+                        periode.getHeureDebut(), "Cours", null, null));
+            }
+
+        }
         return evenements;
     }
 
