@@ -40,6 +40,13 @@ public class dbConnexion {
 
     /* FIN QUERY PERIODE */
 
+    public static final String SELECT_QUERY_RAPPEL_PER_DAY =
+            "SELECT * FROM Rappel " +
+                    "INNER JOIN Evenement " +
+                    "   ON Rappel.idEvenement = Evenement.idEvenement "+
+                    "WHERE Evenement.dateDebut = ?";
+
+
 
     public Connection getConnexion() throws SQLException, ClassNotFoundException {
         Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
