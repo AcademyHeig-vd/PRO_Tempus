@@ -1,11 +1,9 @@
 package ch.heigvd.pro.model;
 
 import ch.heigvd.pro.connexion.dbConnexion;
+import javafx.beans.property.SimpleStringProperty;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ModelTableRappel {
@@ -51,6 +49,27 @@ public class ModelTableRappel {
         ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_RAPPEL);
         while(rs.next()){
             rappels.add(new ModelTableRappel(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateEcheance"), rs.getString("heure"), rs.getString("description"), rs.getString("contenu"), rs.getString("lien")));
+        }
+        return rappels;
+    }
+
+    public static ArrayList<ModelEvenement> selectRappelPerDay(Date day) throws SQLException, ClassNotFoundException {
+        ArrayList<ModelEvenement> rappels = new ArrayList<>();
+        dbConnexion db = new dbConnexion();
+        Connection conn = db.getConnexion();
+
+        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.SELECT_QUERY_RAPPEL_PER_DAY);
+        preparedStatement.setDate(1, java.sql.Date.valueOf(day.toString())); //date du debut
+
+        ResultSet rs = preparedStatement.executeQuery();
+        while(rs.next()){
+            rappels.add(new ModelEvenement(rs.getInt("idEvenement"),
+                    new SimpleStringProperty(rs.getString("titre")),
+                    rs.getDate("dateEcheance"),
+                    rs.getString("heure"),
+                    rs.getString("description"),
+                    rs.getString("contenu"),
+                    rs.getString("lien")));
         }
         return rappels;
     }
