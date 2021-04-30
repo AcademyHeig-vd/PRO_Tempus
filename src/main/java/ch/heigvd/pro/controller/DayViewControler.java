@@ -13,6 +13,7 @@ import ch.heigvd.pro.model.ModelDay;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,14 +49,8 @@ public class DayViewControler {
      * Initialise la vue du jour
      */
     @FXML
-    public void initialize(){
-        ////////////////// Pour tester à bas niveau ///////////////////////
-        List<ModelEvenement> listForDays = new ArrayList();
-        listForDays.add(new ModelEvenement(1, new SimpleStringProperty("bonjour") , new Date(1), "", "", "", ""));
-        listForDays.add(new ModelEvenement(2, new SimpleStringProperty("hola") , new Date(1), "", "", "", ""));
-        listForDays.add(new ModelEvenement(3, new SimpleStringProperty("guten tag") , new Date(1), "", "", "", ""));
-        //////////////////// //////////////////////////////////////////////
-        ModelDay modelDay = new ModelDay(this.date, listForDays);
+    public void initialize() throws SQLException, ClassNotFoundException {
+        ModelDay modelDay = new ModelDay(this.date);
         // Set des valeur du jours
         evenementTable.setItems(modelDay.getRappels());
         dateLabel.setText(Integer.toString(modelDay.getDate().toLocalDate().getDayOfMonth()));
