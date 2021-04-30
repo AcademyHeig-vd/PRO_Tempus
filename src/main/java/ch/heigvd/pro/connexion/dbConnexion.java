@@ -41,6 +41,7 @@ public class dbConnexion {
             "   ON Periode.idCours = Evenement.idEvenement";
 
     /* FIN QUERY PERIODE */
+<<<<<<< HEAD:src/main/java/ch/heigvd/pro/connexion/dbConnexion.java
     public static final String SELECT_QUERY_ALL_PERIODE_BETWEEN =
             "SELECT * FROM Periode " +
             "INNER JOIN Evenement " +
@@ -63,12 +64,21 @@ public class dbConnexion {
                     "SELECT * FROM Rappel " +
                     "INNER JOIN Evenement " +
                             "ON Rappel.idEvenement = Evenement.idEvenement";
+=======
+
+>>>>>>> 01a2402486c227bd90fdf773652f539b678782c9:src/main/java/ch/heigvd/pro/Connexion/dbConnexion.java
     public static final String SELECT_QUERY_RAPPEL_PER_DAY =
             "SELECT * FROM Rappel " +
                     "INNER JOIN Evenement " +
                     "   ON Rappel.idEvenement = Evenement.idEvenement "+
+<<<<<<< HEAD:src/main/java/ch/heigvd/pro/connexion/dbConnexion.java
                     "WHERE dateDebut = ?";
     /* FIN QUERY RAPPEL */
+=======
+                    "WHERE Evenement.dateDebut = ?";
+
+
+>>>>>>> 01a2402486c227bd90fdf773652f539b678782c9:src/main/java/ch/heigvd/pro/Connexion/dbConnexion.java
 
     public Connection getConnexion() throws SQLException, ClassNotFoundException {
         Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
