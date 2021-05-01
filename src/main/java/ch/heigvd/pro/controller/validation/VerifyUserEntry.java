@@ -52,6 +52,25 @@ public class VerifyUserEntry {
     }
 
     /**
+     * Méthode vérifiant que l'heure de début est plus petite que l'heure de fin
+     * @param hourBeginString - heure de début entrée par l'utilisateur
+     * @param hourEndString - heure de fin entrée par l'utilisateur
+     * @return - booléen si l'heure de début est plus petite que l'heure de fin
+     */
+    public boolean verifyHourBeginSmallerHourEnd(String hourBeginString, String hourEndString) {
+        String[] hourBeginSplitted = hourBeginString.split(":");
+        String[] hourEndSplitted = hourEndString.split(":");
+        int hourBegin = Integer.parseInt(hourBeginSplitted[0]);
+        int minuteBegin = Integer.parseInt(hourBeginSplitted[1]);
+        int hourEnd = Integer.parseInt(hourEndSplitted[0]);
+        int minuteEnd = Integer.parseInt(hourEndSplitted[1]);
+
+        if(hourBegin < hourEnd){
+            return true;
+        } else return hourBegin == hourEnd && minuteBegin < minuteEnd;
+    }
+
+    /**
      * Méthode vérifiant si l'acronyme entré par un utilisateur est valide ou non
      * @param acronym - acronyme entré par l'utilisateur
      * @return - booléen si l'acronyme est valide ou non

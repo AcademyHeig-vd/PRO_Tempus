@@ -19,8 +19,6 @@ public class PeriodeRegisterController {
 
 
     @FXML
-    private TextField jourField;
-    @FXML
     private TextField heureDebutField;
     @FXML
     private TextField heureFinField;
@@ -30,6 +28,8 @@ public class PeriodeRegisterController {
     private Button submitButton;
     @FXML
     private ComboBox<ModelTableCoursEvenement> cours = new ComboBox<>();
+    @FXML
+    private ComboBox<String> jourComboBox = new ComboBox<>();
 
     ObservableList<ModelTableCoursEvenement> oblist = FXCollections.observableArrayList();
 
@@ -46,7 +46,7 @@ public class PeriodeRegisterController {
         if(!inputValid()) return;
 
         int id = coursEvenement.getIdEvenement();
-        String jour = jourField.getText();
+        String jour = jourComboBox.getValue();
         String heureDebut = heureDebutField.getText();
         String heureFin = heureFinField.getText();
         String salle = salleField.getText();
@@ -74,6 +74,11 @@ public class PeriodeRegisterController {
             e.getMessage();
         }
         cours.setItems(oblist);
+
+        ObservableList<String> options =
+                FXCollections.observableArrayList("lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche");
+        jourComboBox.setItems(options);
+
     }
 
     /**
@@ -88,23 +93,15 @@ public class PeriodeRegisterController {
 
         VerifyUserEntry verifyUserEntry = new VerifyUserEntry();
 
-        ModelTablePeriode.Jour jour;
-        jour = ModelTablePeriode.Jour.LUNDI;
-        jour = jour.getJour(jourField.getText());
-
        if (coursEvenement == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez le nom du cours", false);
             return false;
         }
 
-        if (jourField.getText().isEmpty()) {
+        if (jourComboBox.getValue() == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez le jour de la semaine", false);
-            return false;
-        } else if(jour == null){
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
-                    "Le jour de la semaine n'a pas été écrit correctement, tout doit être en minuscule", false);
             return false;
         }
 
@@ -125,6 +122,12 @@ public class PeriodeRegisterController {
         } else if(!verifyUserEntry.verifyEntryHour(heureFinField.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "L'heure de fin n'est pas au bon format (HH:MM)", false);
+            return false;
+        }
+
+        if (!verifyUserEntry.verifyHourBeginSmallerHourEnd(heureDebutField.getText(), heureFinField.getText())) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "L'heure de début doit être plus petite que l'heure de fin", false);
             return false;
         }
 
