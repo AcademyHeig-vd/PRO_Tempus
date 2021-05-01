@@ -35,7 +35,11 @@ public class ModelTablePeriode {
         this.id = id;
         this.nom = nom;
         this.jourSemaine = jourSemaine;
+        String[] heureDebutSeparee = heureDebut.split(":");
+        heureDebut = heureDebutSeparee[0] + ":" + heureDebutSeparee[1];
         this.heureDebut = heureDebut;
+        String[] heureFinSeparee = heureFin.split(":");
+        heureFin = heureFinSeparee[0] + ":" + heureFinSeparee[1];
         this.heureFin = heureFin;
         this.salle = salle;
     }

@@ -14,7 +14,11 @@ public class ModelTableRappel {
     public ModelTableRappel(int idEvenement, String titre, String date, String heure, String description, String contenu, String lien) {
         this.idEvenement = idEvenement;
         this.titre = titre;
+        String[] dateEcheanceSeparee = date.split("-");
+        date = dateEcheanceSeparee[2] + "." + dateEcheanceSeparee[1] + "." + dateEcheanceSeparee[0];
         this.dateEcheance = date;
+        String[] heureSeparee = heure.split(":");
+        heure = heureSeparee[0] + ":" + heureSeparee[1];
         this.heure = heure;
         this.description = description;
         this.contenu = contenu;
