@@ -11,8 +11,6 @@ import java.util.regex.Pattern;
 
 public class VerifyUserEntry {
 
-    private static String patternHour = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
-
     /**
      * Méthode vérifiant si une date entrée par un utilisateur est valide ou non
      * @param date - date entrée par l'utilisateur
@@ -41,11 +39,36 @@ public class VerifyUserEntry {
     /**
      * Méthode vérifiant si l'heure entrée par un utilisateur est valide ou non
      * @param hour - heure entrée par l'utilisateur
-     * @return - booléen si l'eure est valide ou non
+     * @return - booléen si l'heure est valide ou non
      */
     public boolean verifyEntryHour(String hour) {
+        String patternHour = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
         Pattern p = Pattern.compile(patternHour);
         Matcher m = p.matcher(hour);
+        return m.matches();
+    }
+
+    /**
+     * Méthode vérifiant si l'acronyme d'un utilisateur est valide ou non
+     * @param acronym - acronyme entré par l'utilisateur
+     * @return - booléen si l'acronyme est valide ou non
+     */
+    public boolean verifyEntryAcronym(String acronym) {
+        String patternAcronym = "^[A-Z]{3}$";
+        Pattern p = Pattern.compile(patternAcronym);
+        Matcher m = p.matcher(acronym);
+        return m.matches();
+    }
+
+    /**
+     * Méthode vérifiant si l'adresse mail d'un utilisateur est valide ou non
+     * @param mail - adresse mail entré par l'utilisateur
+     * @return - booléen si le mail est valide ou non
+     */
+    public boolean verifyEntryMail(String mail){
+        String patternMail = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        Pattern p = Pattern.compile(patternMail);
+        Matcher m = p.matcher(mail);
         return m.matches();
     }
 }

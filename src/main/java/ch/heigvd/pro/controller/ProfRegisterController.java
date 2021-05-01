@@ -2,6 +2,7 @@ package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
 
+import ch.heigvd.pro.controller.validation.VerifyUserEntry;
 import ch.heigvd.pro.model.ModelTableProf;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,24 +60,37 @@ public class ProfRegisterController {
     private boolean inputValid() throws IOException {
         Window owner = submitButton.getScene().getWindow();
 
+        VerifyUserEntry verifyUserEntry = new VerifyUserEntry();
+
         if (acronymeField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez un acronyme", false);
             return false;
+        } else if(!verifyUserEntry.verifyEntryAcronym(acronymeField.getText())) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "L'acronyme n'est pas au bon format (3 lettres majuscules)", false);
+            return false;
         }
+
         if (nomField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez un nom", false);
             return false;
         }
+
         if (prenomField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez un prénom", false);
             return false;
         }
+
         if (mailField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une adresse mail", false);
+            return false;
+        } else if(!verifyUserEntry.verifyEntryMail(mailField.getText())) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "Le mail n'est pas valide", false);
             return false;
         }
 
