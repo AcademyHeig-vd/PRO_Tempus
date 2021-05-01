@@ -57,11 +57,8 @@ public class CoursRegisterController {
 
         String[] dateDebutSeparee = dateDebut.split("\\.");
         String[] dateEcheanceSeparee = dateEcheance.split("\\.");
-        for(String s : dateDebutSeparee){
-            System.out.println(s);
-        }
         dateDebut = dateDebutSeparee[2] + "-" + dateDebutSeparee[1] + "-" + dateDebutSeparee[0];
-        dateEcheance = dateEcheanceSeparee[2] + "-" + dateEcheanceSeparee[1] + "-" + dateEcheanceSeparee[0];;
+        dateEcheance = dateEcheanceSeparee[2] + "-" + dateEcheanceSeparee[1] + "-" + dateEcheanceSeparee[0];
 
         dbConnexion db = new dbConnexion();
         //TODO : à déplacer quand merge avec Lev

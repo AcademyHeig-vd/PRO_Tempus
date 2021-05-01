@@ -8,6 +8,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class VerifyUserEntry {
 
@@ -49,7 +52,7 @@ public class VerifyUserEntry {
     }
 
     /**
-     * Méthode vérifiant si l'acronyme d'un utilisateur est valide ou non
+     * Méthode vérifiant si l'acronyme entré par un utilisateur est valide ou non
      * @param acronym - acronyme entré par l'utilisateur
      * @return - booléen si l'acronyme est valide ou non
      */
@@ -61,14 +64,29 @@ public class VerifyUserEntry {
     }
 
     /**
-     * Méthode vérifiant si l'adresse mail d'un utilisateur est valide ou non
+     * Méthode vérifiant si l'adresse mail entrée par un utilisateur est valide ou non
      * @param mail - adresse mail entré par l'utilisateur
      * @return - booléen si le mail est valide ou non
      */
-    public boolean verifyEntryMail(String mail){
+    public boolean verifyEntryMail(String mail) {
         String patternMail = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         Pattern p = Pattern.compile(patternMail);
         Matcher m = p.matcher(mail);
         return m.matches();
+    }
+
+    /**
+     * Méthode vérifiant si l'URL entré par un utilisateur est valide ou non
+     * @param link - lien entré par l'utilisateur
+     * @return - booléen si le lien est valide ou non
+     */
+    public boolean verifyEntryLink(String link) {
+        try {
+            new URL(link).toURI();
+            return true;
+        }
+        catch (URISyntaxException | MalformedURLException exception) {
+            return false;
+        }
     }
 }
