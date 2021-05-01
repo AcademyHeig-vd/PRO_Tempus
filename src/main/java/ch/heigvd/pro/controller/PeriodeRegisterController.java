@@ -1,5 +1,6 @@
 package ch.heigvd.pro.controller;
 
+import ch.heigvd.pro.controller.validation.VerifyUserEntry;
 import ch.heigvd.pro.model.ModelTableCoursEvenement;
 import ch.heigvd.pro.Tempus;
 import ch.heigvd.pro.model.ModelTablePeriode;
@@ -85,31 +86,54 @@ public class PeriodeRegisterController {
 
         ModelTableCoursEvenement coursEvenement = cours.getSelectionModel().getSelectedItem();
 
+        VerifyUserEntry verifyUserEntry = new VerifyUserEntry();
+
+        ModelTablePeriode.Jour jour;
+        jour = ModelTablePeriode.Jour.LUNDI;
+        jour = jour.getJour(jourField.getText());
+
        if (coursEvenement == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez le nom du cours", false);
             return false;
         }
+
         if (jourField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez le jour de la semaine", false);
             return false;
+        } else if(jour == null){
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "Le jour de la semaine n'a pas été écrit correctement, tout doit être en minuscule", false);
+            return false;
         }
+
         if (heureDebutField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez l'heure de début", false);
             return false;
+        } else if(!verifyUserEntry.verifyEntryHour(heureDebutField.getText())) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "L'heure de début n'est pas au bon format (HH:MM)", false);
+            return false;
         }
+
         if (heureFinField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez l'heure de fin", false);
             return false;
+        } else if(!verifyUserEntry.verifyEntryHour(heureFinField.getText())) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "L'heure de fin n'est pas au bon format (HH:MM)", false);
+            return false;
         }
+
         if (salleField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez le numéro de la salle", false);
             return false;
         }
+
         return true;
     }
 

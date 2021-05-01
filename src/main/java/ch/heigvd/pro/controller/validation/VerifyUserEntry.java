@@ -6,8 +6,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class VerifyUserEntry {
+
+    private static String patternHour = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
 
     /**
      * Méthode vérifiant si une date entrée par un utilisateur est valide ou non
@@ -32,5 +36,16 @@ public class VerifyUserEntry {
         Date d1 = sdformat.parse(dateBegin);
         Date d2 = sdformat.parse(dateEnd);
         return d1.compareTo(d2) < 0;
+    }
+
+    /**
+     * Méthode vérifiant si l'heure entrée par un utilisateur est valide ou non
+     * @param hour - heure entrée par l'utilisateur
+     * @return - booléen si l'eure est valide ou non
+     */
+    public boolean verifyEntryHour(String hour) {
+        Pattern p = Pattern.compile(patternHour);
+        Matcher m = p.matcher(hour);
+        return m.matches();
     }
 }

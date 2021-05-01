@@ -17,7 +17,7 @@ public class ModelTablePeriode {
     public enum Jour {
         LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE;
 
-        Jour getJour(String jour){
+        public Jour getJour(String jour){
             switch (jour){
                 case "lundi" : return Jour.LUNDI;
                 case "mardi" : return Jour.MARDI;
