@@ -24,10 +24,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label text="Nom" GridPane.rowIndex="1" />
-                <Label text="Prénom" GridPane.rowIndex="2" />
-                <Label text="E-mail" GridPane.rowIndex="3" />
-                <Label text="Acronyme" />
+                <Label text="Nom *" GridPane.rowIndex="1" />
+                <Label text="Prénom *" GridPane.rowIndex="2" />
+                <Label text="E-mail *" GridPane.rowIndex="3" />
+                <Label text="Acronyme (XXX) *" />
+                <Label text="* : Champs obligatoires" GridPane.rowIndex="4" />
                 <TextField fx:id="acronymeField" GridPane.columnIndex="1" />
                 <TextField fx:id="nomField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="prenomField" GridPane.columnIndex="1" GridPane.rowIndex="2" />

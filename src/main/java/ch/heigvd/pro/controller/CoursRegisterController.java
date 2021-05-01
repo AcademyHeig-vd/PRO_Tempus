@@ -2,6 +2,7 @@ package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.connexion.dbConnexion;
 import ch.heigvd.pro.Tempus;
+import ch.heigvd.pro.controller.validation.VerifyUserEntry;
 import ch.heigvd.pro.model.ModelTableCours;
 import ch.heigvd.pro.model.ModelTableCoursProf;
 
@@ -17,6 +18,7 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 public class CoursRegisterController {
     @FXML
@@ -39,7 +41,7 @@ public class CoursRegisterController {
      * @throws IOException
      */
     @FXML
-    public void register() throws IOException {
+    public void register() throws IOException, ParseException {
 
         Window owner = submitButton.getScene().getWindow();
 
@@ -52,6 +54,11 @@ public class CoursRegisterController {
         String dateDebut = dateDebutField.getText();
         String dateEcheance = dateEcheanceField.getText();
         String description = descriptionField.getText();
+
+        String[] dateDebutSeparee = dateDebut.split("\\.");
+        String[] dateEcheanceSeparee = dateEcheance.split("\\.");
+        dateDebut = dateDebutSeparee[2] + "-" + dateDebutSeparee[1] + "-" + dateDebutSeparee[0];
+        dateEcheance = dateEcheanceSeparee[2] + "-" + dateEcheanceSeparee[1] + "-" + dateEcheanceSeparee[0];
 
         dbConnexion db = new dbConnexion();
         //TODO : à déplacer quand merge avec Lev
@@ -85,27 +92,47 @@ public class CoursRegisterController {
      * Vérifie les entrées utilisateurs
      * @return Retourne false si l'entrée est vide ou invalide
      * @throws IOException
+     * @throws ParseException
      */
-    private boolean inputValid() throws IOException {
+    private boolean inputValid() throws IOException, ParseException {
         Window owner = submitButton.getScene().getWindow();
 
         ModelTableCoursProf coursProf = professeur.getSelectionModel().getSelectedItem();
+
+        VerifyUserEntry verifyUserEntry = new VerifyUserEntry();
 
         if (titreField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez un titre", false);
             return false;
         }
+
         if (dateDebutField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une date de début", false);
             return false;
+        } else if (!verifyUserEntry.verifyEntryDate(dateDebutField.getText())){
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "La date de début n'est pas au bon format (jj.mm.aaaa)", false);
+            return false;
         }
+
         if (dateEcheanceField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une date d'échéance", false);
             return false;
+        } else if (!verifyUserEntry.verifyEntryDate(dateEcheanceField.getText())){
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "La date d'échéance n'est pas au bon format (jj.mm.aaaa)", false);
+            return false;
         }
+
+        if (!verifyUserEntry.verifyDateBeginSmallerDateEnd(dateDebutField.getText(), dateEcheanceField.getText())) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "La date de début doit être plus petite que la d'échéance", false);
+            return false;
+        }
+
         if (coursProf == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez un professeur", false);

@@ -16,6 +16,10 @@ public class ModelTableCours {
     public ModelTableCours(int idEvenement, String titre, String dateDebut, String dateEcheance, String description, String acronyme) {
         this.idEvenement = idEvenement;
         this.titre = titre;
+        String[] dateDebutSeparee = dateDebut.split("-");
+        String[] dateEcheanceSeparee = dateEcheance.split("-");
+        dateDebut = dateDebutSeparee[2] + "." + dateDebutSeparee[1] + "." + dateDebutSeparee[0];
+        dateEcheance = dateEcheanceSeparee[2] + "." + dateEcheanceSeparee[1] + "." + dateEcheanceSeparee[0];
         this.dateDebut = dateDebut;
         this.dateEcheance = dateEcheance;
         this.description = description;

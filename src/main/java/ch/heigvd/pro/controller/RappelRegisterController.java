@@ -3,6 +3,7 @@ package ch.heigvd.pro.controller;
 import ch.heigvd.pro.connexion.dbConnexion;
 import ch.heigvd.pro.Tempus;
 
+import ch.heigvd.pro.controller.validation.VerifyUserEntry;
 import ch.heigvd.pro.model.ModelTableRappel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,6 +49,9 @@ public class RappelRegisterController {
         String contenu = contenuField.getText();
         String lien = lienField.getText();
 
+        String[] dateSeparee = date.split("\\.");
+        date = dateSeparee[2] + "-" + dateSeparee[1] + "-" + dateSeparee[0];
+
         dbConnexion db = new dbConnexion();
 
         //TODO : modifier emplacement cette fonction après merge avec Lev
@@ -71,24 +75,43 @@ public class RappelRegisterController {
     private boolean inputValid() throws IOException {
         Window owner = submitButton.getScene().getWindow();
 
+        VerifyUserEntry verifyUserEntry = new VerifyUserEntry();
+
         if (titreField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez un titre", false);
             return false;
         }
+
         if (dateField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une date", false);
             return false;
+        } else if (!verifyUserEntry.verifyEntryDate(dateField.getText())) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "La date n'est pas au bon format (jj.mm.aaaa)", false);
+            return false;
         }
+
         if (heureField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une heure", false);
             return false;
+        } else if (!verifyUserEntry.verifyEntryHour(heureField.getText())) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "L'heure n'est pas au bon format (HH:MM)", false);
+            return false;
         }
+
         if (contenuField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez un contenu", false);
+            return false;
+        }
+
+        if (!lienField.getText().isEmpty() && !verifyUserEntry.verifyEntryLink(lienField.getText())) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "Le lien nest pas valide", false);
             return false;
         }
 

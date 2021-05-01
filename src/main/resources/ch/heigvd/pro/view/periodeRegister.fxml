@@ -25,11 +25,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Jour" GridPane.rowIndex="1" />
-            <Label text="Heure du début" GridPane.rowIndex="2" />
-            <Label text="Heure de la fin" GridPane.rowIndex="3" />
-            <Label text="Salle" GridPane.rowIndex="4" />
-            <TextField fx:id="jourField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Jour *" GridPane.rowIndex="1" />
+            <Label text="Heure du début (HH:MM) *" GridPane.rowIndex="2" />
+            <Label text="Heure de la fin (HH:MM) *" GridPane.rowIndex="3" />
+            <Label text="Salle *" GridPane.rowIndex="4" />
+             <Label text="* : Champs obligatoires" GridPane.rowIndex="5" />
+            <ComboBox fx:id="jourComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="heureDebutField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="heureFinField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="salleField" GridPane.columnIndex="1" GridPane.rowIndex="4" />

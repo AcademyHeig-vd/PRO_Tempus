@@ -25,12 +25,13 @@
             <RowConstraints />
             </rowConstraints>
             <children>
-                <Label text="Titre" />
-                <Label text="Date" GridPane.rowIndex="1" />
-                <Label text="Heure" GridPane.rowIndex="2" />
+                <Label text="Titre *" />
+                <Label text="Date *" GridPane.rowIndex="1" />
+                <Label text="Heure *" GridPane.rowIndex="2" />
                 <Label text="Description" GridPane.rowIndex="3" />
-                <Label text="Contenu" GridPane.rowIndex="4" />
+                <Label text="Contenu *" GridPane.rowIndex="4" />
                 <Label text="Lien" GridPane.rowIndex="5" />
+                <Label text="* : Champs obligatoires" GridPane.rowIndex="6" />
                 <TextField fx:id="titreField" GridPane.columnIndex="1" />
                 <TextField fx:id="dateField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="heureField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
