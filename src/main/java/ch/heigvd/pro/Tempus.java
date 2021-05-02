@@ -15,8 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Tempus extends Application {
-
-    private static Scene scene;
+        private static Scene scene;
     private static TabPane tabPane;
     private static AnchorPane root;
     private static Tab main;
@@ -86,6 +85,10 @@ public class Tempus extends Application {
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Tempus.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
+    }
+
+    public static Scene getScene() {
+        return scene;
     }
 
     public static void main(String[] args) {

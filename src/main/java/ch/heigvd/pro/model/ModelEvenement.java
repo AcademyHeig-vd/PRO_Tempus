@@ -13,7 +13,7 @@ import java.util.ArrayList;
 //TODO mettre en simpleStringProperty lors de l'initialisation pour pouvoir passer une string au constructeur
 public class ModelEvenement {
     private final int id;
-    private StringProperty titre;
+    private String titre;
     private Date echeance;
     private String heure;
     private String descritpion;
@@ -22,7 +22,7 @@ public class ModelEvenement {
     private boolean rappel;
 
 
-    public ModelEvenement(int id, StringProperty titre, Date echeance, String heure, String descritpion, String contenu, String lien){
+    public ModelEvenement(int id, String titre, Date echeance, String heure, String descritpion, String contenu, String lien){
         this.id = id;
         this.descritpion = descritpion;
         this.titre = titre;
@@ -50,7 +50,7 @@ public class ModelEvenement {
             jour = jour.getJour(periode.getJourSemaine());
             //getDayOfWeek from 1 to 7 and jour.ordinal 0 to 6
             if (jour != null && day.toLocalDate().getDayOfWeek().getValue() == jour.ordinal() + 1){
-                evenements.add(new ModelEvenement(periode.getId(), new SimpleStringProperty(periode.getNom()), null,
+                evenements.add(new ModelEvenement(periode.getId(), periode.getNom(), day,
                         periode.getHeureDebut() + " à " + periode.getHeureFin(),
                         "Salle : " + periode.getSalle(), null, null));
             }
@@ -70,11 +70,11 @@ public class ModelEvenement {
         this.descritpion = descritpion;
     }
 
-    public StringProperty getTitre() {
+    public String getTitre() {
         return titre;
     }
 
-    public void setTitre(StringProperty titre) {
+    public void setTitre(String titre) {
         this.titre = titre;
     }
 

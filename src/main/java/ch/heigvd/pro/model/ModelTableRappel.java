@@ -68,7 +68,7 @@ public class ModelTableRappel {
         ResultSet rs = preparedStatement.executeQuery();
         while(rs.next()){
             rappels.add(new ModelEvenement(rs.getInt("idEvenement"),
-                    new SimpleStringProperty(rs.getString("titre")),
+                    rs.getString("titre"),
                     rs.getDate("dateEcheance"),
                     rs.getString("heure"),
                     rs.getString("description"),

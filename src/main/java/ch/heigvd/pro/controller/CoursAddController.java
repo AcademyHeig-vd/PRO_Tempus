@@ -8,6 +8,7 @@ import ch.heigvd.pro.model.ModelTableCours;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -64,6 +65,24 @@ public class CoursAddController {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void modify() throws IOException {
+        ModelTableCours selectedIndex = (ModelTableCours) table.getSelectionModel().getSelectedItem();
+
+        if(table.getSelectionModel().getSelectedIndex() < 0){
+            // Rien n'a été sélectionné
+            showAlert(Alert.AlertType.WARNING, "Aucune sélection",
+                    "Aucun cours n'a été séléctionnée !");
+            return;
+        }
+        FXMLLoader loader = new FXMLLoader();
+        CoursModifyController coursModifyController = new CoursModifyController();
+        coursModifyController.setCoursToModify(selectedIndex);
+        loader.setController(coursModifyController);
+        loader.setLocation(Tempus.class.getResource("view/coursModify.fxml"));
+        Tempus.getScene().setRoot(loader.load());
     }
 
     /**

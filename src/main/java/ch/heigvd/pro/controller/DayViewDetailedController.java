@@ -44,7 +44,7 @@ public class DayViewDetailedController {
      */
     @FXML
     private void newEntry() throws IOException {
-        Tempus.setRoot("view/rappelRegister");
+        //Tempus.setRoot("view/rappelRegister");
     }
 
     /**
@@ -89,11 +89,10 @@ public class DayViewDetailedController {
             e.getMessage();
         }
 
-
         col_titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
-        col_date.setCellValueFactory(new PropertyValueFactory<>("dateEcheance"));
+        col_date.setCellValueFactory(new PropertyValueFactory<>("echeance"));
         col_heure.setCellValueFactory(new PropertyValueFactory<>("heure"));
-        col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        col_description.setCellValueFactory(new PropertyValueFactory<>("descritpion"));
         col_contenu.setCellValueFactory(new PropertyValueFactory<>("contenu"));
         col_lien.setCellValueFactory(new PropertyValueFactory<>("lien"));
 
