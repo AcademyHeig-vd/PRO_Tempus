@@ -62,11 +62,20 @@ public class CoursModifyController {
         dateDebut = dateDebutSeparee[2] + "-" + dateDebutSeparee[1] + "-" + dateDebutSeparee[0];
         dateEcheance = dateEcheanceSeparee[2] + "-" + dateEcheanceSeparee[1] + "-" + dateEcheanceSeparee[0];
 
+        boolean ok_request;
+        try {
+            coursToModify.deleteFromDB();
+            ok_request = true;
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+            ok_request = false;
+        }
         dbConnexion db = new dbConnexion();
-        //TODO : à déplacer quand merge avec Lev
-        int idEvenement = db.insertRecordEvenement(titre, dateDebut, dateEcheance, description);
-        //db.insertRecordCours(idEvenement, acronyme);
-        boolean ok_request = ModelTableCours.insertCoursInDB(idEvenement, acronyme);
+        if (ok_request) {
+            int idEvenement = db.insertRecordEvenement(titre, dateDebut, dateEcheance, description);
+            //db.insertRecordCours(idEvenement, acronyme);
+            ok_request = ModelTableCours.insertCoursInDB(idEvenement, acronyme);
+        }
         if (ok_request)
             showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
                     "La nouvelle entrée a été effectuée !", true);
@@ -74,6 +83,7 @@ public class CoursModifyController {
             showAlert(Alert.AlertType.ERROR, owner, "Ajout échoué",
                     "Erreur lors de l'insertion", true);
         }
+
     }
 
     /**
