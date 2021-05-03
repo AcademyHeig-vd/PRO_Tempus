@@ -65,11 +65,11 @@ public class PeriodeModifyController {
         }
 
         if (ok_request)
-        showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
-                "La nouvelle entrée a été effectuée !", true);
+            showAlert(Alert.AlertType.INFORMATION, owner, "Modification réussie!",
+                    "La moodification a bien été effectuée !", true);
         else{
-            showAlert(Alert.AlertType.ERROR, owner, "Ajout échoué",
-                    "Erreur lors de l'insertion", true);
+            showAlert(Alert.AlertType.ERROR, owner, "Modification échouée",
+                    "Erreur lors de la modification", true);
         }
     }
 

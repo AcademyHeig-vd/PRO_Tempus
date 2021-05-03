@@ -34,6 +34,10 @@ public class dbConnexion {
     public static final String INSERT_QUERY_PROF = "INSERT INTO Professeur (acronyme,nom,prenom,mail) VALUES (?, ?, ?, ?)";
     public static final String DELETE_QUERY_PROF = "DELETE FROM Professeur where acronyme = ?";
     public static final String SELECT_QUERY_ALL_PROF = "SELECT * FROM Professeur";
+    public static final String UPDATE_QUERY_PROF =
+            "UPDATE Professeur " +
+            "SET acronyme = ?, nom = ?, prenom = ?, mail = ?" +
+            "WHERE acronyme = ?";
     /* FIN QUERY PROFESSEUR */
 
     /* QUERY POUR PERIODE */
@@ -82,6 +86,10 @@ public class dbConnexion {
                     "INNER JOIN Evenement " +
                     "   ON Rappel.idEvenement = Evenement.idEvenement "+
                     "WHERE dateDebut = ?";
+    public static final String UPDATE_QUERY_RAPPEL =
+            "UPDATE Rappel " +
+            "SET contenu = ?, lien = ?, heure = ? " +
+            "WHERE idEvenement = ?";
     /* FIN QUERY RAPPEL */
 
     public Connection getConnexion() throws SQLException, ClassNotFoundException {

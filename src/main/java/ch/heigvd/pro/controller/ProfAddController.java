@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import ch.heigvd.pro.Tempus;
+import ch.heigvd.pro.model.ModelTablePeriode;
 import ch.heigvd.pro.model.ModelTableProf;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -38,6 +40,24 @@ public class ProfAddController {
     @FXML
     private void newEntry() throws IOException {
         Tempus.setRoot("view/profRegister");
+    }
+
+    @FXML
+    private void modify() throws IOException {
+        ModelTableProf selectedIndex = (ModelTableProf) table.getSelectionModel().getSelectedItem();
+
+        if(table.getSelectionModel().getSelectedIndex() < 0){
+            // Rien n'a été sélectionné
+            showAlert(Alert.AlertType.WARNING, "Aucune sélection",
+                    "Aucun prof n'a été séléctionné !");
+            return;
+        }
+        FXMLLoader loader = new FXMLLoader();
+        ProfModifyController profModifyController = new ProfModifyController();
+        profModifyController.setProfAModifier(selectedIndex);
+        loader.setController(profModifyController);
+        loader.setLocation(Tempus.class.getResource("view/profModify.fxml"));
+        Tempus.getScene().setRoot(loader.load());
     }
 
     /**

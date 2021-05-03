@@ -25,6 +25,20 @@ public class ModelTableRappel {
         this.lien = lien;
     }
 
+    public void updateFromDB() throws SQLException, ClassNotFoundException {
+        new ModelTableEvenement(idEvenement,titre,dateEcheance,dateEcheance,description).updateFromDB();
+        dbConnexion db = new dbConnexion();
+        Connection connection = db.getConnexion();
+
+        // Suppression database
+        PreparedStatement stmt = null;
+        stmt = connection.prepareStatement(dbConnexion.UPDATE_QUERY_RAPPEL);
+        stmt.setString(1, contenu);
+        stmt.setString(2, lien);
+        stmt.setString(3, heure);
+        stmt.setInt(4, idEvenement);
+        stmt.execute();
+    }
     /**
      * Supprime le rappel de la base de donnée
      * @throws SQLException echec de la requête

@@ -78,7 +78,7 @@ public class PeriodAddController {
         if(table.getSelectionModel().getSelectedIndex() < 0){
             // Rien n'a été sélectionné
             showAlert(Alert.AlertType.WARNING, "Aucune sélection",
-                    "Aucun cours n'a été séléctionnée !");
+                    "Aucune période n'a été séléctionnée !");
             return;
         }
         FXMLLoader loader = new FXMLLoader();

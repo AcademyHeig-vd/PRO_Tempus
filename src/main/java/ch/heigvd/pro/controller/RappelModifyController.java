@@ -3,69 +3,68 @@ package ch.heigvd.pro.controller;
 import ch.heigvd.pro.Tempus;
 import ch.heigvd.pro.connexion.dbConnexion;
 import ch.heigvd.pro.controller.validation.VerifyUserEntry;
-import ch.heigvd.pro.model.ModelTableCours;
-import ch.heigvd.pro.model.ModelTableCoursProf;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import ch.heigvd.pro.model.ModelTableRappel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.util.ArrayList;
 
-public class CoursModifyController {
+public class RappelModifyController {
     @FXML
     private TextField titreField;
     @FXML
-    private TextField dateDebutField;
+    private TextField dateField;
     @FXML
-    private TextField dateEcheanceField;
+    private TextField heureField;
     @FXML
     private TextField descriptionField;
     @FXML
-    private ComboBox<ModelTableCoursProf> professeur = new ComboBox<>();
+    private TextField contenuField;
+    @FXML
+    private TextField lienField;
     @FXML
     private Button submitButton;
 
+    ModelTableRappel rappelAModifier;
 
-    ModelTableCours coursToModify;
-
-    ObservableList<ModelTableCoursProf> oblist = FXCollections.observableArrayList();
+    @FXML
+    public void initialize(){
+        titreField.setText(rappelAModifier.getTitre());
+        dateField.setText(rappelAModifier.getDateEcheance());
+        heureField.setText(rappelAModifier.getHeure());
+        descriptionField.setText(rappelAModifier.getDescription());
+        contenuField.setText(rappelAModifier.getContenu());
+        lienField.setText(rappelAModifier.getLien());
+    }
 
     /**
      * Formulaire qui permet d'entrer toutes les informations liées à un cours
      * @throws IOException
      */
     @FXML
-    public void register() throws IOException, ParseException {
+    public void register(ActionEvent event) throws IOException {
 
         Window owner = submitButton.getScene().getWindow();
 
-        ModelTableCoursProf coursProf = professeur.getSelectionModel().getSelectedItem();
-
         if(!inputValid()) return;
 
-        coursToModify.setTitre(titreField.getText());
-        coursToModify.setAcronyme(coursProf.getAcronyme());
+        String[] dateSeparee = dateField.getText().split("\\.");
 
-        coursToModify.setDescription(descriptionField.getText());
-
-        String dateDebut = dateDebutField.getText();
-        String dateEcheance = dateEcheanceField.getText();
-        String[] dateDebutSeparee = dateDebut.split("\\.");
-        String[] dateEcheanceSeparee = dateEcheance.split("\\.");
-        coursToModify.setDateDebut(dateDebutSeparee[2] + "-" + dateDebutSeparee[1] + "-" + dateDebutSeparee[0]);
-        coursToModify.setDateEcheance(dateEcheanceSeparee[2] + "-" + dateEcheanceSeparee[1] + "-" + dateEcheanceSeparee[0]);
+        rappelAModifier.setTitre(titreField.getText());
+        rappelAModifier.setDateEcheance(dateSeparee[2] + "-" + dateSeparee[1] + "-" + dateSeparee[0]);
+        rappelAModifier.setHeure( heureField.getText());
+        rappelAModifier.setDescription(descriptionField.getText());
+        rappelAModifier.setContenu(contenuField.getText());
+        rappelAModifier.setLien(lienField.getText());
 
         boolean ok_request;
         try {
-            coursToModify.updateFromDB();
+            rappelAModifier.updateFromDB();
             ok_request = true;
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
@@ -78,37 +77,15 @@ public class CoursModifyController {
             showAlert(Alert.AlertType.ERROR, owner, "Modification échouée",
                     "Erreur lors de la modification", true);
         }
-
-    }
-
-    /**
-     * Méthode automatiquement appelée lors de l'invocation du FXML, permet d'afficher tous les champs du formulaire
-     */
-    @FXML
-    public void initialize(){
-        titreField.setText(coursToModify.getTitre());
-        dateDebutField.setText(coursToModify.getDateDebut());
-        dateEcheanceField.setText(coursToModify.getDateEcheance());
-        descriptionField.setText(coursToModify.getDescription());
-        try {
-            oblist.addAll(ModelTableCoursProf.getAllAcronymProf());
-        } catch (SQLException | ClassNotFoundException e){
-            e.getMessage();
-        }
-        professeur.setItems(oblist);
-        professeur.getSelectionModel().select(new ModelTableCoursProf(coursToModify.getAcronyme()));
     }
 
     /**
      * Vérifie les entrées utilisateurs
      * @return Retourne false si l'entrée est vide ou invalide
      * @throws IOException
-     * @throws ParseException
      */
-    private boolean inputValid() throws IOException, ParseException {
+    private boolean inputValid() throws IOException {
         Window owner = submitButton.getScene().getWindow();
-
-        ModelTableCoursProf coursProf = professeur.getSelectionModel().getSelectedItem();
 
         VerifyUserEntry verifyUserEntry = new VerifyUserEntry();
 
@@ -118,35 +95,35 @@ public class CoursModifyController {
             return false;
         }
 
-        if (dateDebutField.getText().isEmpty()) {
+        if (dateField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
-                    "S'il-vous-plaît entrez une date de début", false);
+                    "S'il-vous-plaît entrez une date", false);
             return false;
-        } else if (!verifyUserEntry.verifyEntryDate(dateDebutField.getText())){
+        } else if (!verifyUserEntry.verifyEntryDate(dateField.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
-                    "La date de début n'est pas au bon format (jj.mm.aaaa)", false);
-            return false;
-        }
-
-        if (dateEcheanceField.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
-                    "S'il-vous-plaît entrez une date d'échéance", false);
-            return false;
-        } else if (!verifyUserEntry.verifyEntryDate(dateEcheanceField.getText())){
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
-                    "La date d'échéance n'est pas au bon format (jj.mm.aaaa)", false);
+                    "La date n'est pas au bon format (jj.mm.aaaa)", false);
             return false;
         }
 
-        if (!verifyUserEntry.verifyDateBeginSmallerDateEnd(dateDebutField.getText(), dateEcheanceField.getText())) {
+        if (heureField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
-                    "La date de début doit être plus petite que la d'échéance", false);
+                    "S'il-vous-plaît entrez une heure", false);
+            return false;
+        } else if (!verifyUserEntry.verifyEntryHour(heureField.getText())) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "L'heure n'est pas au bon format (HH:MM)", false);
             return false;
         }
 
-        if (coursProf == null) {
+        if (contenuField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
-                    "S'il-vous-plaît entrez un professeur", false);
+                    "S'il-vous-plaît entrez un contenu", false);
+            return false;
+        }
+
+        if (!lienField.getText().isEmpty() && !verifyUserEntry.verifyEntryLink(lienField.getText())) {
+            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
+                    "Le lien nest pas valide", false);
             return false;
         }
 
@@ -159,11 +136,7 @@ public class CoursModifyController {
      */
     @FXML
     private void OKButton() throws IOException {
-        Tempus.changeTab(1);
-    }
-
-    public void setCoursToModify(ModelTableCours coursToModify) {
-        this.coursToModify = coursToModify;
+        Tempus.changeTab(4);
     }
 
     /**
@@ -183,7 +156,11 @@ public class CoursModifyController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.changeTab(1);
+        if(menu) Tempus.changeTab(4);
+    }
+
+    public void setRappelAModifier(ModelTableRappel rappelAModifier) {
+        this.rappelAModifier = rappelAModifier;
     }
 
 }
