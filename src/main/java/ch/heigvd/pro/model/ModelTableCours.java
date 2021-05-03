@@ -46,6 +46,20 @@ public class ModelTableCours {
         return cours;
     }
 
+    public void updateFromDB() throws SQLException, ClassNotFoundException {
+        new ModelTableEvenement(idEvenement,titre,dateDebut,dateEcheance,description).updateFromDB();
+        dbConnexion db = new dbConnexion();
+        Connection connection = db.getConnexion();
+
+        // Suppression database
+        PreparedStatement stmt = null;
+        stmt = connection.prepareStatement(dbConnexion.UPDATE_QUERY_COURS);
+        stmt.setString(1, acronyme);
+        stmt.setInt(2, idEvenement);
+
+        stmt.execute();
+    }
+
 
 
     /**
@@ -60,7 +74,7 @@ public class ModelTableCours {
 
         // Suppression database
         PreparedStatement stmt = null;
-        stmt = connection.prepareStatement("DELETE FROM Evenement where idEvenement = ?");
+        stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_COURS);
         stmt.setInt(1, idEvenement);
         stmt.execute();
     }

@@ -57,6 +57,7 @@ public class DayViewControler {
         nameEvenement.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitre()));
     }
 
+    @FXML
     public void viewDetailed() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         DayViewDetailedController dvc = new DayViewDetailedController();

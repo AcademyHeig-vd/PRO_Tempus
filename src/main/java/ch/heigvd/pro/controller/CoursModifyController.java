@@ -51,30 +51,25 @@ public class CoursModifyController {
 
         if(!inputValid()) return;
 
-        String acronyme = coursProf.getAcronyme();
-        String titre = titreField.getText();
+        coursToModify.setTitre(titreField.getText());
+        coursToModify.setAcronyme(coursProf.getAcronyme());
+
+        coursToModify.setDescription(descriptionField.getText());
+
         String dateDebut = dateDebutField.getText();
         String dateEcheance = dateEcheanceField.getText();
-        String description = descriptionField.getText();
-
         String[] dateDebutSeparee = dateDebut.split("\\.");
         String[] dateEcheanceSeparee = dateEcheance.split("\\.");
-        dateDebut = dateDebutSeparee[2] + "-" + dateDebutSeparee[1] + "-" + dateDebutSeparee[0];
-        dateEcheance = dateEcheanceSeparee[2] + "-" + dateEcheanceSeparee[1] + "-" + dateEcheanceSeparee[0];
+        coursToModify.setDateDebut(dateDebutSeparee[2] + "-" + dateDebutSeparee[1] + "-" + dateDebutSeparee[0]);
+        coursToModify.setDateEcheance(dateEcheanceSeparee[2] + "-" + dateEcheanceSeparee[1] + "-" + dateEcheanceSeparee[0]);
 
         boolean ok_request;
         try {
-            coursToModify.deleteFromDB();
+            coursToModify.updateFromDB();
             ok_request = true;
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
             ok_request = false;
-        }
-        dbConnexion db = new dbConnexion();
-        if (ok_request) {
-            int idEvenement = db.insertRecordEvenement(titre, dateDebut, dateEcheance, description);
-            //db.insertRecordCours(idEvenement, acronyme);
-            ok_request = ModelTableCours.insertCoursInDB(idEvenement, acronyme);
         }
         if (ok_request)
             showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
