@@ -14,6 +14,8 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 
+import static ch.heigvd.pro.controller.DayViewDetailedController.testToChargeDailyView;
+
 public class RappelRegisterController {
     @FXML
     private TextField titreField;
@@ -124,6 +126,8 @@ public class RappelRegisterController {
      */
     @FXML
     private void OKButton() throws IOException {
+        if (testToChargeDailyView())
+            return;
         Tempus.changeTab(4);
     }
 
@@ -144,7 +148,11 @@ public class RappelRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.changeTab(4);
+        if(menu){
+            if (testToChargeDailyView())
+                return;
+            Tempus.changeTab(4);
+        }
     }
 
 }

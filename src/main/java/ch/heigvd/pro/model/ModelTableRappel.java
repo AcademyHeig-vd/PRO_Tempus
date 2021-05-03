@@ -77,7 +77,7 @@ public class ModelTableRappel {
         Connection conn = db.getConnexion();
 
         PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.SELECT_QUERY_RAPPEL_PER_DAY);
-        preparedStatement.setDate(1, java.sql.Date.valueOf(day.toString())); //date du debut
+        preparedStatement.setString(1, day.toString()); //date du debut
 
         ResultSet rs = preparedStatement.executeQuery();
         while(rs.next()){

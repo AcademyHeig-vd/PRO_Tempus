@@ -12,6 +12,7 @@
                     <children>
                         <TableView fx:id="table" layoutX="-25.0" layoutY="20.0" prefHeight="200.0" prefWidth="432.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
+                                <TableColumn fx:id="col_type" prefWidth="75.0" text="Type" />
                                 <TableColumn fx:id="col_titre" prefWidth="75.0" text="Titre" />
                                 <TableColumn fx:id="col_date" prefWidth="75.0" text="Date" />
                                 <TableColumn fx:id="col_heure" prefWidth="75.0" text="Heure" />

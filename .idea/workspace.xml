@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="42d15228-ba62-4c4f-8b7b-43fa839b833b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/Tempus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/Tempus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/DayViewDetailedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/DayViewDetailedController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/RappelModifyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/RappelModifyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/RappelRegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/RappelRegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/model/ModelEvenement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/model/ModelEvenement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/model/ModelTableRappel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/model/ModelTableRappel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/ch/heigvd/pro/view/dayViewDetailed.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ch/heigvd/pro/view/dayViewDetailed.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +131,7 @@
       <workItem from="1619617869453" duration="606000" />
       <workItem from="1619698448365" duration="17580000" />
       <workItem from="1619729169460" duration="1984000" />
-      <workItem from="1620036150319" duration="14605000" />
+      <workItem from="1620036150319" duration="18764000" />
     </task>
     <servers />
   </component>

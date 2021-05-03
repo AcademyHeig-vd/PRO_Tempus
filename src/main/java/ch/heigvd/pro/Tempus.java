@@ -25,6 +25,7 @@ public class Tempus extends Application {
     private static Tab rappel;
     private static Tab calendrier;
 
+
     @Override
     public void start(Stage stage) throws IOException {
         stage.setTitle("view/Tempus");

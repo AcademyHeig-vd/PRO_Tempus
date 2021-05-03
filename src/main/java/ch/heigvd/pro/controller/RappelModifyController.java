@@ -14,6 +14,8 @@ import javafx.stage.Window;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static ch.heigvd.pro.controller.DayViewDetailedController.testToChargeDailyView;
+
 public class RappelModifyController {
     @FXML
     private TextField titreField;
@@ -77,6 +79,7 @@ public class RappelModifyController {
             showAlert(Alert.AlertType.ERROR, owner, "Modification échouée",
                     "Erreur lors de la modification", true);
         }
+
     }
 
     /**
@@ -126,7 +129,6 @@ public class RappelModifyController {
                     "Le lien nest pas valide", false);
             return false;
         }
-
         return true;
     }
 
@@ -136,6 +138,8 @@ public class RappelModifyController {
      */
     @FXML
     private void OKButton() throws IOException {
+        if (testToChargeDailyView())
+            return;
         Tempus.changeTab(4);
     }
 
@@ -156,7 +160,11 @@ public class RappelModifyController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu) Tempus.changeTab(4);
+        if(menu) {
+            if (testToChargeDailyView())
+                return;
+            Tempus.changeTab(4);
+        }
     }
 
     public void setRappelAModifier(ModelTableRappel rappelAModifier) {

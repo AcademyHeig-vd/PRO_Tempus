@@ -19,7 +19,7 @@ public class ModelEvenement {
     private String descritpion;
     private String contenu;
     private String lien;
-    private boolean rappel;
+    private String typeEvenement;
 
 
     public ModelEvenement(int id, String titre, Date echeance, String heure, String descritpion, String contenu, String lien){
@@ -30,14 +30,18 @@ public class ModelEvenement {
         this.heure = heure;
         this.contenu = contenu;
         this.lien = lien;
-        this.rappel = false;
     }
 
     public static ArrayList<ModelEvenement> getAllEvenementPerDay(Date day) throws SQLException, ClassNotFoundException {
         ArrayList<ModelEvenement> evenements = ModelTableRappel.selectRappelPerDay(day);
-        for(ModelEvenement evenement : evenements)
-            evenement.rappel = true;
-        evenements.addAll(getEvenementFromCoursAndPeriode(day));
+        for(ModelEvenement evenement : evenements) {
+            evenement.typeEvenement = "Rappel";
+        }
+        for(ModelEvenement evenement : getEvenementFromCoursAndPeriode(day))
+        {
+            evenement.typeEvenement = "Période";
+            evenements.add(evenement);
+        }
         return evenements;
     }
 
@@ -110,9 +114,17 @@ public class ModelEvenement {
         this.lien = lien;
     }
 
+    public String getTypeEvenement() {
+        return typeEvenement;
+    }
+
+    public void setTypeEvenement(String typeEvenement) {
+        this.typeEvenement = typeEvenement;
+    }
+
 
     public boolean isRappel() {
-        return rappel;
+        return typeEvenement.equals("Rappel");
     }
     /*
 
