@@ -54,7 +54,17 @@ public class DayViewControler {
         // Set des valeur du jours
         evenementTable.setItems(modelDay.getRappels());
         dateLabel.setText(Integer.toString(modelDay.getDate().toLocalDate().getDayOfMonth()));
-        nameEvenement.setCellValueFactory(cellData -> cellData.getValue().getTitre());
+        nameEvenement.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitre()));
+    }
+
+    @FXML
+    public void viewDetailed() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        DayViewDetailedController dvc = new DayViewDetailedController();
+        dvc.setDate(date);
+        loader.setController(dvc);
+        loader.setLocation(Tempus.class.getResource("view/dayViewDetailed.fxml"));
+        Tempus.getScene().setRoot(loader.load());
     }
 
     /**

@@ -1,8 +1,7 @@
 package ch.heigvd.pro.controller;
 
-import ch.heigvd.pro.connexion.dbConnexion;
 import ch.heigvd.pro.Tempus;
-
+import ch.heigvd.pro.connexion.dbConnexion;
 import ch.heigvd.pro.controller.validation.VerifyUserEntry;
 import ch.heigvd.pro.model.ModelTableRappel;
 import javafx.event.ActionEvent;
@@ -13,10 +12,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static ch.heigvd.pro.controller.DayViewDetailedController.testToChargeDailyView;
 
-public class RappelRegisterController {
+public class RappelModifyController {
     @FXML
     private TextField titreField;
     @FXML
@@ -32,6 +32,17 @@ public class RappelRegisterController {
     @FXML
     private Button submitButton;
 
+    ModelTableRappel rappelAModifier;
+
+    @FXML
+    public void initialize(){
+        titreField.setText(rappelAModifier.getTitre());
+        dateField.setText(rappelAModifier.getDateEcheance());
+        heureField.setText(rappelAModifier.getHeure());
+        descriptionField.setText(rappelAModifier.getDescription());
+        contenuField.setText(rappelAModifier.getContenu());
+        lienField.setText(rappelAModifier.getLien());
+    }
 
     /**
      * Formulaire qui permet d'entrer toutes les informations liées à un cours
@@ -44,29 +55,31 @@ public class RappelRegisterController {
 
         if(!inputValid()) return;
 
-        String titre = titreField.getText();
-        String date = dateField.getText();
-        String heure = heureField.getText();
-        String description = descriptionField.getText();
-        String contenu = contenuField.getText();
-        String lien = lienField.getText();
+        String[] dateSeparee = dateField.getText().split("\\.");
 
-        String[] dateSeparee = date.split("\\.");
-        date = dateSeparee[2] + "-" + dateSeparee[1] + "-" + dateSeparee[0];
+        rappelAModifier.setTitre(titreField.getText());
+        rappelAModifier.setDateEcheance(dateSeparee[2] + "-" + dateSeparee[1] + "-" + dateSeparee[0]);
+        rappelAModifier.setHeure( heureField.getText());
+        rappelAModifier.setDescription(descriptionField.getText());
+        rappelAModifier.setContenu(contenuField.getText());
+        rappelAModifier.setLien(lienField.getText());
 
-        dbConnexion db = new dbConnexion();
-
-        //TODO : modifier emplacement cette fonction après merge avec Lev
-        int idEvenement = db.insertRecordEvenement(titre, date, date, description);
-
-        boolean ok_request = ModelTableRappel.insertRecordRappel(idEvenement, contenu, lien, heure);
-        if (ok_request)
-            showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
-                    "La nouvelle entrée a été effectuée !", true);
-        else{
-            showAlert(Alert.AlertType.ERROR, owner, "Ajout échoué",
-                    "Erreur lors de l'insertion", true);
+        boolean ok_request;
+        try {
+            rappelAModifier.updateFromDB();
+            ok_request = true;
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+            ok_request = false;
         }
+        if (ok_request)
+            showAlert(Alert.AlertType.INFORMATION, owner, "Modification réussie!",
+                    "La moodification a bien été effectuée !", true);
+        else{
+            showAlert(Alert.AlertType.ERROR, owner, "Modification échouée",
+                    "Erreur lors de la modification", true);
+        }
+
     }
 
     /**
@@ -116,7 +129,6 @@ public class RappelRegisterController {
                     "Le lien nest pas valide", false);
             return false;
         }
-
         return true;
     }
 
@@ -148,11 +160,15 @@ public class RappelRegisterController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-        if(menu){
+        if(menu) {
             if (testToChargeDailyView())
                 return;
             Tempus.changeTab(4);
         }
+    }
+
+    public void setRappelAModifier(ModelTableRappel rappelAModifier) {
+        this.rappelAModifier = rappelAModifier;
     }
 
 }

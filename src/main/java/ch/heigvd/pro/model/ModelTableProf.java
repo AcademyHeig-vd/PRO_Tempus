@@ -9,7 +9,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ModelTableProf {
-    String acronyme, nom, prenom, mail;
+    String acronyme;
+    String nom;
+    String prenom;
+    String mail;
+    String oldAcronyme;
 
     public ModelTableProf(String acronyme, String nom, String prenom, String mail) {
         this.acronyme = acronyme;
@@ -32,6 +36,21 @@ public class ModelTableProf {
         stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_PROF);
         stmt.setString(1, acronyme);
         stmt.execute();
+    }
+
+    public void updateFromDB() throws SQLException, ClassNotFoundException {
+
+        dbConnexion db = new dbConnexion();
+        Connection connection = db.getConnexion();
+
+        // Step 2:Create a statement using connection object
+        PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.UPDATE_QUERY_PROF);
+        preparedStatement.setString(1, acronyme);
+        preparedStatement.setString(2, nom);
+        preparedStatement.setString(3, prenom);
+        preparedStatement.setString(4, mail);
+        preparedStatement.setString(5, oldAcronyme);
+        preparedStatement.execute();
     }
 
     /**
@@ -119,5 +138,9 @@ public class ModelTableProf {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public void setOldAcronyme(String oldAcronyme) {
+        this.oldAcronyme = oldAcronyme;
     }
 }

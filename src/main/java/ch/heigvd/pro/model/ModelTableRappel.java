@@ -25,6 +25,20 @@ public class ModelTableRappel {
         this.lien = lien;
     }
 
+    public void updateFromDB() throws SQLException, ClassNotFoundException {
+        new ModelTableEvenement(idEvenement,titre,dateEcheance,dateEcheance,description).updateFromDB();
+        dbConnexion db = new dbConnexion();
+        Connection connection = db.getConnexion();
+
+        // Suppression database
+        PreparedStatement stmt = null;
+        stmt = connection.prepareStatement(dbConnexion.UPDATE_QUERY_RAPPEL);
+        stmt.setString(1, contenu);
+        stmt.setString(2, lien);
+        stmt.setString(3, heure);
+        stmt.setInt(4, idEvenement);
+        stmt.execute();
+    }
     /**
      * Supprime le rappel de la base de donnée
      * @throws SQLException echec de la requête
@@ -63,12 +77,12 @@ public class ModelTableRappel {
         Connection conn = db.getConnexion();
 
         PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.SELECT_QUERY_RAPPEL_PER_DAY);
-        preparedStatement.setDate(1, java.sql.Date.valueOf(day.toString())); //date du debut
+        preparedStatement.setString(1, day.toString()); //date du debut
 
         ResultSet rs = preparedStatement.executeQuery();
         while(rs.next()){
             rappels.add(new ModelEvenement(rs.getInt("idEvenement"),
-                    new SimpleStringProperty(rs.getString("titre")),
+                    rs.getString("titre"),
                     rs.getDate("dateEcheance"),
                     rs.getString("heure"),
                     rs.getString("description"),

@@ -22,6 +22,11 @@ public class dbConnexion {
             "   ON Cours.idEvenement = Evenement.idEvenement " +
             "INNER JOIN Professeur " +
             "   ON Cours.acronyme = Professeur.acronyme";
+    public static final String UPDATE_QUERY_COURS =
+            "UPDATE Cours " +
+            "SET acronyme = ? " +
+            "WHERE idEvenement = ?";
+
     /* FIN QUERY COURS */
 
     /* QUERY POUR PROFESSEUR */
@@ -29,6 +34,10 @@ public class dbConnexion {
     public static final String INSERT_QUERY_PROF = "INSERT INTO Professeur (acronyme,nom,prenom,mail) VALUES (?, ?, ?, ?)";
     public static final String DELETE_QUERY_PROF = "DELETE FROM Professeur where acronyme = ?";
     public static final String SELECT_QUERY_ALL_PROF = "SELECT * FROM Professeur";
+    public static final String UPDATE_QUERY_PROF =
+            "UPDATE Professeur " +
+            "SET acronyme = ?, nom = ?, prenom = ?, mail = ?" +
+            "WHERE acronyme = ?";
     /* FIN QUERY PROFESSEUR */
 
     /* QUERY POUR PERIODE */
@@ -40,12 +49,17 @@ public class dbConnexion {
             "INNER JOIN Evenement " +
             "   ON Periode.idCours = Evenement.idEvenement";
 
-    /* FIN QUERY PERIODE */
     public static final String SELECT_QUERY_ALL_PERIODE_BETWEEN =
             "SELECT * FROM Periode " +
-            "INNER JOIN Evenement " +
-            "   ON Periode.idCours = Evenement.idEvenement " +
-            "WHERE ? BETWEEN dateDebut AND dateEcheance";
+                    "INNER JOIN Evenement " +
+                    "   ON Periode.idCours = Evenement.idEvenement " +
+                    "WHERE ? BETWEEN dateDebut AND dateEcheance";
+    public static final String UPDATE_QUERY_PERIODE =
+            "UPDATE Periode " +
+            "SET idCours = ?, jourSemaine = ?, heureDebut = ?, heureFin = ?, salle = ? " +
+            "WHERE idPeriode = ?";
+    /* FIN QUERY PERIODE */
+
 
     /* QUERY POUR EVENEMENT */
     public static final String INSERT_QUERY_EVENEMENT =
@@ -54,6 +68,10 @@ public class dbConnexion {
             "SELECT * FROM Evenement " +
             "INNER JOIN Cours " +
                     "ON Evenement.idEvenement = Cours.idEvenement";
+    public static final String UPDATE_QUERY_EVENEMENT =
+            "UPDATE Evenement " +
+                    "SET titre = ?, dateDebut = ?, dateEcheance = ?, description = ? " +
+                    "WHERE idEvenement = ?";
     /* FIN QUERY EVENEMENT */
 
     /* QUERY POUR RAPPEL */
@@ -68,6 +86,10 @@ public class dbConnexion {
                     "INNER JOIN Evenement " +
                     "   ON Rappel.idEvenement = Evenement.idEvenement "+
                     "WHERE dateDebut = ?";
+    public static final String UPDATE_QUERY_RAPPEL =
+            "UPDATE Rappel " +
+            "SET contenu = ?, lien = ?, heure = ? " +
+            "WHERE idEvenement = ?";
     /* FIN QUERY RAPPEL */
 
     public Connection getConnexion() throws SQLException, ClassNotFoundException {

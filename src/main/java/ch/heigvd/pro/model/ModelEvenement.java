@@ -13,16 +13,16 @@ import java.util.ArrayList;
 //TODO mettre en simpleStringProperty lors de l'initialisation pour pouvoir passer une string au constructeur
 public class ModelEvenement {
     private final int id;
-    private StringProperty titre;
+    private String titre;
     private Date echeance;
     private String heure;
     private String descritpion;
     private String contenu;
     private String lien;
-    private boolean rappel;
+    private String typeEvenement;
 
 
-    public ModelEvenement(int id, StringProperty titre, Date echeance, String heure, String descritpion, String contenu, String lien){
+    public ModelEvenement(int id, String titre, Date echeance, String heure, String descritpion, String contenu, String lien){
         this.id = id;
         this.descritpion = descritpion;
         this.titre = titre;
@@ -30,14 +30,18 @@ public class ModelEvenement {
         this.heure = heure;
         this.contenu = contenu;
         this.lien = lien;
-        this.rappel = false;
     }
 
     public static ArrayList<ModelEvenement> getAllEvenementPerDay(Date day) throws SQLException, ClassNotFoundException {
         ArrayList<ModelEvenement> evenements = ModelTableRappel.selectRappelPerDay(day);
-        for(ModelEvenement evenement : evenements)
-            evenement.rappel = true;
-        evenements.addAll(getEvenementFromCoursAndPeriode(day));
+        for(ModelEvenement evenement : evenements) {
+            evenement.typeEvenement = "Rappel";
+        }
+        for(ModelEvenement evenement : getEvenementFromCoursAndPeriode(day))
+        {
+            evenement.typeEvenement = "Période";
+            evenements.add(evenement);
+        }
         return evenements;
     }
 
@@ -50,7 +54,7 @@ public class ModelEvenement {
             jour = jour.getJour(periode.getJourSemaine());
             //getDayOfWeek from 1 to 7 and jour.ordinal 0 to 6
             if (jour != null && day.toLocalDate().getDayOfWeek().getValue() == jour.ordinal() + 1){
-                evenements.add(new ModelEvenement(periode.getId(), new SimpleStringProperty(periode.getNom()), null,
+                evenements.add(new ModelEvenement(periode.getId(), periode.getNom(), day,
                         periode.getHeureDebut() + " à " + periode.getHeureFin(),
                         "Salle : " + periode.getSalle(), null, null));
             }
@@ -70,11 +74,11 @@ public class ModelEvenement {
         this.descritpion = descritpion;
     }
 
-    public StringProperty getTitre() {
+    public String getTitre() {
         return titre;
     }
 
-    public void setTitre(StringProperty titre) {
+    public void setTitre(String titre) {
         this.titre = titre;
     }
 
@@ -110,9 +114,17 @@ public class ModelEvenement {
         this.lien = lien;
     }
 
+    public String getTypeEvenement() {
+        return typeEvenement;
+    }
+
+    public void setTypeEvenement(String typeEvenement) {
+        this.typeEvenement = typeEvenement;
+    }
+
 
     public boolean isRappel() {
-        return rappel;
+        return typeEvenement.equals("Rappel");
     }
     /*
 
