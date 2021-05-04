@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import javafx.scene.control.DatePicker?>
 <AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ch.heigvd.pro.controller.RappelRegisterController">
     <children>
         <GridPane alignment="CENTER" layoutX="16.0" layoutY="12.0" prefHeight="215.0" prefWidth="261.0" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="12.0">
@@ -26,14 +27,14 @@
             </rowConstraints>
             <children>
                 <Label text="Titre *" />
-                <Label text="Date (jj.mm.aaaa) *" GridPane.rowIndex="1" />
+                <Label text="Date *" GridPane.rowIndex="1" />
                 <Label text="Heure (HH:MM) *" GridPane.rowIndex="2" />
                 <Label text="Description" GridPane.rowIndex="3" />
                 <Label text="Contenu *" GridPane.rowIndex="4" />
                 <Label text="Lien" GridPane.rowIndex="5" />
                 <Label text="* : Champs obligatoires" GridPane.rowIndex="6" />
                 <TextField fx:id="titreField" GridPane.columnIndex="1" />
-                <TextField fx:id="dateField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="heureField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="contenuField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
