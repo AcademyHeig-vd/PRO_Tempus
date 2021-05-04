@@ -26,8 +26,8 @@
             </rowConstraints>
             <children>
                 <Label text="Titre *" />
-                <Label text="Date *" GridPane.rowIndex="1" />
-                <Label text="Heure *" GridPane.rowIndex="2" />
+                <Label text="Date (jj.mm.aaaa) *" GridPane.rowIndex="1" />
+                <Label text="Heure (HH:MM) *" GridPane.rowIndex="2" />
                 <Label text="Description" GridPane.rowIndex="3" />
                 <Label text="Contenu *" GridPane.rowIndex="4" />
                 <Label text="Lien" GridPane.rowIndex="5" />
