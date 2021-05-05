@@ -3,12 +3,14 @@ package ch.heigvd.pro.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import ch.heigvd.pro.model.ModelTableProf;
 import ch.heigvd.pro.model.ModelTableRappel;
 import ch.heigvd.pro.Tempus;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -69,6 +71,24 @@ public class RappelAddController {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void modify() throws IOException {
+        ModelTableRappel selectedIndex = (ModelTableRappel) table.getSelectionModel().getSelectedItem();
+
+        if(table.getSelectionModel().getSelectedIndex() < 0){
+            // Rien n'a été sélectionné
+            showAlert(Alert.AlertType.WARNING, "Aucune sélection",
+                    "Aucun rappel n'a été séléctionné !");
+            return;
+        }
+        FXMLLoader loader = new FXMLLoader();
+        RappelModifyController rappelModifyController = new RappelModifyController();
+        rappelModifyController.setRappelAModifier(selectedIndex);
+        loader.setController(rappelModifyController);
+        loader.setLocation(Tempus.class.getResource("view/rappelModify.fxml"));
+        Tempus.getScene().setRoot(loader.load());
     }
 
     /**

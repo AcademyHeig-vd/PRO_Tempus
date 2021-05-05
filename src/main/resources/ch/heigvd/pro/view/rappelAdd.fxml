@@ -33,5 +33,6 @@
         <ButtonBar layoutX="-43.0" layoutY="421.0" prefHeight="40.0" prefWidth="299.0" AnchorPane.bottomAnchor="-61.0" AnchorPane.leftAnchor="-43.0" AnchorPane.rightAnchor="53.0" />
         <Button layoutX="486.0" layoutY="145.0" mnemonicParsing="false" onAction="#newEntry" prefWidth="100.0" text="Nouveau" AnchorPane.rightAnchor="14.0" />
         <Button layoutX="486.0" layoutY="188.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="100.0" text="Supprimer" AnchorPane.rightAnchor="14.0" />
+        <Button layoutX="486.0" layoutY="231.0" mnemonicParsing="false" onAction="#modify" prefHeight="25.0" prefWidth="100.0" text="Modifier" AnchorPane.rightAnchor="14.0" />
     </children>
 </AnchorPane>

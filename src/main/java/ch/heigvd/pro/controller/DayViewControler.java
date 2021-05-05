@@ -65,7 +65,6 @@ public class DayViewControler {
         evenementTable.setItems(modelDay.getRappels());
         dateLabel.setText(Integer.toString(modelDay.getDate().toLocalDate().getDayOfMonth()));
         nameEvenement.setCellValueFactory(cellData -> cellData.getValue().getTitre());
-
         evenementTable.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 switchToDetailedView();
