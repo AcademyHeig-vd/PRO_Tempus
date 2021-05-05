@@ -70,7 +70,7 @@ public class DayViewControler {
             if (event.getClickCount() == 2) {
                 switchToDetailedView();
             }
-        });//
+        });////
     }
 
     /**
