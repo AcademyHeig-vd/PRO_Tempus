@@ -75,8 +75,11 @@ public class PeriodeRegisterController {
         }
         cours.setItems(oblist);
 
-        ObservableList<String> options =
-                FXCollections.observableArrayList("lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche");
+        ObservableList<String> options = FXCollections.observableArrayList();
+        ModelTablePeriode.Jour[] jours = ModelTablePeriode.Jour.values();
+        for(ModelTablePeriode.Jour j : jours){
+            options.add(j.getValue());
+        }
         jourComboBox.setItems(options);
 
     }

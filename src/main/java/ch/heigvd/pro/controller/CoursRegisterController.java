@@ -10,29 +10,33 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Window;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class CoursRegisterController {
     @FXML
     private TextField titreField;
     @FXML
-    private TextField dateDebutField;
+    private DatePicker dateDebutPicker;
     @FXML
-    private TextField dateEcheanceField;
+    private DatePicker dateEcheancePicker;
     @FXML
     private TextField descriptionField;
     @FXML
     private ComboBox<ModelTableCoursProf> professeur = new ComboBox<>();
     @FXML
     private Button submitButton;
+
+    private final DateTimeFormatter formatterFrench = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private final DateTimeFormatter formatterEnglish = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     ObservableList<ModelTableCoursProf> oblist = FXCollections.observableArrayList();
 
@@ -51,14 +55,9 @@ public class CoursRegisterController {
 
         String acronyme = coursProf.getAcronyme();
         String titre = titreField.getText();
-        String dateDebut = dateDebutField.getText();
-        String dateEcheance = dateEcheanceField.getText();
+        String dateDebut = dateDebutPicker.getValue().format(formatterEnglish);
+        String dateEcheance = dateEcheancePicker.getValue().format(formatterEnglish);
         String description = descriptionField.getText();
-
-        String[] dateDebutSeparee = dateDebut.split("\\.");
-        String[] dateEcheanceSeparee = dateEcheance.split("\\.");
-        dateDebut = dateDebutSeparee[2] + "-" + dateDebutSeparee[1] + "-" + dateDebutSeparee[0];
-        dateEcheance = dateEcheanceSeparee[2] + "-" + dateEcheanceSeparee[1] + "-" + dateEcheanceSeparee[0];
 
         dbConnexion db = new dbConnexion();
         //TODO : à déplacer quand merge avec Lev
@@ -86,6 +85,52 @@ public class CoursRegisterController {
             e.getMessage();
         }
         professeur.setItems(oblist);
+
+        Locale.setDefault(Locale.FRANCE);
+
+        dateDebutPicker.setShowWeekNumbers(false);
+        dateDebutPicker.setEditable(false);
+        dateDebutPicker.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(LocalDate date) {
+                if (date != null) {
+                    return formatterFrench.format(date);
+                } else {
+                    return "";
+                }
+            }
+
+            @Override
+            public LocalDate fromString(String string) {
+                if (string != null && !string.isEmpty()) {
+                    return LocalDate.parse(string, formatterFrench);
+                } else {
+                    return null;
+                }
+            }
+        });
+
+        dateEcheancePicker.setShowWeekNumbers(false);
+        dateEcheancePicker.setEditable(false);
+        dateEcheancePicker.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(LocalDate date) {
+                if (date != null) {
+                    return formatterFrench.format(date);
+                } else {
+                    return "";
+                }
+            }
+
+            @Override
+            public LocalDate fromString(String string) {
+                if (string != null && !string.isEmpty()) {
+                    return LocalDate.parse(string, formatterFrench);
+                } else {
+                    return null;
+                }
+            }
+        });
     }
 
     /**
@@ -107,27 +152,20 @@ public class CoursRegisterController {
             return false;
         }
 
-        if (dateDebutField.getText().isEmpty()) {
+        if (dateDebutPicker.getValue() == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une date de début", false);
             return false;
-        } else if (!verifyUserEntry.verifyEntryDate(dateDebutField.getText())){
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
-                    "La date de début n'est pas au bon format (jj.mm.aaaa)", false);
-            return false;
         }
 
-        if (dateEcheanceField.getText().isEmpty()) {
+        if (dateEcheancePicker.getValue() == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une date d'échéance", false);
             return false;
-        } else if (!verifyUserEntry.verifyEntryDate(dateEcheanceField.getText())){
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
-                    "La date d'échéance n'est pas au bon format (jj.mm.aaaa)", false);
-            return false;
         }
 
-        if (!verifyUserEntry.verifyDateBeginSmallerDateEnd(dateDebutField.getText(), dateEcheanceField.getText())) {
+        if (!verifyUserEntry.verifyDateBeginSmallerDateEnd(dateDebutPicker.getValue().format(formatterFrench),
+                dateEcheancePicker.getValue().format(formatterFrench))) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "La date de début doit être plus petite que la d'échéance", false);
             return false;

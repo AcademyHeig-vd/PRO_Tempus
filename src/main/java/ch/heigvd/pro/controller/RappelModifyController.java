@@ -8,11 +8,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import static ch.heigvd.pro.controller.DayViewDetailedController.testToChargeDailyView;
 
@@ -20,7 +25,7 @@ public class RappelModifyController {
     @FXML
     private TextField titreField;
     @FXML
-    private TextField dateField;
+    private DatePicker datePicker;
     @FXML
     private TextField heureField;
     @FXML
@@ -34,14 +39,41 @@ public class RappelModifyController {
 
     ModelTableRappel rappelAModifier;
 
+    private final DateTimeFormatter formatterFrench = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private final DateTimeFormatter formatterEnglish = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
     @FXML
     public void initialize(){
         titreField.setText(rappelAModifier.getTitre());
-        dateField.setText(rappelAModifier.getDateEcheance());
         heureField.setText(rappelAModifier.getHeure());
         descriptionField.setText(rappelAModifier.getDescription());
         contenuField.setText(rappelAModifier.getContenu());
         lienField.setText(rappelAModifier.getLien());
+
+        Locale.setDefault(Locale.FRANCE);
+        LocalDate date = LocalDate.parse(rappelAModifier.getDateEcheance(), formatterFrench);
+        datePicker.setShowWeekNumbers(false);
+        datePicker.setEditable(false);
+        datePicker.setValue(date);
+        datePicker.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(LocalDate date) {
+                if (date != null) {
+                    return formatterFrench.format(date);
+                } else {
+                    return "";
+                }
+            }
+
+            @Override
+            public LocalDate fromString(String string) {
+                if (string != null && !string.isEmpty()) {
+                    return LocalDate.parse(string, formatterFrench);
+                } else {
+                    return null;
+                }
+            }
+        });
     }
 
     /**
@@ -55,10 +87,8 @@ public class RappelModifyController {
 
         if(!inputValid()) return;
 
-        String[] dateSeparee = dateField.getText().split("\\.");
-
         rappelAModifier.setTitre(titreField.getText());
-        rappelAModifier.setDateEcheance(dateSeparee[2] + "-" + dateSeparee[1] + "-" + dateSeparee[0]);
+        rappelAModifier.setDateEcheance(datePicker.getValue().format(formatterEnglish));
         rappelAModifier.setHeure( heureField.getText());
         rappelAModifier.setDescription(descriptionField.getText());
         rappelAModifier.setContenu(contenuField.getText());
@@ -98,13 +128,9 @@ public class RappelModifyController {
             return false;
         }
 
-        if (dateField.getText().isEmpty()) {
+        if (datePicker.getValue() == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une date", false);
-            return false;
-        } else if (!verifyUserEntry.verifyEntryDate(dateField.getText())) {
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
-                    "La date n'est pas au bon format (jj.mm.aaaa)", false);
             return false;
         }
 
