@@ -15,10 +15,20 @@
 Google drive : https://drive.google.com/drive/folders/16hgVjggeGgG7rjfjVIXN8Mohfn_XSWHI
 
 ## Installation 
-Une fois que vous avez clone le projet, 
-- Vérifier que vous ayez la librairie externe de JavaFx (normalement upload via une dépendance maven)
-- Vérifier que vous ayez le plugin SQL
-- Vérifier d'avoir une connexion à la bdd (pour l'instant prendre le script sql qui se trouve dans database/)
-- Vérifier le JDBC Connection String ---> (par défaut) doit être: jdbc:mysql://127.0.0.1:3306/.... avec l'id **root** et le mot de passe **root**
+Une fois que vous avez clone le projet, il faut tout d'abord lancer la connexion à la base de données SQL. Pour ce faire, nous avons utilisé un conteneur Docker afin de faciliter son lancement. 
 
-  Normalement avec tout ça en place vous pouvez lancer l'application :)
+Si vous êtes sur Windows, vous pouvez directement lancer le script Docker à la racine du projet avec la commande:
+````bash
+./start.sh
+````
+Si vous êtes sur Linux/macOS, il faut effectuer ces commandes:
+````bash
+cd Docker
+sudo docker-compose up --build
+````
+Une fois le conteneur construit et lancé, vous pouvez vous connecter à la base de donnéee via votre navigateur à l'adresse: `http://localhost:6060` en entrant comme identifiant `root` et comme mot de passe `root`.
+/!\ Si vous voulez changer de username ou mot de passe, il faudra modifier le fichier du projet `dbConnexion` qui se trouve dans le package `connexion`. /!\
+
+Une fois la connexion effectuée, vous pouvez ajouter la base de donnée qui se trouve également dans le projet.
+
+A présent l'installation de l'application est terminée et vous pouvez lancer l'application via l'IDE.
