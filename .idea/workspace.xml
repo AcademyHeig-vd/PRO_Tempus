@@ -6,16 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="42d15228-ba62-4c4f-8b7b-43fa839b833b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/connexion/dbConnexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/connexion/dbConnexion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/CalendarPageControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/CalendarPageControler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/DayViewControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/controller/DayViewControler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/view/CalendarGridView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/heigvd/pro/view/CalendarGridView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/ch/heigvd/pro/view/calendarPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ch/heigvd/pro/view/calendarPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/PRO_Tempus-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/PRO_Tempus-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +86,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Tempus">
+  <component name="RunManager">
     <configuration name="Tempus" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ch.heigvd.pro.Tempus" />
       <module name="PRO_Tempus" />
@@ -107,23 +100,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Docker.mysql: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="mysql" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="Docker/docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Tempus" />
-        <item itemvalue="Docker.Docker.mysql: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -154,7 +133,7 @@
       <workItem from="1619729169460" duration="1984000" />
       <workItem from="1620053441398" duration="6387000" />
       <workItem from="1620217888343" duration="3373000" />
-      <workItem from="1620221295029" duration="1149000" />
+      <workItem from="1620221295029" duration="1706000" />
     </task>
     <servers />
   </component>
