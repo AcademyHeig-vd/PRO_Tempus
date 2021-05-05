@@ -91,6 +91,12 @@ public class dbConnexion {
             "SET contenu = ?, lien = ?, heure = ? " +
             "WHERE idEvenement = ?";
     /* FIN QUERY RAPPEL */
+    public static final String SELECT_QUERY_RAPPEL_PER_MONTH =
+            "SELECT * FROM Rappel " +
+                    "INNER JOIN Evenement " +
+                    "   ON Rappel.idEvenement = Evenement.idEvenement "+
+                    "WHERE MONTH(dateDebut) = ?";
+    /* FIN QUERY RAPPEL */
 
     public Connection getConnexion() throws SQLException, ClassNotFoundException {
         Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
