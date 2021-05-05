@@ -2,6 +2,8 @@ package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.model.ModelEvenement;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
@@ -15,6 +17,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DayViewControler {
@@ -45,9 +48,12 @@ public class DayViewControler {
         return date;
     }
 
-    public void switchToDetailedView(){
-        System.out.println("go to detailed view");
+    public void setEvenementTable(ObservableList<ModelEvenement> events){
+        if(events.size() != 0)
+            this.evenementTable.setItems(events);
     }
+
+
 
     /**
      * Initialise la vue du jour
@@ -73,14 +79,19 @@ public class DayViewControler {
      * @return Un anchorPane contenant le jour
      * @throws IOException
      */
-    public static AnchorPane loadFromFXML(Date date) throws IOException {
+    public static AnchorPane loadFromFXML(Date date, List<ModelEvenement> eventOfTheDay) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         DayViewControler dvc = new DayViewControler();
         dvc.setDate(date);
+        dvc.setEvenementTable(FXCollections.observableList(eventOfTheDay));
         loader.setController(dvc);
         loader.setLocation(Tempus.class.getResource(FXML_SOURCE));
 
         return (AnchorPane) loader.load();
+    }
+
+    public void switchToDetailedView(){
+        System.out.println("go to detailed view");
     }
 
 }
