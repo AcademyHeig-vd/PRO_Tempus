@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class ModelTablePeriode {
     int id;
+    int idCours;
     String nom;
     String jourSemaine;
     String heureDebut;
@@ -15,7 +16,14 @@ public class ModelTablePeriode {
     String salle;
 
     public enum Jour {
-        LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE;
+        LUNDI("lundi"), MARDI("mardi"), MERCREDI("mercredi"), JEUDI("jeudi"), VENDREDI("vendredi"),
+        SAMEDI("samedi"), DIMANCHE("dimanche");
+
+        private String jour;
+
+        Jour(String jour){
+            this.jour = jour;
+        }
 
         public Jour getJour(String jour){
             switch (jour){
@@ -28,6 +36,10 @@ public class ModelTablePeriode {
                 case "dimanche" : return Jour.DIMANCHE;
             }
             return null;
+        }
+
+        public String getValue(){
+            return this.jour;
         }
     }
 
@@ -58,6 +70,21 @@ public class ModelTablePeriode {
         stmt.execute();
     }
 
+    public void updateFromDB() throws SQLException, ClassNotFoundException{
+        dbConnexion db = new dbConnexion();
+        Connection connection = db.getConnexion();
+
+        // Step 2:Create a statement using connection object
+        PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.UPDATE_QUERY_PERIODE);
+        preparedStatement.setInt(1, idCours);
+        preparedStatement.setString(2, jourSemaine);
+        preparedStatement.setString(3, heureDebut);
+        preparedStatement.setString(4, heureFin);
+        preparedStatement.setString(5, salle);
+        preparedStatement.setInt(6,id);
+        preparedStatement.execute();
+    }
+
     /**
      * Liste toutes les périodes de la base de donnée
      * @return liste des périodes
@@ -71,12 +98,14 @@ public class ModelTablePeriode {
 
         ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_PERIODE);
         while (rs.next()) {
-            periodes.add(new ModelTablePeriode(rs.getInt("idPeriode"),
+            ModelTablePeriode periode = new ModelTablePeriode(rs.getInt("idPeriode"),
                     rs.getString("titre"),
                     rs.getString("jourSemaine"),
                     rs.getString("heureDebut"),
                     rs.getString("heureFin"),
-                    rs.getString("salle")));
+                    rs.getString("salle"));
+            periode.setIdCours(rs.getInt("idCours"));
+            periodes.add(periode);
         }
         return periodes;
     }
@@ -98,6 +127,7 @@ public class ModelTablePeriode {
                     rs.getString("heureDebut"),
                     rs.getString("heureFin"),
                     rs.getString("salle"));
+            periode.idCours = rs.getInt("idCours");
             periodes.add(periode);
         }
         return periodes;
@@ -179,5 +209,13 @@ public class ModelTablePeriode {
 
     public void setSalle(String salle) {
         this.salle = salle;
+    }
+
+    public int getIdCours() {
+        return idCours;
+    }
+
+    public void setIdCours(int idCours) {
+        this.idCours = idCours;
     }
 }

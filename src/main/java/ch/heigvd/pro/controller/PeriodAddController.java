@@ -3,12 +3,14 @@ package ch.heigvd.pro.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import ch.heigvd.pro.model.ModelTableCours;
 import ch.heigvd.pro.model.ModelTablePeriode;
 import ch.heigvd.pro.Tempus;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -67,6 +69,24 @@ public class PeriodAddController {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void modify() throws IOException {
+        ModelTablePeriode selectedIndex = (ModelTablePeriode) table.getSelectionModel().getSelectedItem();
+
+        if(table.getSelectionModel().getSelectedIndex() < 0){
+            // Rien n'a été sélectionné
+            showAlert(Alert.AlertType.WARNING, "Aucune sélection",
+                    "Aucune période n'a été séléctionnée !");
+            return;
+        }
+        FXMLLoader loader = new FXMLLoader();
+        PeriodeModifyController periodeModifyController = new PeriodeModifyController();
+        periodeModifyController.setPeriodeToModify(selectedIndex);
+        loader.setController(periodeModifyController);
+        loader.setLocation(Tempus.class.getResource("view/periodeModify.fxml"));
+        Tempus.getScene().setRoot(loader.load());
     }
 
     /**

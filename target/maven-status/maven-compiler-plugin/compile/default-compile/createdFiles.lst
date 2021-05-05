@@ -6,6 +6,7 @@ ch\heigvd\pro\view\CalendarGridView.class
 ch\heigvd\pro\model\ModelTablePeriode.class
 ch\heigvd\pro\controller\CalendarPageControler.class
 ch\heigvd\pro\controller\DayViewDetailedController.class
+ch\heigvd\pro\controller\CoursModifyController.class
 module-info.class
 ch\heigvd\pro\model\ModelDay.class
 ch\heigvd\pro\controller\CoursAddController.class

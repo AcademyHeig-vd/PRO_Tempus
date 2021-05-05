@@ -1,14 +1,12 @@
 package ch.heigvd.pro.controller;
 
-import ch.heigvd.pro.connexion.dbConnexion;
 import ch.heigvd.pro.Tempus;
+import ch.heigvd.pro.connexion.dbConnexion;
 import ch.heigvd.pro.controller.validation.VerifyUserEntry;
 import ch.heigvd.pro.model.ModelTableCours;
 import ch.heigvd.pro.model.ModelTableCoursProf;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Window;
@@ -21,7 +19,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-public class CoursRegisterController {
+public class CoursModifyController {
     @FXML
     private TextField titreField;
     @FXML
@@ -35,10 +33,13 @@ public class CoursRegisterController {
     @FXML
     private Button submitButton;
 
-    private final DateTimeFormatter formatterFrench = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-    private final DateTimeFormatter formatterEnglish = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    ModelTableCours coursToModify;
 
     ObservableList<ModelTableCoursProf> oblist = FXCollections.observableArrayList();
+
+    private final DateTimeFormatter formatterFrench = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private final DateTimeFormatter formatterEnglish = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     /**
      * Formulaire qui permet d'entrer toutes les informations liées à un cours
@@ -53,24 +54,30 @@ public class CoursRegisterController {
 
         if(!inputValid()) return;
 
-        String acronyme = coursProf.getAcronyme();
-        String titre = titreField.getText();
-        String dateDebut = dateDebutPicker.getValue().format(formatterEnglish);
-        String dateEcheance = dateEcheancePicker.getValue().format(formatterEnglish);
-        String description = descriptionField.getText();
+        coursToModify.setTitre(titreField.getText());
+        coursToModify.setAcronyme(coursProf.getAcronyme());
 
-        dbConnexion db = new dbConnexion();
-        //TODO : à déplacer quand merge avec Lev
-        int idEvenement = db.insertRecordEvenement(titre, dateDebut, dateEcheance, description);
-        //db.insertRecordCours(idEvenement, acronyme);
-        boolean ok_request = ModelTableCours.insertCoursInDB(idEvenement, acronyme);
-        if (ok_request)
-            showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
-                    "La nouvelle entrée a été effectuée !", true);
-        else{
-            showAlert(Alert.AlertType.ERROR, owner, "Ajout échoué",
-                    "Erreur lors de l'insertion", true);
+        coursToModify.setDescription(descriptionField.getText());
+
+        coursToModify.setDateDebut(dateDebutPicker.getValue().format(formatterEnglish));
+        coursToModify.setDateEcheance(dateEcheancePicker.getValue().format(formatterEnglish));
+
+        boolean ok_request;
+        try {
+            coursToModify.updateFromDB();
+            ok_request = true;
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+            ok_request = false;
         }
+        if (ok_request)
+            showAlert(Alert.AlertType.INFORMATION, owner, "Modification réussie!",
+                    "La moodification a bien été effectuée !", true);
+        else{
+            showAlert(Alert.AlertType.ERROR, owner, "Modification échouée",
+                    "Erreur lors de la modification", true);
+        }
+
     }
 
     /**
@@ -78,18 +85,14 @@ public class CoursRegisterController {
      */
     @FXML
     public void initialize(){
-        // Ajout d'une liste déroulante avec les différents professeurs
-        try {
-            oblist.addAll(ModelTableCoursProf.getAllAcronymProf());
-        } catch (SQLException | ClassNotFoundException e){
-            e.getMessage();
-        }
-        professeur.setItems(oblist);
+        titreField.setText(coursToModify.getTitre());
+        descriptionField.setText(coursToModify.getDescription());
 
         Locale.setDefault(Locale.FRANCE);
-
+        LocalDate date = LocalDate.parse(coursToModify.getDateDebut(), formatterFrench);
         dateDebutPicker.setShowWeekNumbers(false);
         dateDebutPicker.setEditable(false);
+        dateDebutPicker.setValue(date);
         dateDebutPicker.setConverter(new StringConverter<>() {
             @Override
             public String toString(LocalDate date) {
@@ -110,8 +113,10 @@ public class CoursRegisterController {
             }
         });
 
+        date = LocalDate.parse(coursToModify.getDateEcheance(), formatterFrench);
         dateEcheancePicker.setShowWeekNumbers(false);
         dateEcheancePicker.setEditable(false);
+        dateEcheancePicker.setValue(date);
         dateEcheancePicker.setConverter(new StringConverter<>() {
             @Override
             public String toString(LocalDate date) {
@@ -131,6 +136,14 @@ public class CoursRegisterController {
                 }
             }
         });
+
+        try {
+            oblist.addAll(ModelTableCoursProf.getAllAcronymProf());
+        } catch (SQLException | ClassNotFoundException e){
+            e.getMessage();
+        }
+        professeur.setItems(oblist);
+        professeur.getSelectionModel().select(new ModelTableCoursProf(coursToModify.getAcronyme()));
     }
 
     /**
@@ -187,6 +200,10 @@ public class CoursRegisterController {
     @FXML
     private void OKButton() throws IOException {
         Tempus.changeTab(1);
+    }
+
+    public void setCoursToModify(ModelTableCours coursToModify) {
+        this.coursToModify = coursToModify;
     }
 
     /**

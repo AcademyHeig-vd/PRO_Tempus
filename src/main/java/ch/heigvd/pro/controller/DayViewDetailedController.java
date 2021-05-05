@@ -7,10 +7,12 @@ import ch.heigvd.pro.model.ModelTableRappel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -34,7 +36,12 @@ public class DayViewDetailedController {
     private TableColumn<ModelEvenement,String>col_contenu;
     @FXML
     private TableColumn<ModelEvenement,String>col_lien;
+    @FXML
+    private TableColumn<ModelEvenement,String>col_type;
 
+    @FXML
+    Text titleLabel;
+    public static Date returnDate;
     private Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
     ObservableList<ModelEvenement> oblist = FXCollections.observableArrayList();
 
@@ -44,7 +51,59 @@ public class DayViewDetailedController {
      */
     @FXML
     private void newEntry() throws IOException {
+        returnDate = date;
         Tempus.setRoot("view/rappelRegister");
+    }
+
+    @FXML
+    private void modify() throws IOException {
+
+        ModelEvenement selectedIndex = (ModelEvenement) table.getSelectionModel().getSelectedItem();
+
+        if(table.getSelectionModel().getSelectedIndex() < 0){
+            // Rien n'a été sélectionné
+            showAlert(Alert.AlertType.WARNING, "Aucune sélection",
+                    "Aucun rappel n'a été séléctionné !");
+            return;
+        }
+        if(!selectedIndex.isRappel()) {
+            showAlert(Alert.AlertType.WARNING, "Modification impossible",
+                    "Vous ne pouvez pas modifier une période !");
+            return;
+        }
+        // permet le retour si besoin
+        returnDate = date;
+
+        ModelTableRappel modelTableRappel = new ModelTableRappel(selectedIndex.getId(),
+                selectedIndex.getTitre(), selectedIndex.getEcheance().toString(), selectedIndex.getHeure(),
+                selectedIndex.getDescritpion(), selectedIndex.getContenu(), selectedIndex.getLien());
+
+        FXMLLoader loader = new FXMLLoader();
+        RappelModifyController rappelModifyController = new RappelModifyController();
+        rappelModifyController.setRappelAModifier(modelTableRappel);
+        loader.setController(rappelModifyController);
+        loader.setLocation(Tempus.class.getResource("view/rappelModify.fxml"));
+        Tempus.getScene().setRoot(loader.load());
+
+    }
+
+    public static boolean testToChargeDailyView() throws IOException {
+        if (returnDate != null){
+            FXMLLoader loader = new FXMLLoader();
+            DayViewDetailedController dvc = new DayViewDetailedController();
+            dvc.setDate(new Date(returnDate.getTime()));
+            returnDate = null;
+            loader.setController(dvc);
+            loader.setLocation(Tempus.class.getResource("view/dayViewDetailed.fxml"));
+            Tempus.getScene().setRoot(loader.load());
+            return true;
+        }
+        return false;
+    }
+
+    @FXML
+    private void returnToCalendar() throws IOException {
+        Tempus.changeTab(5);
     }
 
     /**
@@ -63,14 +122,13 @@ public class DayViewDetailedController {
             } //on crée un objet temporaire pour le supprimer si c'est un rappel
             if (selectedIndex.isRappel())
                 new ModelTableRappel(selectedIndex.getId(), null, null, null, null, null, null).deleteFromDB();
-            else //dans l'autre cas, c'est une période TODO : décider si on supprime une période par la vue par jour, vu qu'elle n'est pas crée
+            else {//dans l'autre cas, c'est une période TODO : décider si on supprime une période par la vue par jour, vu qu'elle n'est pas crée
                 showAlert(Alert.AlertType.WARNING, "Suppression impossible",
                         "Une période ne peut pas être supprimée !");
                 // new ModelTablePeriode(selectedIndex.getId(),null,null,null,null,null).deleteFromDB();
-
-            // Suppression application
+                return;
+            }
             table.getItems().remove(selectedIndex);
-
             // Update les onglets
             Tempus.updateTab();
         } catch (Exception e){
@@ -83,19 +141,21 @@ public class DayViewDetailedController {
      */
     @FXML
     private void initialize() {
+        String[] dateSplit = date.toString().split("-");
+        titleLabel.setText("Rappels et cours du\n" + dateSplit[2] + "." + dateSplit[1] + "." + dateSplit[0]);
         try {
             oblist.addAll(ModelEvenement.getAllEvenementPerDay(date));
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }
 
-
         col_titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
-        col_date.setCellValueFactory(new PropertyValueFactory<>("dateEcheance"));
+        col_date.setCellValueFactory(new PropertyValueFactory<>("echeance"));
         col_heure.setCellValueFactory(new PropertyValueFactory<>("heure"));
-        col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        col_description.setCellValueFactory(new PropertyValueFactory<>("descritpion"));
         col_contenu.setCellValueFactory(new PropertyValueFactory<>("contenu"));
         col_lien.setCellValueFactory(new PropertyValueFactory<>("lien"));
+        col_type.setCellValueFactory(new PropertyValueFactory<>("typeEvenement"));
 
         table.setItems(oblist);
     }
