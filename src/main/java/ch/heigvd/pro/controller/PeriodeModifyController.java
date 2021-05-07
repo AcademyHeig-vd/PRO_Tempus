@@ -91,8 +91,11 @@ public class PeriodeModifyController {
         cours.setItems(oblist);
         cours.getSelectionModel().select(new ModelTableCoursEvenement(periodeToModify.getId(),periodeToModify.getNom()));
 
-        ObservableList<String> options =
-                FXCollections.observableArrayList("lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche");
+        ObservableList<String> options = FXCollections.observableArrayList();
+        ModelTablePeriode.Jour[] jours = ModelTablePeriode.Jour.values();
+        for(ModelTablePeriode.Jour j : jours){
+            options.add(j.getValue());
+        }
         jourComboBox.setItems(options);
         jourComboBox.getSelectionModel().select(periodeToModify.getJourSemaine());
 

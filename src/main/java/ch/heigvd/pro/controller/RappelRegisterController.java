@@ -9,10 +9,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import static ch.heigvd.pro.controller.DayViewDetailedController.testToChargeDailyView;
 
@@ -20,7 +25,7 @@ public class RappelRegisterController {
     @FXML
     private TextField titreField;
     @FXML
-    private TextField dateField;
+    private DatePicker datePicker;
     @FXML
     private TextField heureField;
     @FXML
@@ -32,6 +37,34 @@ public class RappelRegisterController {
     @FXML
     private Button submitButton;
 
+    private final DateTimeFormatter formatterFrench = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private final DateTimeFormatter formatterEnglish = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    @FXML
+    public void initialize() {
+        Locale.setDefault(Locale.FRANCE);
+        datePicker.setShowWeekNumbers(false);
+        datePicker.setEditable(false);
+        datePicker.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(LocalDate date) {
+                if (date != null) {
+                    return formatterFrench.format(date);
+                } else {
+                    return "";
+                }
+            }
+
+            @Override
+            public LocalDate fromString(String string) {
+                if (string != null && !string.isEmpty()) {
+                    return LocalDate.parse(string, formatterFrench);
+                } else {
+                    return null;
+                }
+            }
+        });
+    }
 
     /**
      * Formulaire qui permet d'entrer toutes les informations liées à un cours
@@ -45,14 +78,11 @@ public class RappelRegisterController {
         if(!inputValid()) return;
 
         String titre = titreField.getText();
-        String date = dateField.getText();
+        String date = datePicker.getValue().format(formatterEnglish);
         String heure = heureField.getText();
         String description = descriptionField.getText();
         String contenu = contenuField.getText();
         String lien = lienField.getText();
-
-        String[] dateSeparee = date.split("\\.");
-        date = dateSeparee[2] + "-" + dateSeparee[1] + "-" + dateSeparee[0];
 
         dbConnexion db = new dbConnexion();
 
@@ -85,13 +115,9 @@ public class RappelRegisterController {
             return false;
         }
 
-        if (dateField.getText().isEmpty()) {
+        if (datePicker.getValue() == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une date", false);
-            return false;
-        } else if (!verifyUserEntry.verifyEntryDate(dateField.getText())) {
-            showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
-                    "La date n'est pas au bon format (jj.mm.aaaa)", false);
             return false;
         }
 

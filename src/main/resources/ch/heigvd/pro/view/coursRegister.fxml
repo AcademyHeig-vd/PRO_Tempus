@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import javafx.scene.control.DatePicker?>
 <AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ch.heigvd.pro.controller.CoursRegisterController">
     <children>
         <GridPane alignment="CENTER" layoutX="16.0" layoutY="12.0" prefHeight="215.0" prefWidth="261.0" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="12.0">
@@ -26,14 +27,14 @@
             </rowConstraints>
             <children>
                 <Label text="Titre *" />
-                <Label text="Date début (jj.mm.aaaa) *" GridPane.rowIndex="1" />
-                <Label text="Date échéance (jj.mm.aaaa) *" GridPane.rowIndex="2" />
+                <Label text="Date début *" GridPane.rowIndex="1" />
+                <Label text="Date échéance *" GridPane.rowIndex="2" />
                 <Label text="Description" GridPane.rowIndex="3" />
                 <Label text="Professeur *" GridPane.rowIndex="4" />
                 <Label text="* : Champs obligatoires" GridPane.rowIndex="5" />
                 <TextField fx:id="titreField" GridPane.columnIndex="1" />
-                <TextField fx:id="dateDebutField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField fx:id="dateEcheanceField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <DatePicker fx:id="dateDebutPicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <DatePicker fx:id="dateEcheancePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <ComboBox fx:id="professeur" prefHeight="25.0" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             </children>

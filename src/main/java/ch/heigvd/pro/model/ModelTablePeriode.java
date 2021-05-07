@@ -16,7 +16,14 @@ public class ModelTablePeriode {
     String salle;
 
     public enum Jour {
-        LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE;
+        LUNDI("lundi"), MARDI("mardi"), MERCREDI("mercredi"), JEUDI("jeudi"), VENDREDI("vendredi"),
+        SAMEDI("samedi"), DIMANCHE("dimanche");
+
+        private String jour;
+
+        Jour(String jour){
+            this.jour = jour;
+        }
 
         public Jour getJour(String jour){
             switch (jour){
@@ -29,6 +36,10 @@ public class ModelTablePeriode {
                 case "dimanche" : return Jour.DIMANCHE;
             }
             return null;
+        }
+
+        public String getValue(){
+            return this.jour;
         }
     }
 
