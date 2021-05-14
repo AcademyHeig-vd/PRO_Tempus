@@ -75,4 +75,26 @@ public class ModelTableEvenement {
     public void setDescription(String description) {
         this.description = description;
     }
+    public boolean insertEvenementInDB() {
+        try {
+            dbConnexion db = new dbConnexion();
+            Connection connection = db.getConnexion();
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_EVEN);
+            preparedStatement.setInt(1, this.id);
+            preparedStatement.setString(2, this.titre);
+            preparedStatement.setString(3, this.dateDebut);
+            preparedStatement.setString(4, this.dateEcheance);
+            preparedStatement.setString(5, this.description);
+
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            dbConnexion.printSQLException(e);
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

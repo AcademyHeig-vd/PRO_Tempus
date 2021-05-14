@@ -20,38 +20,62 @@ public class ModelTableProf {
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
+        this.oldAcronyme=acronyme;
     }
 
+    public static boolean findByAcro(String acronyme) throws SQLException, ClassNotFoundException {
+        ArrayList<ModelTableProf> profs = new ArrayList<>();
+        dbConnexion db = new dbConnexion();
+        Connection conn = db.getConnexion();
+
+
+        PreparedStatement stmt = null;
+        stmt = conn.prepareStatement(dbConnexion.SELECT_QUERY_ACRONYM_ONE_PROF);
+        stmt.setString(1, acronyme);
+        stmt.execute();
+        ResultSet rs =stmt.getResultSet();
+        return  rs != null;
+
+    }
     /**
      * Supprime le prof de la base de donnée
-     * @throws SQLException erreur lors de la requête
-     * @throws ClassNotFoundException classe non trouvée
      */
-    public void deleteFromDB() throws SQLException, ClassNotFoundException {
+    public static boolean deleteFromDB(String acro)  {
+        try{
         // Connexion a la database
         dbConnexion db = new dbConnexion();
         Connection connection = db.getConnexion();
 
         PreparedStatement stmt = null;
         stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_PROF);
-        stmt.setString(1, acronyme);
+        stmt.setString(1, acro);
         stmt.execute();
+        return  true;
+    }catch (Exception e){
+        return  false;
     }
 
-    public void updateFromDB() throws SQLException, ClassNotFoundException {
-
-        dbConnexion db = new dbConnexion();
-        Connection connection = db.getConnexion();
-
-        // Step 2:Create a statement using connection object
-        PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.UPDATE_QUERY_PROF);
-        preparedStatement.setString(1, acronyme);
-        preparedStatement.setString(2, nom);
-        preparedStatement.setString(3, prenom);
-        preparedStatement.setString(4, mail);
-        preparedStatement.setString(5, oldAcronyme);
-        preparedStatement.execute();
     }
+
+    public boolean updateFromDB() {
+       try{
+            dbConnexion db = new dbConnexion();
+            Connection connection = db.getConnexion();
+
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.UPDATE_QUERY_PROF);
+            preparedStatement.setString(1, acronyme);
+            preparedStatement.setString(2, nom);
+            preparedStatement.setString(3, prenom);
+            preparedStatement.setString(4, mail);
+            preparedStatement.setString(5, oldAcronyme);
+            preparedStatement.execute();
+            return deleteFromDB(oldAcronyme);
+
+        }catch (Exception e){
+            return  false;
+        }
+        }
 
     /**
      * Récupère la liste de tous les profs
@@ -82,6 +106,7 @@ public class ModelTableProf {
      * @return vrai si l'intertion a réussi
      */
     public static boolean insertProfInDB(String acronyme, String nom, String prenom, String mail){
+
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
         try {
@@ -112,8 +137,11 @@ public class ModelTableProf {
         return acronyme;
     }
 
-    public void setAcronyme(String acronyme) {
-        this.acronyme = acronyme;
+    public void setAcronyme(String acronyme)  {
+       // boolean res=findByAcro(acronyme);
+       // if(res) {
+            this.acronyme = acronyme;
+       // }
     }
 
     public String getNom() {

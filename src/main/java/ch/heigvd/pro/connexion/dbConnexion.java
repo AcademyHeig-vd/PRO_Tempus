@@ -15,6 +15,7 @@ public class dbConnexion {
 
     /* QUERY POUR COURS */
     public static final String INSERT_QUERY_COURS = "INSERT INTO Cours (idEvenement,acronyme) VALUES (?, ?)";
+    public static final String INSERT_QUERY_EVEN = "INSERT INTO Evenement (idEvenement,titre,dateDebut,dateEcheance,description) VALUES (?, ?, ?, ?, ?)";
     public static final String DELETE_QUERY_COURS = "DELETE FROM Evenement WHERE idEvenement = ?";
     public static final String SELECT_QUERY_ALL_COURS =
             "SELECT * FROM Cours " +
@@ -31,6 +32,7 @@ public class dbConnexion {
 
     /* QUERY POUR PROFESSEUR */
     public static final String SELECT_QUERY_ACRONYM_PROF = "SELECT acronyme FROM Professeur";
+    public static final String SELECT_QUERY_ACRONYM_ONE_PROF = "SELECT * FROM Professeur where acronyme = ?";
     public static final String INSERT_QUERY_PROF = "INSERT INTO Professeur (acronyme,nom,prenom,mail) VALUES (?, ?, ?, ?)";
     public static final String DELETE_QUERY_PROF = "DELETE FROM Professeur where acronyme = ?";
     public static final String SELECT_QUERY_ALL_PROF = "SELECT * FROM Professeur";
