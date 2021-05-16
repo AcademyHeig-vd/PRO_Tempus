@@ -6,15 +6,14 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="850.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-   <children>
-      <BorderPane layoutX="133.0" layoutY="100.0" prefHeight="850.0" prefWidth="1150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue sur Tempus !" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-         </center>
-      </BorderPane>
-   </children>
+   <BorderPane layoutX="133.0" layoutY="100.0" prefHeight="850.0" prefWidth="1150.0" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <center>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue sur Tempus !" BorderPane.alignment="CENTER">
+            <font>
+               <Font size="24.0"/>
+            </font>
+         </Text>
+      </center>
+   </BorderPane>
 </AnchorPane>

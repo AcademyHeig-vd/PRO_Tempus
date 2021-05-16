@@ -63,13 +63,8 @@ public class CoursModifyController {
         coursToModify.setDateEcheance(dateEcheancePicker.getValue().format(formatterEnglish));
 
         boolean ok_request;
-        try {
-            coursToModify.updateFromDB();
-            ok_request = true;
-        } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
-            ok_request = false;
-        }
+        ok_request= coursToModify.updateFromDB();
+
         if (ok_request)
             showAlert(Alert.AlertType.INFORMATION, owner, "Modification réussie!",
                     "La moodification a bien été effectuée !", true);
