@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class dbConnexion {
     /* PARAMETRES CONNEXION */
-    private static final String DATABASE_URL = "jdbc:mysql://192.168.99.100:3306/PRO?serverTimezone=UTC&useSSL=false";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/PRO";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "root";
     /* FIN PARAMETRE CONNEXION
