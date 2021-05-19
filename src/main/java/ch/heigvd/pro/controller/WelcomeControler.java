@@ -1,3 +1,4 @@
+/*
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
@@ -37,7 +38,7 @@ public class WelcomeControler {
      * Charge le fxml relatif à ce controleur
      * @return Un anchorPane contenant le jour
      * @throws IOException
-     */
+
     public static AnchorPane loadFromFXML() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         WelcomeControler wc = new WelcomeControler();
@@ -48,4 +49,4 @@ public class WelcomeControler {
     }
 
 
-}
+}*/
