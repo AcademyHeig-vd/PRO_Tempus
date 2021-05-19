@@ -7,10 +7,13 @@ import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+/*
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.media.MediaView;
+*/
+
 
 import java.io.IOException;
 import java.sql.Date;
@@ -18,7 +21,7 @@ import java.util.List;
 
 public class WelcomeControler {
     private static String FXML_SOURCE = "view/welcomeView.fxml";
-
+/*
     @FXML
     private
     MediaView tempusIntro; //la vidéo à jouer
@@ -26,7 +29,7 @@ public class WelcomeControler {
     public WelcomeControler (){
     }
 
-
+/*
     public void initialize(){
         MediaPlayer mp = new MediaPlayer(new Media("src/main/ressources/ch.heigvd.pro.view/images/Tempus.mp4"));
         tempusIntro.setMediaPlayer(mp);
