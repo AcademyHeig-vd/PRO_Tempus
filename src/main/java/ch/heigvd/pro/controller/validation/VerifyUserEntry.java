@@ -23,7 +23,7 @@ public class VerifyUserEntry {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.uuuu", Locale.FRANCE)
                 .withResolverStyle(ResolverStyle.STRICT);
         VerifyDate verifyDate = new VerifyDate(dateTimeFormatter);
-        return verifyDate.isValid(date);
+        return verifyDate.estValide(date);
     }
 
     /**

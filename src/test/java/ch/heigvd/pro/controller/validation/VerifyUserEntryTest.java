@@ -1,12 +1,9 @@
 package ch.heigvd.pro.controller.validation;
 
-import ch.heigvd.pro.model.ModelDay;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Date;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +24,7 @@ class VerifyUserEntryTest {
     @Test
     @DisplayName("verify entry")
     void verifyEntryDate() {
-        boolean cond=verifyDate.isValid("11-11-2020");
+        boolean cond=verifyDate.estValide("11-11-2020");
         assertFalse(cond,"date format is wrong");
     }
 
