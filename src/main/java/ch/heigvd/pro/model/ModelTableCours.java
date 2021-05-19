@@ -46,37 +46,44 @@ public class ModelTableCours {
         return cours;
     }
 
-    public void updateFromDB() throws SQLException, ClassNotFoundException {
-        new ModelTableEvenement(idEvenement,titre,dateDebut,dateEcheance,description).updateFromDB();
-        dbConnexion db = new dbConnexion();
-        Connection connection = db.getConnexion();
+    public boolean updateFromDB()  {
+        try {
+            new ModelTableEvenement(idEvenement, titre, dateDebut, dateEcheance, description).updateFromDB();
+            dbConnexion db = new dbConnexion();
+            Connection connection = db.getConnexion();
 
-        // Suppression database
-        PreparedStatement stmt = null;
-        stmt = connection.prepareStatement(dbConnexion.UPDATE_QUERY_COURS);
-        stmt.setString(1, acronyme);
-        stmt.setInt(2, idEvenement);
-
-        stmt.execute();
+            // Suppression database
+            PreparedStatement stmt = null;
+            stmt = connection.prepareStatement(dbConnexion.UPDATE_QUERY_COURS);
+            stmt.setString(1, acronyme);
+            stmt.setInt(2, idEvenement);
+            stmt.execute();
+            return true;
+        }catch(Exception e){
+            return false;
+        }
     }
 
 
 
     /**
      * Supprime l'objet courrant de la base de donnée
-     * @throws SQLException echec de la suppression
-     * @throws ClassNotFoundException une classe non trouvable
      */
-    public void deleteFromDB() throws SQLException, ClassNotFoundException {
-        // Connexion a la database
-        dbConnexion db = new dbConnexion();
-        Connection connection = db.getConnexion();
-
-        // Suppression database
-        PreparedStatement stmt = null;
-        stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_COURS);
-        stmt.setInt(1, idEvenement);
-        stmt.execute();
+    public boolean deleteFromDB()  {
+      try {
+          // Connexion a la database
+          dbConnexion db = new dbConnexion();
+          Connection connection = db.getConnexion();
+          // Suppression database
+          PreparedStatement stmt = null;
+          stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_COURS);
+          stmt.setInt(1, idEvenement);
+          stmt.execute();
+          return true;
+      }catch (Exception e){
+          e.printStackTrace();
+          return false;
+      }
     }
 
     /**

@@ -1,10 +1,13 @@
 package ch.heigvd.pro.model;
 
 
+import ch.heigvd.pro.connexion.dbConnexion;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -154,6 +157,5 @@ public class ModelEvenement {
         return rappels;
 
     }*/
-
 
 }
