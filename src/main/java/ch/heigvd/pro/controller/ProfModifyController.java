@@ -56,8 +56,8 @@ public class ProfModifyController {
         try {
             profAModifier.updateFromDB();
             ok_request = true;
-        } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             ok_request = false;
         }
         if (ok_request)

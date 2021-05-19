@@ -44,7 +44,7 @@ public class VerifyUserEntry {
      * @param hour - heure entrée par l'utilisateur
      * @return - booléen si l'heure est valide ou non
      */
-    public boolean verifyEntryHour(String hour) {
+    public static boolean verifyEntryHour(String hour) {
         String patternHour = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
         Pattern p = Pattern.compile(patternHour);
         Matcher m = p.matcher(hour);
@@ -57,7 +57,7 @@ public class VerifyUserEntry {
      * @param hourEndString - heure de fin entrée par l'utilisateur
      * @return - booléen si l'heure de début est plus petite que l'heure de fin
      */
-    public boolean verifyHourBeginSmallerHourEnd(String hourBeginString, String hourEndString) {
+    public static boolean verifyHourBeginSmallerHourEnd(String hourBeginString, String hourEndString) {
         String[] hourBeginSplitted = hourBeginString.split(":");
         String[] hourEndSplitted = hourEndString.split(":");
         int hourBegin = Integer.parseInt(hourBeginSplitted[0]);
@@ -75,7 +75,7 @@ public class VerifyUserEntry {
      * @param acronym - acronyme entré par l'utilisateur
      * @return - booléen si l'acronyme est valide ou non
      */
-    public boolean verifyEntryAcronym(String acronym) {
+    public static boolean verifyEntryAcronym(String acronym) {
         String patternAcronym = "^[A-Z]{3}$";
         Pattern p = Pattern.compile(patternAcronym);
         Matcher m = p.matcher(acronym);
@@ -87,7 +87,7 @@ public class VerifyUserEntry {
      * @param mail - adresse mail entré par l'utilisateur
      * @return - booléen si le mail est valide ou non
      */
-    public boolean verifyEntryMail(String mail) {
+    public static boolean verifyEntryMail(String mail) {
         String patternMail = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         Pattern p = Pattern.compile(patternMail);
         Matcher m = p.matcher(mail);
@@ -99,7 +99,7 @@ public class VerifyUserEntry {
      * @param link - lien entré par l'utilisateur
      * @return - booléen si le lien est valide ou non
      */
-    public boolean verifyEntryLink(String link) {
+    public static boolean verifyEntryLink(String link) {
         try {
             new URL(link).toURI();
             return true;

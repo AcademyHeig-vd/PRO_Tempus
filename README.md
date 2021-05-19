@@ -1,7 +1,7 @@
 
 # Tempus
 <p align="center">
-  <img width="357" height="233" src="images/Tempus.png">
+  <img width="357" height="233" src="/src/main/resources/ch/heigvd/pro/view/images/Tempus.png">
 </p>
 
 [![Java CI with Maven](https://github.com/AcademyHeig-vd/PRO-Project/actions/workflows/maven.yml/badge.svg)](https://github.com/AcademyHeig-vd/PRO-Project/actions/workflows/maven.yml)

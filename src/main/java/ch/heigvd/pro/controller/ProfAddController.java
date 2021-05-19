@@ -75,7 +75,7 @@ public class ProfAddController {
                 return;
             }
             // Suppression database
-            selectedIndex.deleteFromDB();
+            ModelTableProf.deleteFromDB(selectedIndex.getAcronyme());
 
             // Suppression application
             table.getItems().remove(selectedIndex);
