@@ -44,13 +44,18 @@ public class ModelTableRappel {
      * @throws SQLException echec de la requête
      * @throws ClassNotFoundException classe non trouvée
      */
-    public void deleteFromDB() throws SQLException, ClassNotFoundException {
-        dbConnexion db = new dbConnexion();
-        Connection connection = db.getConnexion();
-        PreparedStatement stmt = null;
-        stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_RAPPEL);
-        stmt.setInt(1, idEvenement);
-        stmt.execute();
+    public boolean deleteFromDB()  {
+        try {
+            dbConnexion db = new dbConnexion();
+            Connection connection = db.getConnexion();
+            PreparedStatement stmt = null;
+            stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_RAPPEL);
+            stmt.setInt(1, idEvenement);
+            stmt.execute();
+        }catch (Exception e){
+            return  false;
+        }
+        return true;
     }
 
     /**

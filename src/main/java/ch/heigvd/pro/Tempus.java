@@ -63,7 +63,6 @@ public class Tempus extends Application {
         //stage.getIcons().add(new Image("file:images/logo.png"));
         stage.show();
     }
-
     public static void updateTab() throws IOException {
         main.setContent(loadFXML("view/primary"));
         cours.setContent(loadFXML("view/coursAdd"));
