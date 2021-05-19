@@ -96,13 +96,5 @@
                 </executions>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>images</directory>
-            </resource>
-            <resource>
-                <directory>src/main/resources/ch/heigvd/pro/view</directory>
-            </resource>
-        </resources>
     </build>
 </project>
