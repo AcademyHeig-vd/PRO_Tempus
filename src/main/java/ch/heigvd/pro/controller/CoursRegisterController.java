@@ -163,7 +163,7 @@ public class CoursRegisterController {
             return false;
         }
 
-        if (!verifyUserEntry.verifyDateBeginSmallerDateEnd(dateDebutPicker.getValue().format(formatterFrench),
+        if (!verifyUserEntry.verificationDateDebutPlusPetiteQueDateFin(dateDebutPicker.getValue().format(formatterFrench),
                 dateEcheancePicker.getValue().format(formatterFrench))) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "La date de début doit être plus petite que la d'échéance", false);

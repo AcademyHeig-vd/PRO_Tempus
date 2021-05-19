@@ -1,7 +1,6 @@
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
-import ch.heigvd.pro.connexion.dbConnexion;
 import ch.heigvd.pro.controller.validation.VerifyUserEntry;
 import ch.heigvd.pro.model.ModelTableCours;
 import ch.heigvd.pro.model.ModelTableCoursProf;
@@ -172,7 +171,7 @@ public class CoursModifyController {
             return false;
         }
 
-        if (!verifyUserEntry.verifyDateBeginSmallerDateEnd(dateDebutPicker.getValue().format(formatterFrench),
+        if (!verifyUserEntry.verificationDateDebutPlusPetiteQueDateFin(dateDebutPicker.getValue().format(formatterFrench),
                 dateEcheancePicker.getValue().format(formatterFrench))) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "La date de début doit être plus petite que la d'échéance", false);

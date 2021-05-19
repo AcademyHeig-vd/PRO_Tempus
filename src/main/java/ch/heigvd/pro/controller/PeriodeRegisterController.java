@@ -112,7 +112,7 @@ public class PeriodeRegisterController {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez l'heure de début", false);
             return false;
-        } else if(!verifyUserEntry.verifyEntryHour(heureDebutField.getText())) {
+        } else if(!verifyUserEntry.verificationEntreeHeure(heureDebutField.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "L'heure de début n'est pas au bon format (HH:MM)", false);
             return false;
@@ -122,13 +122,13 @@ public class PeriodeRegisterController {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez l'heure de fin", false);
             return false;
-        } else if(!verifyUserEntry.verifyEntryHour(heureFinField.getText())) {
+        } else if(!verifyUserEntry.verificationEntreeHeure(heureFinField.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "L'heure de fin n'est pas au bon format (HH:MM)", false);
             return false;
         }
 
-        if (!verifyUserEntry.verifyHourBeginSmallerHourEnd(heureDebutField.getText(), heureFinField.getText())) {
+        if (!verifyUserEntry.verificationHeureDebutPlusPetiteHeureFin(heureDebutField.getText(), heureFinField.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "L'heure de début doit être plus petite que l'heure de fin", false);
             return false;

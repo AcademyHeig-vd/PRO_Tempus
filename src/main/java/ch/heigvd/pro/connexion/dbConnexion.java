@@ -108,7 +108,7 @@ public class dbConnexion {
 
     /**
      * Méthode d'obtention d'une connexion à la base de données
-     * @return
+     * @return - connexion
      * @throws SQLException
      * @throws ClassNotFoundException
      */
@@ -118,8 +118,8 @@ public class dbConnexion {
 
     /**
      * Méthode d'insertion d'une entrée dans la table Cours
-     * @param idEvenement
-     * @param acronyme
+     * @param idEvenement - id de l'événement
+     * @param acronyme - acronyme du prof
      */
     public void insertionEntreeCours(int idEvenement, String acronyme){
         // Etape 1: Etabliseement d'une connexion
@@ -144,11 +144,11 @@ public class dbConnexion {
 
     /**
      * Méthode d'insertion d'une entrée dans la table Evenement
-     * @param titre
-     * @param dateDebut
-     * @param dateEcheance
-     * @param description
-     * @return
+     * @param titre - titre de l'événement
+     * @param dateDebut - date de début de l'événement
+     * @param dateEcheance - date de fin de l'événement
+     * @param description - description de l'événement
+     * @return - id généré ou erreur -1
      */
     public int insertionEntreeEvenement(String titre, String dateDebut, String dateEcheance, String description){
         // Etape 1: Etablissement d'une connexion
@@ -183,7 +183,7 @@ public class dbConnexion {
 
     /**
      * Méthode d'impression d'une exception SQL
-     * @param ex
+     * @param ex - exception reçue
      */
     public static void afficheExceptionSQL(SQLException ex) {
         for (Throwable e: ex) {

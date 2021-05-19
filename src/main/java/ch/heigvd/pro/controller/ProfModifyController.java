@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class ProfModifyController {
     @FXML
@@ -83,7 +82,7 @@ public class ProfModifyController {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez un acronyme", false);
             return false;
-        } else if(!verifyUserEntry.verifyEntryAcronym(acronymeField.getText())) {
+        } else if(!verifyUserEntry.verificationEntreeAcronyme(acronymeField.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "L'acronyme n'est pas au bon format (3 lettres majuscules)", false);
             return false;
@@ -105,7 +104,7 @@ public class ProfModifyController {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une adresse mail", false);
             return false;
-        } else if(!verifyUserEntry.verifyEntryMail(mailField.getText())) {
+        } else if(!verifyUserEntry.verificationEntreeMail(mailField.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "Le mail n'est pas valide", false);
             return false;

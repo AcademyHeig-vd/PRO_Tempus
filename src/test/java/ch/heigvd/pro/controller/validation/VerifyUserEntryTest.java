@@ -41,35 +41,35 @@ class VerifyUserEntryTest {
     @Test
     @DisplayName("verify hour format")
     void verifyEntryHour() {
-        boolean cond = VerifyUserEntry.verifyEntryHour("23:99");
+        boolean cond = VerifyUserEntry.verificationEntreeHeure("23:99");
         assertFalse(cond,"wrong hour setting");
     }
 
     @Test
     @DisplayName("verify hour range")
     void verifyHourBeginSmallerHourEnd() {
-        boolean cond = VerifyUserEntry.verifyHourBeginSmallerHourEnd("23:23","22:22");
+        boolean cond = VerifyUserEntry.verificationHeureDebutPlusPetiteHeureFin("23:23","22:22");
         assertFalse(cond,"wrong hour range");
     }
 
     @Test
     @DisplayName("testing acronyme format")
     void verifyEntryAcronym() {
-        boolean cond = VerifyUserEntry.verifyEntryAcronym("CLNM");
+        boolean cond = VerifyUserEntry.verificationEntreeAcronyme("CLNM");
         assertFalse(cond,"wrong acronym range");
     }
 
     @Test
     @DisplayName("verify emails")
     void verifyEntryMail() {
-        boolean cond = VerifyUserEntry.verifyEntryMail("pro.com");
+        boolean cond = VerifyUserEntry.verificationEntreeMail("pro.com");
         assertFalse(cond,"wrong email format");
     }
 
     @Test
     @DisplayName("verify links")
     void verifyEntryLink() {
-        boolean cond = VerifyUserEntry.verifyEntryLink("this is not a link");
+        boolean cond = VerifyUserEntry.verificationEntreeLien("this is not a link");
         assertFalse(cond,"wrong link format");
     }
 }

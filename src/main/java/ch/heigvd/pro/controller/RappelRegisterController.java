@@ -125,7 +125,7 @@ public class RappelRegisterController {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une heure", false);
             return false;
-        } else if (!verifyUserEntry.verifyEntryHour(heureField.getText())) {
+        } else if (!verifyUserEntry.verificationEntreeHeure(heureField.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "L'heure n'est pas au bon format (HH:MM)", false);
             return false;
@@ -137,7 +137,7 @@ public class RappelRegisterController {
             return false;
         }
 
-        if (!lienField.getText().isEmpty() && !verifyUserEntry.verifyEntryLink(lienField.getText())) {
+        if (!lienField.getText().isEmpty() && !verifyUserEntry.verificationEntreeLien(lienField.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "Le lien nest pas valide", false);
             return false;
