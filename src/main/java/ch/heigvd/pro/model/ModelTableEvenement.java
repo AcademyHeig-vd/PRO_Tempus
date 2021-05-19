@@ -3,10 +3,8 @@ package ch.heigvd.pro.model;
 import ch.heigvd.pro.connexion.dbConnexion;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class ModelTableEvenement {
 
@@ -26,11 +24,11 @@ public class ModelTableEvenement {
     public boolean updateFromDB() throws SQLException, ClassNotFoundException {
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            Connection connection = db.obtConnexion();
 
             // Suppression database
             PreparedStatement stmt = null;
-            stmt = connection.prepareStatement(dbConnexion.UPDATE_QUERY_EVENEMENT);
+            stmt = connection.prepareStatement(dbConnexion.REQUETE_MAJ_EVENEMENT);
 
             stmt.setString(1, titre);
             stmt.setString(2, dateDebut);
@@ -84,8 +82,8 @@ public class ModelTableEvenement {
     public boolean insertEvenementInDB() {
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
-            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_EVEN);
+            Connection connection = db.obtConnexion();
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.REQUETE_INSERTION_EVENEMENT_COURS);
             preparedStatement.setInt(1, this.id);
             preparedStatement.setString(2, this.titre);
             preparedStatement.setString(3, this.dateDebut);
@@ -96,7 +94,7 @@ public class ModelTableEvenement {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            dbConnexion.printSQLException(e);
+            dbConnexion.afficheExceptionSQL(e);
             return false;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -107,10 +105,10 @@ public class ModelTableEvenement {
         try {
             // Connexion a la database
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            Connection connection = db.obtConnexion();
             // Suppression database
             PreparedStatement stmt = null;
-            stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_COURS);
+            stmt = connection.prepareStatement(dbConnexion.REQUETE_SUPPRESSION_COURS);
             stmt.setInt(1, id);
             stmt.execute();
             return true;

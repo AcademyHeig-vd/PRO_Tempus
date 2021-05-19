@@ -1,7 +1,6 @@
 package ch.heigvd.pro.model;
 
 import ch.heigvd.pro.connexion.dbConnexion;
-import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -63,19 +62,19 @@ public class ModelTablePeriode {
      */
     public void deleteFromDB() throws SQLException, ClassNotFoundException {
         dbConnexion db = new dbConnexion();
-        Connection connection = db.getConnexion();
+        Connection connection = db.obtConnexion();
         PreparedStatement stmt = null;
-        stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_PERIODE);
+        stmt = connection.prepareStatement(dbConnexion.REQUETE_SUPPRESSION_PERIODE);
         stmt.setInt(1, id);
         stmt.execute();
     }
 
     public void updateFromDB() throws SQLException, ClassNotFoundException{
         dbConnexion db = new dbConnexion();
-        Connection connection = db.getConnexion();
+        Connection connection = db.obtConnexion();
 
         // Step 2:Create a statement using connection object
-        PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.UPDATE_QUERY_PERIODE);
+        PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.REQUETE_MAJ_PERIODE);
         preparedStatement.setInt(1, idCours);
         preparedStatement.setString(2, jourSemaine);
         preparedStatement.setString(3, heureDebut);
@@ -94,9 +93,9 @@ public class ModelTablePeriode {
     public static ArrayList<ModelTablePeriode> getAllPeriodeFromDB() throws SQLException, ClassNotFoundException {
         ArrayList<ModelTablePeriode> periodes = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.obtConnexion();
 
-        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_PERIODE);
+        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.REQUETE_SELECTION_TOUS_PERIODES);
         while (rs.next()) {
             ModelTablePeriode periode = new ModelTablePeriode(rs.getInt("idPeriode"),
                     rs.getString("titre"),
@@ -113,9 +112,9 @@ public class ModelTablePeriode {
     public static ArrayList<ModelTablePeriode> getAllPeriodeIn(Date day) throws SQLException, ClassNotFoundException {
         ArrayList<ModelTablePeriode> periodes = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.obtConnexion();
 
-        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.SELECT_QUERY_ALL_PERIODE_BETWEEN);
+        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.REQUETE_SELECTION_TOUS_PERIODES_ENTRE);
 
         preparedStatement.setString(1, day.toString()); //date du debut
         System.out.println(preparedStatement);
@@ -147,9 +146,9 @@ public class ModelTablePeriode {
         // try-with-resource statement will auto close the connection.
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            Connection connection = db.obtConnexion();
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_PERIODE);
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.REQUETE_INSERTION_PERIODE);
             preparedStatement.setInt(1, idCours);
             preparedStatement.setString(2, jourSemaine);
             preparedStatement.setString(3, heureDebut);
@@ -160,7 +159,7 @@ public class ModelTablePeriode {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            dbConnexion.printSQLException(e);
+            dbConnexion.afficheExceptionSQL(e);
             return false;
         }
         catch (ClassNotFoundException e){

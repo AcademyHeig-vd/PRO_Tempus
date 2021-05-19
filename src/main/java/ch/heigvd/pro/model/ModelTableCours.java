@@ -36,9 +36,9 @@ public class ModelTableCours {
         ArrayList<ModelTableCours> cours = new ArrayList<>();
 
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.obtConnexion();
 
-        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_COURS);
+        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.REQUETE_SUPPRESSION_TOUS_COURS);
 
         while (rs.next()) {
             cours.add(new ModelTableCours(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateDebut"), rs.getString("dateEcheance"), rs.getString("description"), rs.getString("acronyme")));
@@ -50,11 +50,11 @@ public class ModelTableCours {
         try {
             new ModelTableEvenement(idEvenement, titre, dateDebut, dateEcheance, description).updateFromDB();
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            Connection connection = db.obtConnexion();
 
             // Suppression database
             PreparedStatement stmt = null;
-            stmt = connection.prepareStatement(dbConnexion.UPDATE_QUERY_COURS);
+            stmt = connection.prepareStatement(dbConnexion.REQUETE_MAJ_COURS);
             stmt.setString(1, acronyme);
             stmt.setInt(2, idEvenement);
             stmt.execute();
@@ -73,10 +73,10 @@ public class ModelTableCours {
       try {
           // Connexion a la database
           dbConnexion db = new dbConnexion();
-          Connection connection = db.getConnexion();
+          Connection connection = db.obtConnexion();
           // Suppression database
           PreparedStatement stmt = null;
-          stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_COURS);
+          stmt = connection.prepareStatement(dbConnexion.REQUETE_SUPPRESSION_COURS);
           stmt.setInt(1, idEvenement);
           stmt.execute();
           return true;
@@ -95,8 +95,8 @@ public class ModelTableCours {
     public static boolean insertCoursInDB(int idEvenement, String acronyme)  {
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
-            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_COURS);
+            Connection connection = db.obtConnexion();
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.REQUETE_INSERTION_COURS);
             preparedStatement.setInt(1, idEvenement);
             preparedStatement.setString(2, acronyme);
 
@@ -104,7 +104,7 @@ public class ModelTableCours {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            dbConnexion.printSQLException(e);
+            dbConnexion.afficheExceptionSQL(e);
             return false;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

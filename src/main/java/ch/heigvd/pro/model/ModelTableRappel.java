@@ -1,7 +1,6 @@
 package ch.heigvd.pro.model;
 
 import ch.heigvd.pro.connexion.dbConnexion;
-import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -28,11 +27,11 @@ public class ModelTableRappel {
     public void updateFromDB() throws SQLException, ClassNotFoundException {
         new ModelTableEvenement(idEvenement,titre,dateEcheance,dateEcheance,description).updateFromDB();
         dbConnexion db = new dbConnexion();
-        Connection connection = db.getConnexion();
+        Connection connection = db.obtConnexion();
 
         // Suppression database
         PreparedStatement stmt = null;
-        stmt = connection.prepareStatement(dbConnexion.UPDATE_QUERY_RAPPEL);
+        stmt = connection.prepareStatement(dbConnexion.REQUETE_MAJ_RAPPEL);
         stmt.setString(1, contenu);
         stmt.setString(2, lien);
         stmt.setString(3, heure);
@@ -47,9 +46,9 @@ public class ModelTableRappel {
     public boolean deleteFromDB()  {
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            Connection connection = db.obtConnexion();
             PreparedStatement stmt = null;
-            stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_RAPPEL);
+            stmt = connection.prepareStatement(dbConnexion.REQUETE_SUPPRESSION_RAPPEL);
             stmt.setInt(1, idEvenement);
             stmt.execute();
         }catch (Exception e){
@@ -67,9 +66,9 @@ public class ModelTableRappel {
     public static ArrayList<ModelTableRappel> selectAllRappelFromDB() throws SQLException, ClassNotFoundException {
         ArrayList<ModelTableRappel> rappels = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.obtConnexion();
 
-        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_RAPPEL);
+        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.REQUETE_SELECTION_TOUS_RAPPELS);
         while(rs.next()){
             rappels.add(new ModelTableRappel(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateEcheance"), rs.getString("heure"), rs.getString("description"), rs.getString("contenu"), rs.getString("lien")));
         }
@@ -79,9 +78,9 @@ public class ModelTableRappel {
     public static ArrayList<ModelEvenement> selectRappelPerDay(Date day) throws SQLException, ClassNotFoundException {
         ArrayList<ModelEvenement> rappels = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.obtConnexion();
 
-        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.SELECT_QUERY_RAPPEL_PER_DAY);
+        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.REQUETE_SELECTION_RAPPEL_PAR_JOUR);
         preparedStatement.setString(1, day.toString()); //date du debut
 
         ResultSet rs = preparedStatement.executeQuery();
@@ -110,10 +109,10 @@ public class ModelTableRappel {
         // try-with-resource statement will auto close the connection.
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            Connection connection = db.obtConnexion();
 
              // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_RAPPEL);
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.REQUETE_INSERTION_RAPPEL);
             preparedStatement.setInt(1, idEvenement);
             preparedStatement.setString(2, contenu);
             preparedStatement.setString(3, lien);
@@ -125,7 +124,7 @@ public class ModelTableRappel {
             return true;
         } catch (SQLException e) {
             // print SQL exception information
-            dbConnexion.printSQLException(e);
+            dbConnexion.afficheExceptionSQL(e);
             return false;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

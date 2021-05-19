@@ -87,7 +87,7 @@ public class RappelRegisterController {
         dbConnexion db = new dbConnexion();
 
         //TODO : modifier emplacement cette fonction après merge avec Lev
-        int idEvenement = db.insertRecordEvenement(titre, date, date, description);
+        int idEvenement = db.insertionEntreeEvenement(titre, date, date, description);
 
         boolean ok_request = ModelTableRappel.insertRecordRappel(idEvenement, contenu, lien, heure);
         if (ok_request)

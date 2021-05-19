@@ -25,9 +25,9 @@ public class ModelTableCoursEvenement {
     public static ArrayList<ModelTableCoursEvenement> selectAllFromDB() throws SQLException, ClassNotFoundException {
         ArrayList<ModelTableCoursEvenement> coursEvenements = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.obtConnexion();
 
-        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_EVENEMENT_COURS);
+        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.REQUETE_SELECTION_TOUS_EVENEMENT_COURS);
 
         while(rs.next()){
             coursEvenements.add(new ModelTableCoursEvenement(rs.getInt("idEvenement"),

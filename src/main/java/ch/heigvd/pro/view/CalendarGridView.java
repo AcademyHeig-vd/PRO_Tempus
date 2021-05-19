@@ -2,7 +2,6 @@ package ch.heigvd.pro.view;
 
 import ch.heigvd.pro.connexion.dbConnexion;
 import ch.heigvd.pro.model.ModelEvenement;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -116,9 +115,9 @@ public class CalendarGridView {
     public static ArrayList<ModelEvenement> selectRappelPerMonth(YearMonth yearMonth) throws SQLException, ClassNotFoundException {
         ArrayList<ModelEvenement> rappels = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.obtConnexion();
 
-        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.SELECT_QUERY_RAPPEL_PER_MONTH);
+        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.REQUETE_SELECTION_RAPPEL_PAR_MOIS);
 
         preparedStatement.setString(1, String.valueOf(yearMonth.getMonth().getValue())); //date du debut
 

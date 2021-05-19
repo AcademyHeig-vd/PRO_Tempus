@@ -26,11 +26,11 @@ public class ModelTableProf {
     public static boolean findByAcro(String acronyme) throws SQLException, ClassNotFoundException {
         ArrayList<ModelTableProf> profs = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.obtConnexion();
 
 
         PreparedStatement stmt = null;
-        stmt = conn.prepareStatement(dbConnexion.SELECT_QUERY_ACRONYM_ONE_PROF);
+        stmt = conn.prepareStatement(dbConnexion.REQUETE_SELECTION_ACRONYME_UN_PROF);
         stmt.setString(1, acronyme);
         stmt.execute();
         ResultSet rs =stmt.getResultSet();
@@ -44,10 +44,10 @@ public class ModelTableProf {
         try{
         // Connexion a la database
         dbConnexion db = new dbConnexion();
-        Connection connection = db.getConnexion();
+        Connection connection = db.obtConnexion();
 
         PreparedStatement stmt = null;
-        stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_PROF);
+        stmt = connection.prepareStatement(dbConnexion.REQUETE_SUPPRESSION_PROF);
         stmt.setString(1, acro);
         stmt.execute();
         return  true;
@@ -60,10 +60,10 @@ public class ModelTableProf {
     public boolean updateFromDB() {
        try{
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            Connection connection = db.obtConnexion();
 
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.UPDATE_QUERY_PROF);
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.REQUETE_MAJ_PROF);
             preparedStatement.setString(1, acronyme);
             preparedStatement.setString(2, nom);
             preparedStatement.setString(3, prenom);
@@ -86,9 +86,9 @@ public class ModelTableProf {
     public static ArrayList<ModelTableProf> selectAllProfFromDB() throws SQLException, ClassNotFoundException {
         ArrayList<ModelTableProf> profs = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.obtConnexion();
 
-        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_PROF);
+        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.REQUETE_SELECTION_TOUS_PROFS);
 
         while(rs.next()){
             profs.add(new ModelTableProf(rs.getString("acronyme"), rs.getString("nom"), rs.getString("prenom"),
@@ -111,10 +111,10 @@ public class ModelTableProf {
         // try-with-resource statement will auto close the connection.
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            Connection connection = db.obtConnexion();
 
              // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_PROF);
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.REQUETE_INSERTION_PROF);
             preparedStatement.setString(1, acronyme);
             preparedStatement.setString(2, nom);
             preparedStatement.setString(3, prenom);
@@ -125,7 +125,7 @@ public class ModelTableProf {
             return true;
         } catch (SQLException e) {
             // print SQL exception information
-            dbConnexion.printSQLException(e);
+            dbConnexion.afficheExceptionSQL(e);
             return false;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

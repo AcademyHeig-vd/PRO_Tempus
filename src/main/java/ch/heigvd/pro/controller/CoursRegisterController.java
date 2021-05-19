@@ -8,7 +8,6 @@ import ch.heigvd.pro.model.ModelTableCoursProf;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Window;
@@ -61,7 +60,7 @@ public class CoursRegisterController {
 
         dbConnexion db = new dbConnexion();
         //TODO : à déplacer quand merge avec Lev
-        int idEvenement = db.insertRecordEvenement(titre, dateDebut, dateEcheance, description);
+        int idEvenement = db.insertionEntreeEvenement(titre, dateDebut, dateEcheance, description);
         //db.insertRecordCours(idEvenement, acronyme);
         boolean ok_request = ModelTableCours.insertCoursInDB(idEvenement, acronyme);
         if (ok_request)
