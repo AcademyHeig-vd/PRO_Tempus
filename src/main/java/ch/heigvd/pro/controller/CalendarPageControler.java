@@ -1,10 +1,19 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : CalendarPageControler.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page de calendrier
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -22,7 +31,6 @@ public class CalendarPageControler {
 
     private static final String FXML_SOURCE = "view/calendarPage.fxml";
     private YearMonth currentYearMonth; //variable pour stocker le mois/année courants
-
 
 
     @FXML
@@ -52,19 +60,26 @@ public class CalendarPageControler {
     private
     ImageView previousMonth; //label du mois et année courants
 
-
+    /**
+     * Constructeur
+     */
     CalendarPageControler(){}
 
-    //TODO faire la requête par mois
+    /**
+     * Méthode d'initialisation utilisée par le FXML
+     * @throws IOException
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void initialize() throws IOException, SQLException, ClassNotFoundException {
         disableAllButtons();
         currentYearMonth = YearMonth.now();
-        //ajout du calendrier à la page
+        // Ajout du calendrier à la page
         CalendarGridView calendar = new CalendarGridView(currentYearMonth);
         calendarSpace.getChildren().add(calendar.getView());
 
-        //Création des actions des labels
-        //mois précédent
+        // Création des actions des labels
+        // Mois précédent
         previousMonth.setOnMouseClicked(e -> {
             try {
                 addOperationMonths(-1);
@@ -72,7 +87,7 @@ public class CalendarPageControler {
                 ex.printStackTrace();
             }
         });
-        //mois suivant
+        // Mois suivant
         nextMonth.setOnMouseClicked(e -> {
             try {
                 addOperationMonths(1);
@@ -80,7 +95,7 @@ public class CalendarPageControler {
                 ex.printStackTrace();
             }
         });
-        //année précédente
+        // Année précédente
         previousYear.setOnMouseClicked(e -> {
             try {
                 addOperationMonths(-12);
@@ -88,7 +103,7 @@ public class CalendarPageControler {
                 ex.printStackTrace();
             }
         });
-        //mois suivant
+        // Année suivante
         nextYear.setOnMouseClicked(e -> {
             try {
                 addOperationMonths(12);
@@ -96,7 +111,7 @@ public class CalendarPageControler {
                 ex.printStackTrace();
             }
         });
-        //menu principal
+        // Menu principal
         toMainMenu.setOnAction(e -> {
             try {
                 switchToPrimary();
@@ -112,6 +127,11 @@ public class CalendarPageControler {
         enableAllButtons();
     }
 
+    /**
+     * Méthode chargeant un document FXML
+     * @return
+     * @throws IOException
+     */
     public static HBox loadFromFXMLDocument() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         CalendarPageControler cpc = new CalendarPageControler();
@@ -122,24 +142,24 @@ public class CalendarPageControler {
 
     /**
      * Ajoute un nombre de mois au calendrier en le mettant à jour
-     * @param monthsToAdd , le nombre de mois à ajouter
+     * @param monthsToAdd - le nombre de mois à ajouter
      * @throws IOException
      */
     private void addOperationMonths(int monthsToAdd) throws IOException, SQLException, ClassNotFoundException {
-        //nettoie le calendrier
+        // Nettoie le calendrier
         calendarSpace.getChildren().clear();
-        //remet le nouveau mois
+        // Remet le nouveau mois
         currentYearMonth = monthsToAdd > 0 ?
                 currentYearMonth.plusMonths(monthsToAdd) : currentYearMonth.minusMonths(-monthsToAdd);
         monthLabel.setText(currentYearMonth.getMonth().getDisplayName(TextStyle.FULL, Locale.FRANCE));
         yearLabel.setText(String.valueOf(currentYearMonth.getYear()));
 
-        //ajoute la nouvelle grid
+        // Ajoute la nouvelle grid
         calendarSpace.getChildren().add(new CalendarGridView(currentYearMonth).getView());
     }
 
     /**
-     * passe à la vue primaire (menu principal)
+     * Passe à la vue primaire (menu principal)
      * @throws IOException
      */
     @FXML
@@ -147,6 +167,9 @@ public class CalendarPageControler {
         Tempus.changeTab(0);
     }
 
+    /**
+     * Méthode pour désactiver tous les boutons
+     */
     private void disableAllButtons(){
         toMainMenu.setDisable(true);
         previousMonth.setDisable(true);
@@ -155,6 +178,9 @@ public class CalendarPageControler {
         nextYear.setDisable(true);
     }
 
+    /**
+     * Méthode pour activer tous les boutons
+     */
     private void enableAllButtons(){
         toMainMenu.setDisable(false);
         previousMonth.setDisable(false);
