@@ -4,7 +4,7 @@
  Fichier     : CoursAddController.java
  Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
  Date        : 20.05.2021
- But         : Controlleur pour la page d'ajout de cours'
+ But         : Controlleur pour la page d'ajout de cours
  Remarque(s) : -
  -----------------------------------------------------------------------------------
 */
