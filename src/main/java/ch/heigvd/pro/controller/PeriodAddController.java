@@ -97,7 +97,7 @@ public class PeriodAddController {
         }
         FXMLLoader loader = new FXMLLoader();
         PeriodeModifyController periodModifyController = new PeriodeModifyController();
-        periodModifyController.setPeriodeToModify(selectedIndex);
+        periodModifyController.setPeriodToModify(selectedIndex);
         loader.setController(periodModifyController);
         loader.setLocation(Tempus.class.getResource("view/periodeModify.fxml"));
         Tempus.getScene().setRoot(loader.load());
