@@ -4,7 +4,7 @@
  Fichier     : ProfModifyController.java
  Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
  Date        : 20.05.2021
- But         : Controlleur pour la page de modification des professeursm
+ But         : Controlleur pour la page de modification des professeurs
  Remarque(s) : -
  -----------------------------------------------------------------------------------
 */
