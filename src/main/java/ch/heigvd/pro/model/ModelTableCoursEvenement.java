@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : ModelTableCoursEvenement.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Modèle pour les événements de type cours
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.model;
 
 import ch.heigvd.pro.connexion.dbConnexion;
@@ -11,9 +22,14 @@ public class ModelTableCoursEvenement {
     private int idEvenement;
     private String titre;
 
-    public ModelTableCoursEvenement(int idEvenement, String titre) {
-        this.idEvenement = idEvenement;
-        this.titre = titre;
+    /**
+     * Constructeur
+     * @param idEvent
+     * @param title
+     */
+    public ModelTableCoursEvenement(int idEvent, String title) {
+        this.idEvenement = idEvent;
+        this.titre = title;
     }
 
     /**
@@ -23,19 +39,22 @@ public class ModelTableCoursEvenement {
      * @throws ClassNotFoundException classe not found
      */
     public static ArrayList<ModelTableCoursEvenement> selectAllFromDB() throws SQLException, ClassNotFoundException {
-        ArrayList<ModelTableCoursEvenement> coursEvenements = new ArrayList<>();
+        ArrayList<ModelTableCoursEvenement> eventsLessons = new ArrayList<>();
         dbConnexion db = new dbConnexion();
         Connection conn = db.getConnection();
 
         ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_EVENTS_LESSON);
 
         while(rs.next()){
-            coursEvenements.add(new ModelTableCoursEvenement(rs.getInt("idEvenement"),
+            eventsLessons.add(new ModelTableCoursEvenement(rs.getInt("idEvenement"),
                     rs.getString("titre")));
         }
-        return coursEvenements;
+        return eventsLessons;
     }
 
+    /**
+     * Getters et Setters
+     */
     public int getIdEvenement() {
         return idEvenement;
     }
