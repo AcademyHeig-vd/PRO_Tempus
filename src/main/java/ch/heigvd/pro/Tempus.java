@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : Tempus.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Classe principale de l'application
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro;
 
 import ch.heigvd.pro.controller.CalendarPageControler;
@@ -7,7 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -25,7 +35,11 @@ public class Tempus extends Application {
     private static Tab rappel;
     private static Tab calendrier;
 
-
+    /**
+     * Méthode de démarrage de l'application
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         stage.setTitle("view/Tempus");
@@ -63,6 +77,11 @@ public class Tempus extends Application {
         //stage.getIcons().add(new Image("file:images/logo.png"));
         stage.show();
     }
+
+    /**
+     * Méthode de mise à jour des onglets
+     * @throws IOException
+     */
     public static void updateTab() throws IOException {
         main.setContent(loadFXML("view/primary"));
         cours.setContent(loadFXML("view/coursAdd"));
@@ -72,6 +91,11 @@ public class Tempus extends Application {
         calendrier.setContent(CalendarPageControler.loadFromFXMLDocument());
     }
 
+    /**
+     * Méthode lorsque l'on change d'onglet
+     * @param index
+     * @throws IOException
+     */
     public static void changeTab(int index) throws IOException {
         scene.setRoot(root);
         tabPane.getSelectionModel().select(index);
@@ -91,6 +115,10 @@ public class Tempus extends Application {
         return scene;
     }
 
+    /**
+     * Méthode main
+     * @param args
+     */
     public static void main(String[] args) {
         launch();
     }
