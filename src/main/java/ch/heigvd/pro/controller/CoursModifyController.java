@@ -196,7 +196,7 @@ public class CoursModifyController {
         Tempus.changeTab(1);
     }
 
-    public void setCoursToModify(ModelTableCours coursToModify) {
+    public void setLessonToModify(ModelTableCours coursToModify) {
         this.coursToModify = coursToModify;
     }
 

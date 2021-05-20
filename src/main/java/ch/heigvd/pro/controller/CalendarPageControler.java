@@ -8,6 +8,7 @@
  Remarque(s) : -
  -----------------------------------------------------------------------------------
 */
+
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
@@ -66,11 +67,12 @@ public class CalendarPageControler {
     CalendarPageControler(){}
 
     /**
-     * Méthode d'initialisation utilisée par le FXML
+     * Méthode automatiquement appelée lors de l'invocation du FXML, permet de set les données dans la table
      * @throws IOException
      * @throws SQLException
      * @throws ClassNotFoundException
      */
+    @FXML
     public void initialize() throws IOException, SQLException, ClassNotFoundException {
         disableAllButtons();
         currentYearMonth = YearMonth.now();
