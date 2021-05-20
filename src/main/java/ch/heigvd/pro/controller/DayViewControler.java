@@ -73,14 +73,14 @@ public class DayViewControler {
         // Set des valeur du jours
         evenementTable.setItems(modelDay.getReminders());
         dateLabel.setText(Integer.toString(modelDay.getDate().toLocalDate().getDayOfMonth()));
-        nameEvenement.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitre()));
+        nameEvenement.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
 
         evenementTable.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 switchToDetailedView();
             }
         });
-        nameEvenement.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitre()));
+        nameEvenement.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
     }
 
     /**

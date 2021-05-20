@@ -85,8 +85,8 @@ public class DayViewDetailedController {
         returnDate = date;
 
         ModelTableRappel modelTableRappel = new ModelTableRappel(selectedIndex.getId(),
-                selectedIndex.getTitre(), selectedIndex.getEcheance().toString(), selectedIndex.getHeure(),
-                selectedIndex.getDescritpion(), selectedIndex.getContenu(), selectedIndex.getLien());
+                selectedIndex.getTitle(), selectedIndex.getDateEnd().toString(), selectedIndex.getHour(),
+                selectedIndex.getDescription(), selectedIndex.getContent(), selectedIndex.getLink());
 
         FXMLLoader loader = new FXMLLoader();
         RappelModifyController rappelModifyController = new RappelModifyController();
@@ -154,7 +154,7 @@ public class DayViewDetailedController {
         String[] dateSplit = date.toString().split("-");
         titleLabel.setText("Rappels et cours du\n" + dateSplit[2] + "." + dateSplit[1] + "." + dateSplit[0]);
         try {
-            oblist.addAll(ModelEvenement.getAllEvenementPerDay(date));
+            oblist.addAll(ModelEvenement.getAllEventPerDay(date));
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }

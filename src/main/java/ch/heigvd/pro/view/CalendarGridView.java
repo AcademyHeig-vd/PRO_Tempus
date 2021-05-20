@@ -88,7 +88,7 @@ public class CalendarGridView {
                 LocalDate finalCalendarDate = calendarDate;
                 ap.getChildren().add(DayViewControler.loadFromFXML(Date.valueOf(calendarDate),
                         rappels.stream().filter(r ->
-                            r.getEcheance().equals(java.sql.Date.valueOf(finalCalendarDate))
+                            r.getDateEnd().equals(java.sql.Date.valueOf(finalCalendarDate))
                         ).collect(Collectors.toList())));
             }
             if(i>=7){
