@@ -1,7 +1,7 @@
 /*
  -----------------------------------------------------------------------------------
  Laboratoire : PRO - Projet de semestre
- Fichier     : ProfRegisterController.java
+ Fichier     : RappelAddController.java
  Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
  Date        : 20.05.2021
  But         : Controlleur pour la page principale des rappels
@@ -99,7 +99,7 @@ public class RappelAddController {
         }
         FXMLLoader loader = new FXMLLoader();
         RappelModifyController rappelModifyController = new RappelModifyController();
-        rappelModifyController.setRappelAModifier(selectedIndex);
+        rappelModifyController.setReminderToModify(selectedIndex);
         loader.setController(rappelModifyController);
         loader.setLocation(Tempus.class.getResource("view/rappelModify.fxml"));
         Tempus.getScene().setRoot(loader.load());

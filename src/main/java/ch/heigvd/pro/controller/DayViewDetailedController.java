@@ -90,7 +90,7 @@ public class DayViewDetailedController {
 
         FXMLLoader loader = new FXMLLoader();
         RappelModifyController rappelModifyController = new RappelModifyController();
-        rappelModifyController.setRappelAModifier(modelTableRappel);
+        rappelModifyController.setReminderToModify(modelTableRappel);
         loader.setController(rappelModifyController);
         loader.setLocation(Tempus.class.getResource("view/rappelModify.fxml"));
         Tempus.getScene().setRoot(loader.load());

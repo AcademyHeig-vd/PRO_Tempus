@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : RappelModifyController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page de modification des rappels
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
@@ -36,21 +47,24 @@ public class RappelModifyController {
     @FXML
     private Button submitButton;
 
-    ModelTableRappel rappelAModifier;
+    ModelTableRappel reminderToModify;
 
     private final DateTimeFormatter formatterFrench = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     private final DateTimeFormatter formatterEnglish = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    /**
+     * Méthode automatiquement appelée lors de l'invocation du FXML, permet de set les données dans la table
+     */
     @FXML
     public void initialize(){
-        titreField.setText(rappelAModifier.getTitre());
-        heureField.setText(rappelAModifier.getHeure());
-        descriptionField.setText(rappelAModifier.getDescription());
-        contenuField.setText(rappelAModifier.getContenu());
-        lienField.setText(rappelAModifier.getLien());
+        titreField.setText(reminderToModify.getTitre());
+        heureField.setText(reminderToModify.getHeure());
+        descriptionField.setText(reminderToModify.getDescription());
+        contenuField.setText(reminderToModify.getContenu());
+        lienField.setText(reminderToModify.getLien());
 
         Locale.setDefault(Locale.FRANCE);
-        LocalDate date = LocalDate.parse(rappelAModifier.getDateEcheance(), formatterFrench);
+        LocalDate date = LocalDate.parse(reminderToModify.getDateEcheance(), formatterFrench);
         datePicker.setShowWeekNumbers(false);
         datePicker.setEditable(false);
         datePicker.setValue(date);
@@ -86,16 +100,16 @@ public class RappelModifyController {
 
         if(!inputValid()) return;
 
-        rappelAModifier.setTitre(titreField.getText());
-        rappelAModifier.setDateEcheance(datePicker.getValue().format(formatterEnglish));
-        rappelAModifier.setHeure( heureField.getText());
-        rappelAModifier.setDescription(descriptionField.getText());
-        rappelAModifier.setContenu(contenuField.getText());
-        rappelAModifier.setLien(lienField.getText());
+        reminderToModify.setTitre(titreField.getText());
+        reminderToModify.setDateEcheance(datePicker.getValue().format(formatterEnglish));
+        reminderToModify.setHeure( heureField.getText());
+        reminderToModify.setDescription(descriptionField.getText());
+        reminderToModify.setContenu(contenuField.getText());
+        reminderToModify.setLien(lienField.getText());
 
         boolean ok_request;
         try {
-            rappelAModifier.updateFromDB();
+            reminderToModify.updateFromDB();
             ok_request = true;
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
@@ -192,8 +206,11 @@ public class RappelModifyController {
         }
     }
 
-    public void setRappelAModifier(ModelTableRappel rappelAModifier) {
-        this.rappelAModifier = rappelAModifier;
+    /**
+     * Setter
+     */
+    public void setReminderToModify(ModelTableRappel reminderToModify) {
+        this.reminderToModify = reminderToModify;
     }
 
 }
