@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : ProfModifyController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page de modification des professeursm
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
@@ -24,14 +35,14 @@ public class ProfModifyController {
     @FXML
     private Button submitButton;
 
-    private ModelTableProf profAModifier;
+    private ModelTableProf profToModify;
 
     @FXML
     public void initialize(){
-        acronymeField.setText(profAModifier.getAcronyme());
-        nomField.setText(profAModifier.getNom());
-        prenomField.setText(profAModifier.getPrenom());
-        mailField.setText(profAModifier.getMail());
+        acronymeField.setText(profToModify.getAcronyme());
+        nomField.setText(profToModify.getNom());
+        prenomField.setText(profToModify.getPrenom());
+        mailField.setText(profToModify.getMail());
     }
 
     /**
@@ -45,15 +56,15 @@ public class ProfModifyController {
 
         if(!inputValid()) return;
 
-        profAModifier.setOldAcronyme(profAModifier.getAcronyme());
-        profAModifier.setAcronyme(acronymeField.getText());
-        profAModifier.setNom(nomField.getText());
-        profAModifier.setPrenom(prenomField.getText());
-        profAModifier.setMail(mailField.getText());
+        profToModify.setOldAcronyme(profToModify.getAcronyme());
+        profToModify.setAcronyme(acronymeField.getText());
+        profToModify.setNom(nomField.getText());
+        profToModify.setPrenom(prenomField.getText());
+        profToModify.setMail(mailField.getText());
 
         boolean ok_request;
         try {
-            profAModifier.updateFromDB();
+            profToModify.updateFromDB();
             ok_request = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,7 +153,10 @@ public class ProfModifyController {
         if(menu) Tempus.changeTab(3);
     }
 
+    /**
+     * Setter
+     */
     public void setProfToModify(ModelTableProf profAModifier) {
-        this.profAModifier = profAModifier;
+        this.profToModify = profAModifier;
     }
 }
