@@ -36,7 +36,7 @@ class ModelTableCoursTest {
     @Order(2)
     @DisplayName("Verify select all course result")
     void getAllCoursFromDB() throws SQLException, ClassNotFoundException {
-        int length=ModelTableCours.getAllCoursFromDB().size();
+        int length=ModelTableCours.getAllLessonsFromDB().size();
         //min 1 course suppose to insered
         assertTrue(length>0,"problem with get all cours");
     }

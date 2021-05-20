@@ -106,7 +106,7 @@ public class CoursAddController {
     @FXML
     private void initialize() {
         try {
-            oblist.addAll(ModelTableCours.getAllCoursFromDB());
+            oblist.addAll(ModelTableCours.getAllLessonsFromDB());
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }

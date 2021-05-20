@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : ModelTableCours.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Modèle pour les cours
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.model;
 
 import ch.heigvd.pro.connexion.dbConnexion;
@@ -13,17 +24,17 @@ public class ModelTableCours {
 
     String titre, dateDebut, dateEcheance, description, acronyme;
 
-    public ModelTableCours(int idEvenement, String titre, String dateDebut, String dateEcheance, String description, String acronyme) {
-        this.idEvenement = idEvenement;
-        this.titre = titre;
-        String[] dateDebutSeparee = dateDebut.split("-");
-        String[] dateEcheanceSeparee = dateEcheance.split("-");
-        dateDebut = dateDebutSeparee[2] + "." + dateDebutSeparee[1] + "." + dateDebutSeparee[0];
-        dateEcheance = dateEcheanceSeparee[2] + "." + dateEcheanceSeparee[1] + "." + dateEcheanceSeparee[0];
-        this.dateDebut = dateDebut;
-        this.dateEcheance = dateEcheance;
+    public ModelTableCours(int idEvent, String title, String dateBegin, String dateEnd, String description, String acronym) {
+        this.idEvenement = idEvent;
+        this.titre = title;
+        String[] dateBeginSplitted = dateBegin.split("-");
+        String[] dateEndSplitted = dateEnd.split("-");
+        dateBegin = dateBeginSplitted[2] + "." + dateBeginSplitted[1] + "." + dateBeginSplitted[0];
+        dateEnd = dateEndSplitted[2] + "." + dateEndSplitted[1] + "." + dateEndSplitted[0];
+        this.dateDebut = dateBegin;
+        this.dateEcheance = dateEnd;
         this.description = description;
-        this.acronyme = acronyme;
+        this.acronyme = acronym;
     }
 
     /**
@@ -32,8 +43,8 @@ public class ModelTableCours {
      * @throws SQLException si la base de donnée est invalide
      * @throws ClassNotFoundException la non trouvée
      */
-    public static ArrayList<ModelTableCours> getAllCoursFromDB() throws SQLException, ClassNotFoundException {
-        ArrayList<ModelTableCours> cours = new ArrayList<>();
+    public static ArrayList<ModelTableCours> getAllLessonsFromDB() throws SQLException, ClassNotFoundException {
+        ArrayList<ModelTableCours> lessons = new ArrayList<>();
 
         dbConnexion db = new dbConnexion();
         Connection conn = db.getConnection();
@@ -41,11 +52,15 @@ public class ModelTableCours {
         ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_LESSONS);
 
         while (rs.next()) {
-            cours.add(new ModelTableCours(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateDebut"), rs.getString("dateEcheance"), rs.getString("description"), rs.getString("acronyme")));
+            lessons.add(new ModelTableCours(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateDebut"), rs.getString("dateEcheance"), rs.getString("description"), rs.getString("acronyme")));
         }
-        return cours;
+        return lessons;
     }
 
+    /**
+     * Méthode permettant la mise à jour d'un cours
+     * @return
+     */
     public boolean updateFromDB()  {
         try {
             new ModelTableEvenement(idEvenement, titre, dateDebut, dateEcheance, description).updateFromDB();
@@ -112,6 +127,9 @@ public class ModelTableCours {
         }
     }
 
+    /**
+     * Getters et Setters
+     */
     public int getIdEvenement() {
         return idEvenement;
     }
