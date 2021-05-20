@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : DayViewControler.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page de vue par jour des rappels
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.model.ModelEvenement;
@@ -16,8 +27,6 @@ import ch.heigvd.pro.model.ModelDay;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class DayViewControler {
@@ -55,6 +64,8 @@ public class DayViewControler {
 
     /**
      * Initialise la vue du jour
+     * @throws SQLException
+     * @throws ClassNotFoundException
      */
     @FXML
     public void initialize() throws SQLException, ClassNotFoundException {
@@ -72,6 +83,10 @@ public class DayViewControler {
         nameEvenement.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitre()));
     }
 
+    /**
+     * Méthode de vue utilisée par FXML
+     * @throws IOException
+     */
     @FXML
     public void viewDetailed() throws IOException {
         FXMLLoader loader = new FXMLLoader();
