@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : CalendarGridView.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Vue globale
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.view;
 
 import ch.heigvd.pro.connexion.dbConnexion;
@@ -73,7 +84,7 @@ public class CalendarGridView {
         int i = 0;
 
         // Récupère les rappels du mois
-        ArrayList <ModelEvenement> rappels = selectRappelPerMonth(yearMonth);
+        ArrayList <ModelEvenement> rappels = selectRemindersPerMonth(yearMonth);
 
         // Rempli le calendrier avec les jours
         for (AnchorPane ap : allCalendarDays) {
@@ -100,6 +111,9 @@ public class CalendarGridView {
     }
 
 
+    /**
+     * Getters et Setters
+     */
     public VBox getView() {
         return view;
     }
@@ -112,7 +126,14 @@ public class CalendarGridView {
         this.allCalendarDays = allCalendarDays;
     }
 
-    public static ArrayList<ModelEvenement> selectRappelPerMonth(YearMonth yearMonth) throws SQLException, ClassNotFoundException {
+    /**
+     * Méthode permettant d'obtenir les rappels par mois
+     * @param yearMonth
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public static ArrayList<ModelEvenement> selectRemindersPerMonth(YearMonth yearMonth) throws SQLException, ClassNotFoundException {
         ArrayList<ModelEvenement> rappels = new ArrayList<>();
         dbConnexion db = new dbConnexion();
         Connection conn = db.getConnection();
