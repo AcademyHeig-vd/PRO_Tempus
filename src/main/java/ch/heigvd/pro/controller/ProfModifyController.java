@@ -142,7 +142,7 @@ public class ProfModifyController {
         if(menu) Tempus.changeTab(3);
     }
 
-    public void setProfAModifier(ModelTableProf profAModifier) {
+    public void setProfToModify(ModelTableProf profAModifier) {
         this.profAModifier = profAModifier;
     }
 }
