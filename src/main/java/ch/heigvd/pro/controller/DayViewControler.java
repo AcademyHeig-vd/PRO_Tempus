@@ -71,7 +71,7 @@ public class DayViewControler {
     public void initialize() throws SQLException, ClassNotFoundException {
         ModelDay modelDay = new ModelDay(this.date);
         // Set des valeur du jours
-        evenementTable.setItems(modelDay.getRappels());
+        evenementTable.setItems(modelDay.getReminders());
         dateLabel.setText(Integer.toString(modelDay.getDate().toLocalDate().getDayOfMonth()));
         nameEvenement.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitre()));
 
