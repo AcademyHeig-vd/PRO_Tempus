@@ -102,7 +102,7 @@ public class RappelRegisterController {
 
         int idEvent = db.insertEntryEvent(title, date, date, description);
 
-        boolean ok_request = ModelTableRappel.insertRecordRappel(idEvent, content, link, hour);
+        boolean ok_request = ModelTableRappel.insertRecordReminder(idEvent, content, link, hour);
         if (ok_request)
             showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
                     "La nouvelle entrée a été effectuée !", true);

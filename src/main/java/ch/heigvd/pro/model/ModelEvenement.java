@@ -56,7 +56,7 @@ public class ModelEvenement {
      * @throws ClassNotFoundException
      */
     public static ArrayList<ModelEvenement> getAllEventPerDay(Date day) throws SQLException, ClassNotFoundException {
-        ArrayList<ModelEvenement> events = ModelTableRappel.selectRappelPerDay(day);
+        ArrayList<ModelEvenement> events = ModelTableRappel.selectRemindersPerDay(day);
         for(ModelEvenement event : events) {
             event.typeEvent = "Rappel";
         }

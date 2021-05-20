@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : ModelTableRappel.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Modèle pour les rappels
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.model;
 
 import ch.heigvd.pro.connexion.dbConnexion;
@@ -10,20 +21,35 @@ public class ModelTableRappel {
 
     String titre, dateEcheance, heure, description, contenu, lien;
 
-    public ModelTableRappel(int idEvenement, String titre, String date, String heure, String description, String contenu, String lien) {
-        this.idEvenement = idEvenement;
-        this.titre = titre;
-        String[] dateEcheanceSeparee = date.split("-");
-        date = dateEcheanceSeparee[2] + "." + dateEcheanceSeparee[1] + "." + dateEcheanceSeparee[0];
+    /**
+     * Constructeur
+     * @param idEvent
+     * @param title
+     * @param date
+     * @param hour
+     * @param description
+     * @param content
+     * @param link
+     */
+    public ModelTableRappel(int idEvent, String title, String date, String hour, String description, String content, String link) {
+        this.idEvenement = idEvent;
+        this.titre = title;
+        String[] dateEndSplitted = date.split("-");
+        date = dateEndSplitted[2] + "." + dateEndSplitted[1] + "." + dateEndSplitted[0];
         this.dateEcheance = date;
-        String[] heureSeparee = heure.split(":");
-        heure = heureSeparee[0] + ":" + heureSeparee[1];
-        this.heure = heure;
+        String[] hourSplitted = hour.split(":");
+        hour = hourSplitted[0] + ":" + hourSplitted[1];
+        this.heure = hour;
         this.description = description;
-        this.contenu = contenu;
-        this.lien = lien;
+        this.contenu = content;
+        this.lien = link;
     }
 
+    /**
+     * Mise à jour d'un rappel dans la bdd
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void updateFromDB() throws SQLException, ClassNotFoundException {
         new ModelTableEvenement(idEvenement,titre,dateEcheance,dateEcheance,description).updateFromDB();
         dbConnexion db = new dbConnexion();
@@ -64,19 +90,26 @@ public class ModelTableRappel {
      * @throws ClassNotFoundException classe non trouvée
      */
     public static ArrayList<ModelTableRappel> selectAllRappelFromDB() throws SQLException, ClassNotFoundException {
-        ArrayList<ModelTableRappel> rappels = new ArrayList<>();
+        ArrayList<ModelTableRappel> reminders = new ArrayList<>();
         dbConnexion db = new dbConnexion();
         Connection conn = db.getConnection();
 
         ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_REMINDERS);
         while(rs.next()){
-            rappels.add(new ModelTableRappel(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateEcheance"), rs.getString("heure"), rs.getString("description"), rs.getString("contenu"), rs.getString("lien")));
+            reminders.add(new ModelTableRappel(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateEcheance"), rs.getString("heure"), rs.getString("description"), rs.getString("contenu"), rs.getString("lien")));
         }
-        return rappels;
+        return reminders;
     }
 
-    public static ArrayList<ModelEvenement> selectRappelPerDay(Date day) throws SQLException, ClassNotFoundException {
-        ArrayList<ModelEvenement> rappels = new ArrayList<>();
+    /**
+     * Méthode permettant d'obtenir les rappels d'un jour donné
+     * @param day
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public static ArrayList<ModelEvenement> selectRemindersPerDay(Date day) throws SQLException, ClassNotFoundException {
+        ArrayList<ModelEvenement> reminders = new ArrayList<>();
         dbConnexion db = new dbConnexion();
         Connection conn = db.getConnection();
 
@@ -85,7 +118,7 @@ public class ModelTableRappel {
 
         ResultSet rs = preparedStatement.executeQuery();
         while(rs.next()){
-            rappels.add(new ModelEvenement(rs.getInt("idEvenement"),
+            reminders.add(new ModelEvenement(rs.getInt("idEvenement"),
                     rs.getString("titre"),
                     rs.getDate("dateEcheance"),
                     rs.getString("heure"),
@@ -93,18 +126,18 @@ public class ModelTableRappel {
                     rs.getString("contenu"),
                     rs.getString("lien")));
         }
-        return rappels;
+        return reminders;
     }
 
     /**
      * Insertion d'un rappel dans la base de donnée
-     * @param idEvenement idEvenement
-     * @param contenu contenu
-     * @param lien lien
-     * @param heure heure
+     * @param idEvent idEvenement
+     * @param content contenu
+     * @param link lien
+     * @param hour heure
      * @return vrai si l'insertion a réussi
      */
-    public static boolean insertRecordRappel(int idEvenement, String contenu, String lien, String heure){
+    public static boolean insertRecordReminder(int idEvent, String content, String link, String hour){
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
         try {
@@ -113,10 +146,10 @@ public class ModelTableRappel {
 
              // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_REMINDER);
-            preparedStatement.setInt(1, idEvenement);
-            preparedStatement.setString(2, contenu);
-            preparedStatement.setString(3, lien);
-            preparedStatement.setString(4, heure);
+            preparedStatement.setInt(1, idEvent);
+            preparedStatement.setString(2, content);
+            preparedStatement.setString(3, link);
+            preparedStatement.setString(4, hour);
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -132,6 +165,9 @@ public class ModelTableRappel {
         }
     }
 
+    /**
+     * Getters et Setters
+     */
     public int getIdEvenement() {
         return idEvenement;
     }
