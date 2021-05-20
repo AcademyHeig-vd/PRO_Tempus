@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : ModelTableEvenement.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Modèle pour les événements de tout type
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.model;
 
 import ch.heigvd.pro.connexion.dbConnexion;
@@ -14,13 +25,28 @@ public class ModelTableEvenement {
     private String dateEcheance;
     private String description;
 
-    public ModelTableEvenement(int id, String titre, String dateDebut, String dateEcheance, String description) {
+    /**
+     * Constructeur
+     * @param id
+     * @param title
+     * @param dateBegin
+     * @param dateEnd
+     * @param description
+     */
+    public ModelTableEvenement(int id, String title, String dateBegin, String dateEnd, String description) {
         this.id = id;
-        this.titre = titre;
-        this.dateDebut = dateDebut;
-        this.dateEcheance = dateEcheance;
+        this.titre = title;
+        this.dateDebut = dateBegin;
+        this.dateEcheance = dateEnd;
         this.description = description;
     }
+
+    /**
+     * Méthode permettant de mettre à jour un événement
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean updateFromDB() throws SQLException, ClassNotFoundException {
         try {
             dbConnexion db = new dbConnexion();
@@ -44,6 +70,9 @@ public class ModelTableEvenement {
         }
     }
 
+    /**
+     * Getters et Setters
+     */
     public int getId() {
         return id;
     }
@@ -79,7 +108,12 @@ public class ModelTableEvenement {
     public void setDescription(String description) {
         this.description = description;
     }
-    public boolean insertEvenementInDB() {
+
+    /**
+     * Méthode permettant d'insérer un événement dans la bdd
+     * @return
+     */
+    public boolean insertEventInDB() {
         try {
             dbConnexion db = new dbConnexion();
             Connection connection = db.getConnection();
@@ -101,6 +135,11 @@ public class ModelTableEvenement {
             return false;
         }
     }
+
+    /**
+     * Méthode permettant de supprimer un événement de la base de données
+     * @return
+     */
     public boolean deleteFromDB()  {
         try {
             // Connexion a la database

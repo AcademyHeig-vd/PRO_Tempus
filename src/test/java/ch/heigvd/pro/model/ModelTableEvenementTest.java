@@ -19,7 +19,7 @@ class ModelTableEvenementTest {
     @Order(1)
     @DisplayName("ensure insert in databae")
     void insertEvenementInDB() {
-        boolean cond=modelTableEvenement.insertEvenementInDB();
+        boolean cond=modelTableEvenement.insertEventInDB();
         assertTrue(cond,"problem with insert event");
     }
     @Test
