@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : RappelRegisterController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page d'ajout d'un rappel
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.connexion.dbConnexion;
@@ -40,6 +51,9 @@ public class RappelRegisterController {
     private final DateTimeFormatter formatterFrench = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     private final DateTimeFormatter formatterEnglish = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    /**
+     * Méthode automatiquement appelée lors de l'invocation du FXML, permet de set les données dans la table
+     */
     @FXML
     public void initialize() {
         Locale.setDefault(Locale.FRANCE);
@@ -77,19 +91,18 @@ public class RappelRegisterController {
 
         if(!inputValid()) return;
 
-        String titre = titreField.getText();
+        String title = titreField.getText();
         String date = datePicker.getValue().format(formatterEnglish);
-        String heure = heureField.getText();
+        String hour = heureField.getText();
         String description = descriptionField.getText();
-        String contenu = contenuField.getText();
-        String lien = lienField.getText();
+        String content = contenuField.getText();
+        String link = lienField.getText();
 
         dbConnexion db = new dbConnexion();
 
-        //TODO : modifier emplacement cette fonction après merge avec Lev
-        int idEvenement = db.insertEntryEvent(titre, date, date, description);
+        int idEvent = db.insertEntryEvent(title, date, date, description);
 
-        boolean ok_request = ModelTableRappel.insertRecordRappel(idEvenement, contenu, lien, heure);
+        boolean ok_request = ModelTableRappel.insertRecordRappel(idEvent, content, link, hour);
         if (ok_request)
             showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
                     "La nouvelle entrée a été effectuée !", true);
