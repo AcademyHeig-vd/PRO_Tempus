@@ -137,7 +137,7 @@ public class RappelModifyController {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une heure", false);
             return false;
-        } else if (!verifyUserEntry.verificationEntreeHeure(heureField.getText())) {
+        } else if (!verifyUserEntry.verifyEntryHour(heureField.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "L'heure n'est pas au bon format (HH:MM)", false);
             return false;
@@ -149,7 +149,7 @@ public class RappelModifyController {
             return false;
         }
 
-        if (!lienField.getText().isEmpty() && !verifyUserEntry.verificationEntreeLien(lienField.getText())) {
+        if (!lienField.getText().isEmpty() && !verifyUserEntry.verifyEntryLink(lienField.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "Le lien nest pas valide", false);
             return false;

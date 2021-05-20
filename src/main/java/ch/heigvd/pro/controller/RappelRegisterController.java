@@ -87,7 +87,7 @@ public class RappelRegisterController {
         dbConnexion db = new dbConnexion();
 
         //TODO : modifier emplacement cette fonction après merge avec Lev
-        int idEvenement = db.insertionEntreeEvenement(titre, date, date, description);
+        int idEvenement = db.insertEntryEvent(titre, date, date, description);
 
         boolean ok_request = ModelTableRappel.insertRecordRappel(idEvenement, contenu, lien, heure);
         if (ok_request)
@@ -125,7 +125,7 @@ public class RappelRegisterController {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez une heure", false);
             return false;
-        } else if (!verifyUserEntry.verificationEntreeHeure(heureField.getText())) {
+        } else if (!verifyUserEntry.verifyEntryHour(heureField.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "L'heure n'est pas au bon format (HH:MM)", false);
             return false;
@@ -137,7 +137,7 @@ public class RappelRegisterController {
             return false;
         }
 
-        if (!lienField.getText().isEmpty() && !verifyUserEntry.verificationEntreeLien(lienField.getText())) {
+        if (!lienField.getText().isEmpty() && !verifyUserEntry.verifyEntryLink(lienField.getText())) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "Le lien nest pas valide", false);
             return false;

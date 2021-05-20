@@ -15,14 +15,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class VerifyDate {
-    private final DateTimeFormatter formatDate;
+    private final DateTimeFormatter dateFormatter;
 
     /**
      * Constructeur
-     * @param formatDate - format de la date à avoir
+     * @param dateFormatter - format de la date à avoir
      */
-    public VerifyDate(DateTimeFormatter formatDate) {
-        this.formatDate = formatDate;
+    public VerifyDate(DateTimeFormatter dateFormatter) {
+        this.dateFormatter = dateFormatter;
     }
 
     /**
@@ -30,9 +30,9 @@ public class VerifyDate {
      * @param dateStr - date au format string
      * @return - si la date est valide
      */
-    public boolean estValide(String dateStr) {
+    public boolean isValid(String dateStr) {
         try {
-            this.formatDate.parse(dateStr);
+            this.dateFormatter.parse(dateStr);
         } catch (DateTimeParseException e) {
             return false;
         }

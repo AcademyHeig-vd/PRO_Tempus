@@ -45,7 +45,7 @@ class ModelDayTest {
     @DisplayName("verify reminder per day ")
     void selectRappelPerDay() throws SQLException, ClassNotFoundException {
         dbConnexion db = new dbConnexion();
-        int idEvenement = db.insertionEntreeEvenement(modelTableRappel.titre, "2020-10-10", "2020-10-10", modelTableRappel.description);
+        int idEvenement = db.insertEntryEvent(modelTableRappel.titre, "2020-10-10", "2020-10-10", modelTableRappel.description);
         boolean cond = ModelTableRappel.insertRecordRappel(idEvenement, modelTableRappel.contenu, modelTableRappel.lien, modelTableRappel.heure);
          int size=ModelDay.selectRappelPerDay(date).size();
          assertEquals(1,size,"problem with reminder");

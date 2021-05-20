@@ -24,7 +24,7 @@ class VerifyUserEntryTest {
     @Test
     @DisplayName("verify entry")
     void verifyEntryDate() {
-        boolean cond=verifyDate.estValide("11-11-2020");
+        boolean cond=verifyDate.isValid("11-11-2020");
         assertFalse(cond,"date format is wrong");
     }
 
@@ -41,35 +41,35 @@ class VerifyUserEntryTest {
     @Test
     @DisplayName("verify hour format")
     void verifyEntryHour() {
-        boolean cond = VerifyUserEntry.verificationEntreeHeure("23:99");
+        boolean cond = VerifyUserEntry.verifyEntryHour("23:99");
         assertFalse(cond,"wrong hour setting");
     }
 
     @Test
     @DisplayName("verify hour range")
     void verifyHourBeginSmallerHourEnd() {
-        boolean cond = VerifyUserEntry.verificationHeureDebutPlusPetiteHeureFin("23:23","22:22");
+        boolean cond = VerifyUserEntry.verifyHourBeginSmallerHourEnd("23:23","22:22");
         assertFalse(cond,"wrong hour range");
     }
 
     @Test
     @DisplayName("testing acronyme format")
     void verifyEntryAcronym() {
-        boolean cond = VerifyUserEntry.verificationEntreeAcronyme("CLNM");
+        boolean cond = VerifyUserEntry.verifyEntryAcronym("CLNM");
         assertFalse(cond,"wrong acronym range");
     }
 
     @Test
     @DisplayName("verify emails")
     void verifyEntryMail() {
-        boolean cond = VerifyUserEntry.verificationEntreeMail("pro.com");
+        boolean cond = VerifyUserEntry.verifyEntryMail("pro.com");
         assertFalse(cond,"wrong email format");
     }
 
     @Test
     @DisplayName("verify links")
     void verifyEntryLink() {
-        boolean cond = VerifyUserEntry.verificationEntreeLien("this is not a link");
+        boolean cond = VerifyUserEntry.verifyEntryLink("this is not a link");
         assertFalse(cond,"wrong link format");
     }
 }

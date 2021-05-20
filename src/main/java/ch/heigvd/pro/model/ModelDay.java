@@ -74,9 +74,9 @@ public class ModelDay {
     public static ArrayList<ModelEvenement> selectRappelPerDay(Date day) throws SQLException, ClassNotFoundException {
         ArrayList<ModelEvenement> rappels = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.obtConnexion();
+        Connection conn = db.getConnection();
 
-        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.REQUETE_SELECTION_RAPPEL_PAR_JOUR);
+        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.SELECT_QUERY_REMINDER_PER_DAY);
 
         preparedStatement.setString(1, day.toString()); //date du debut
 

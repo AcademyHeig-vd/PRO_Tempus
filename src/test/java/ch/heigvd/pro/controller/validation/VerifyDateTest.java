@@ -17,7 +17,7 @@ class VerifyDateTest {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.uuuu", Locale.FRANCE)
                 .withResolverStyle(ResolverStyle.STRICT);
         VerifyDate verifyDate = new VerifyDate(dateTimeFormatter);
-        boolean cond=verifyDate.estValide("11-11-2020");
+        boolean cond=verifyDate.isValid("11-11-2020");
         assertFalse(cond,"date format is wrong");
     }
 }

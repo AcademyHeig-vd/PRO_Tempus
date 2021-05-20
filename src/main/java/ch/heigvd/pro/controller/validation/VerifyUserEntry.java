@@ -30,66 +30,66 @@ public class VerifyUserEntry {
      * @param date - date entrée par l'utilisateur
      * @return - booléen si la date est valide ou pas
      */
-    public boolean verificationEntreeDate(String date){
-        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd.MM.uuuu", Locale.FRANCE)
+    public boolean verifyEntryDate(String date){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.uuuu", Locale.FRANCE)
                 .withResolverStyle(ResolverStyle.STRICT);
-        VerifyDate verificationDate = new VerifyDate(formatDate);
-        return verificationDate.estValide(date);
+        VerifyDate verifyDate = new VerifyDate(dateTimeFormatter);
+        return verifyDate.isValid(date);
     }
 
     /**
      * Méthode vérifiant que la date de début est plus petite que la date de fin
-     * @param dateDebut - date de début entrée par l'utilisateur
-     * @param dateFin - date d'échéance entrée par l'utilisateur
+     * @param dateBegin - date de début entrée par l'utilisateur
+     * @param dateEnd - date d'échéance entrée par l'utilisateur
      * @return - booléen si la date de début est plus petite que la date de fin
      */
-    public boolean verificationDateDebutPlusPetiteQueDateFin(String dateDebut, String dateFin) throws ParseException {
+    public boolean verifyDateBeginSmallerDateEnd(String dateBegin, String dateEnd) throws ParseException {
         SimpleDateFormat sdformat = new SimpleDateFormat("dd.MM.yyyy");
-        Date d1 = sdformat.parse(dateDebut);
-        Date d2 = sdformat.parse(dateFin);
+        Date d1 = sdformat.parse(dateBegin);
+        Date d2 = sdformat.parse(dateEnd);
         return d1.compareTo(d2) < 0;
     }
 
     /**
      * Méthode vérifiant si l'heure entrée par un utilisateur est valide ou non
-     * @param heure - heure entrée par l'utilisateur
+     * @param hour - heure entrée par l'utilisateur
      * @return - booléen si l'heure est valide ou non
      */
-    public static boolean verificationEntreeHeure(String heure) {
-        String modeleHeure = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
-        Pattern p = Pattern.compile(modeleHeure);
-        Matcher m = p.matcher(heure);
+    public static boolean verifyEntryHour(String hour) {
+        String patternHour = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
+        Pattern p = Pattern.compile(patternHour);
+        Matcher m = p.matcher(hour);
         return m.matches();
     }
 
     /**
      * Méthode vérifiant que l'heure de début est plus petite que l'heure de fin
-     * @param heureDebutString - heure de début entrée par l'utilisateur
-     * @param heureFinString - heure de fin entrée par l'utilisateur
+     * @param hourBeginString - heure de début entrée par l'utilisateur
+     * @param hourEndString - heure de fin entrée par l'utilisateur
      * @return - booléen si l'heure de début est plus petite que l'heure de fin
      */
-    public static boolean verificationHeureDebutPlusPetiteHeureFin(String heureDebutString, String heureFinString) {
-        String[] heureDebutSeparee = heureDebutString.split(":");
-        String[] heureFinSeparee = heureFinString.split(":");
-        int heureDebut = Integer.parseInt(heureDebutSeparee[0]);
-        int minuteDebut = Integer.parseInt(heureDebutSeparee[1]);
-        int heureFin = Integer.parseInt(heureFinSeparee[0]);
-        int minuteFin = Integer.parseInt(heureFinSeparee[1]);
+    public static boolean verifyHourBeginSmallerHourEnd(String hourBeginString, String hourEndString) {
+        String[] hourBeginSplitted = hourBeginString.split(":");
+        String[] hourEndSplitted = hourEndString.split(":");
+        int hourBegin = Integer.parseInt(hourBeginSplitted[0]);
+        int minuteBegin = Integer.parseInt(hourBeginSplitted[1]);
+        int hourEnd = Integer.parseInt(hourEndSplitted[0]);
+        int minuteEnd = Integer.parseInt(hourEndSplitted[1]);
 
-        if(heureDebut < heureFin){
+        if(hourBegin < hourEnd){
             return true;
-        } else return heureDebut == heureFin && minuteDebut < minuteFin;
+        } else return hourBegin == hourEnd && minuteBegin < minuteEnd;
     }
 
     /**
      * Méthode vérifiant si l'acronyme entré par un utilisateur est valide ou non
-     * @param acronyme - acronyme entré par l'utilisateur
+     * @param acronym - acronyme entré par l'utilisateur
      * @return - booléen si l'acronyme est valide ou non
      */
-    public static boolean verificationEntreeAcronyme(String acronyme) {
-        String modeleAcronyme = "^[A-Z]{3}$";
-        Pattern p = Pattern.compile(modeleAcronyme);
-        Matcher m = p.matcher(acronyme);
+    public static boolean verifyEntryAcronym(String acronym) {
+        String patternAcronym = "^[A-Z]{3}$";
+        Pattern p = Pattern.compile(patternAcronym);
+        Matcher m = p.matcher(acronym);
         return m.matches();
     }
 
@@ -98,21 +98,21 @@ public class VerifyUserEntry {
      * @param mail - adresse mail entré par l'utilisateur
      * @return - booléen si le mail est valide ou non
      */
-    public static boolean verificationEntreeMail(String mail) {
-        String modeleMail = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-        Pattern p = Pattern.compile(modeleMail);
+    public static boolean verifyEntryMail(String mail) {
+        String patternMail = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        Pattern p = Pattern.compile(patternMail);
         Matcher m = p.matcher(mail);
         return m.matches();
     }
 
     /**
      * Méthode vérifiant si l'URL entré par un utilisateur est valide ou non
-     * @param lien - lien entré par l'utilisateur
+     * @param link - lien entré par l'utilisateur
      * @return - booléen si le lien est valide ou non
      */
-    public static boolean verificationEntreeLien(String lien) {
+    public static boolean verifyEntryLink(String link) {
         try {
-            new URL(lien).toURI();
+            new URL(link).toURI();
             return true;
         }
         catch (URISyntaxException | MalformedURLException exception) {

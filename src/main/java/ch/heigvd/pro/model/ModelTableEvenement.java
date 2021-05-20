@@ -24,11 +24,11 @@ public class ModelTableEvenement {
     public boolean updateFromDB() throws SQLException, ClassNotFoundException {
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.obtConnexion();
+            Connection connection = db.getConnection();
 
             // Suppression database
             PreparedStatement stmt = null;
-            stmt = connection.prepareStatement(dbConnexion.REQUETE_MAJ_EVENEMENT);
+            stmt = connection.prepareStatement(dbConnexion.UPDATE_QUERY_EVENT);
 
             stmt.setString(1, titre);
             stmt.setString(2, dateDebut);
@@ -82,8 +82,8 @@ public class ModelTableEvenement {
     public boolean insertEvenementInDB() {
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.obtConnexion();
-            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.REQUETE_INSERTION_EVENEMENT_COURS);
+            Connection connection = db.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_EVENT_LESSON);
             preparedStatement.setInt(1, this.id);
             preparedStatement.setString(2, this.titre);
             preparedStatement.setString(3, this.dateDebut);
@@ -94,7 +94,7 @@ public class ModelTableEvenement {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            dbConnexion.afficheExceptionSQL(e);
+            dbConnexion.printSQLException(e);
             return false;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -105,10 +105,10 @@ public class ModelTableEvenement {
         try {
             // Connexion a la database
             dbConnexion db = new dbConnexion();
-            Connection connection = db.obtConnexion();
+            Connection connection = db.getConnection();
             // Suppression database
             PreparedStatement stmt = null;
-            stmt = connection.prepareStatement(dbConnexion.REQUETE_SUPPRESSION_COURS);
+            stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_LESSON);
             stmt.setInt(1, id);
             stmt.execute();
             return true;

@@ -23,9 +23,9 @@ public class ModelTableCoursProf {
     public static ArrayList<ModelTableCoursProf> getAllAcronymProf() throws SQLException, ClassNotFoundException {
         ArrayList<ModelTableCoursProf> oblist = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.obtConnexion();
+        Connection conn = db.getConnection();
 
-        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.REQUETE_SELECTION_ACRONYME_PROF);
+        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ACRONYM_PROF);
         while(rs.next()){
             oblist.add(new ModelTableCoursProf(rs.getString("acronyme")));
         }

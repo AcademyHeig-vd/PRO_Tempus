@@ -115,9 +115,9 @@ public class CalendarGridView {
     public static ArrayList<ModelEvenement> selectRappelPerMonth(YearMonth yearMonth) throws SQLException, ClassNotFoundException {
         ArrayList<ModelEvenement> rappels = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.obtConnexion();
+        Connection conn = db.getConnection();
 
-        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.REQUETE_SELECTION_RAPPEL_PAR_MOIS);
+        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.SELECT_QUERY_REMINDER_PER_MONTH);
 
         preparedStatement.setString(1, String.valueOf(yearMonth.getMonth().getValue())); //date du debut
 

@@ -27,11 +27,11 @@ public class ModelTableRappel {
     public void updateFromDB() throws SQLException, ClassNotFoundException {
         new ModelTableEvenement(idEvenement,titre,dateEcheance,dateEcheance,description).updateFromDB();
         dbConnexion db = new dbConnexion();
-        Connection connection = db.obtConnexion();
+        Connection connection = db.getConnection();
 
         // Suppression database
         PreparedStatement stmt = null;
-        stmt = connection.prepareStatement(dbConnexion.REQUETE_MAJ_RAPPEL);
+        stmt = connection.prepareStatement(dbConnexion.UPDATE_QUERY_REMINDER);
         stmt.setString(1, contenu);
         stmt.setString(2, lien);
         stmt.setString(3, heure);
@@ -46,9 +46,9 @@ public class ModelTableRappel {
     public boolean deleteFromDB()  {
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.obtConnexion();
+            Connection connection = db.getConnection();
             PreparedStatement stmt = null;
-            stmt = connection.prepareStatement(dbConnexion.REQUETE_SUPPRESSION_RAPPEL);
+            stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_REMINDER);
             stmt.setInt(1, idEvenement);
             stmt.execute();
         }catch (Exception e){
@@ -66,9 +66,9 @@ public class ModelTableRappel {
     public static ArrayList<ModelTableRappel> selectAllRappelFromDB() throws SQLException, ClassNotFoundException {
         ArrayList<ModelTableRappel> rappels = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.obtConnexion();
+        Connection conn = db.getConnection();
 
-        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.REQUETE_SELECTION_TOUS_RAPPELS);
+        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_REMINDERS);
         while(rs.next()){
             rappels.add(new ModelTableRappel(rs.getInt("idEvenement"), rs.getString("titre"), rs.getString("dateEcheance"), rs.getString("heure"), rs.getString("description"), rs.getString("contenu"), rs.getString("lien")));
         }
@@ -78,9 +78,9 @@ public class ModelTableRappel {
     public static ArrayList<ModelEvenement> selectRappelPerDay(Date day) throws SQLException, ClassNotFoundException {
         ArrayList<ModelEvenement> rappels = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.obtConnexion();
+        Connection conn = db.getConnection();
 
-        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.REQUETE_SELECTION_RAPPEL_PAR_JOUR);
+        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.SELECT_QUERY_REMINDER_PER_DAY);
         preparedStatement.setString(1, day.toString()); //date du debut
 
         ResultSet rs = preparedStatement.executeQuery();
@@ -109,10 +109,10 @@ public class ModelTableRappel {
         // try-with-resource statement will auto close the connection.
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.obtConnexion();
+            Connection connection = db.getConnection();
 
              // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.REQUETE_INSERTION_RAPPEL);
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_REMINDER);
             preparedStatement.setInt(1, idEvenement);
             preparedStatement.setString(2, contenu);
             preparedStatement.setString(3, lien);
@@ -124,7 +124,7 @@ public class ModelTableRappel {
             return true;
         } catch (SQLException e) {
             // print SQL exception information
-            dbConnexion.afficheExceptionSQL(e);
+            dbConnexion.printSQLException(e);
             return false;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

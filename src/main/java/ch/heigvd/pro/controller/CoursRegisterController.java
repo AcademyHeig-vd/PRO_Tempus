@@ -60,7 +60,7 @@ public class CoursRegisterController {
 
         dbConnexion db = new dbConnexion();
         //TODO : à déplacer quand merge avec Lev
-        int idEvenement = db.insertionEntreeEvenement(titre, dateDebut, dateEcheance, description);
+        int idEvenement = db.insertEntryEvent(titre, dateDebut, dateEcheance, description);
         //db.insertRecordCours(idEvenement, acronyme);
         boolean ok_request = ModelTableCours.insertCoursInDB(idEvenement, acronyme);
         if (ok_request)
@@ -163,7 +163,7 @@ public class CoursRegisterController {
             return false;
         }
 
-        if (!verifyUserEntry.verificationDateDebutPlusPetiteQueDateFin(dateDebutPicker.getValue().format(formatterFrench),
+        if (!verifyUserEntry.verifyDateBeginSmallerDateEnd(dateDebutPicker.getValue().format(formatterFrench),
                 dateEcheancePicker.getValue().format(formatterFrench))) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "La date de début doit être plus petite que la d'échéance", false);
