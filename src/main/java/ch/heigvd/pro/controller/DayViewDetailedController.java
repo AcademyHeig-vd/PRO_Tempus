@@ -1,8 +1,18 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : DayViewDetailedController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page de vue par jour détaillée des rappels
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
 import ch.heigvd.pro.model.ModelEvenement;
-import ch.heigvd.pro.model.ModelTablePeriode;
 import ch.heigvd.pro.model.ModelTableRappel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -119,7 +129,7 @@ public class DayViewDetailedController {
                 showAlert(Alert.AlertType.WARNING, "Aucune sélection",
                         "Aucun rappel n'a été séléctionnée !");
                 return;
-            } //on crée un objet temporaire pour le supprimer si c'est un rappel
+            } // On crée un objet temporaire pour le supprimer si c'est un rappel
             if (selectedIndex.isRappel())
                 new ModelTableRappel(selectedIndex.getId(), null, null, null, null, null, null).deleteFromDB();
             else {//dans l'autre cas, c'est une période TODO : décider si on supprime une période par la vue par jour, vu qu'elle n'est pas crée
@@ -174,6 +184,10 @@ public class DayViewDetailedController {
         alert.show();
     }
 
+    /**
+     * Setter
+     * @param date
+     */
     public void setDate(Date date) {
         this.date = date;
     }

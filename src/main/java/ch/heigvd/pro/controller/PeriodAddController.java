@@ -1,9 +1,19 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : PeriodAddController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page principale des périodes
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-import ch.heigvd.pro.model.ModelTableCours;
 import ch.heigvd.pro.model.ModelTablePeriode;
 import ch.heigvd.pro.Tempus;
 
@@ -57,10 +67,10 @@ public class PeriodAddController {
                         "Aucun cours n'a été séléctionné !");
                 return;
             }
-            //suppression de la db
+            // Suppression de la db
             selectedIndex.deleteFromDB();
 
-            //suppression locale
+            // Suppression locale
             table.getItems().remove(selectedIndex);
 
             // Update les onglets
@@ -71,6 +81,10 @@ public class PeriodAddController {
         }
     }
 
+    /**
+     * Méthode afin de modifier une entrée
+     * @throws IOException
+     */
     @FXML
     public void modify() throws IOException {
         ModelTablePeriode selectedIndex = (ModelTablePeriode) table.getSelectionModel().getSelectedItem();
@@ -82,9 +96,9 @@ public class PeriodAddController {
             return;
         }
         FXMLLoader loader = new FXMLLoader();
-        PeriodeModifyController periodeModifyController = new PeriodeModifyController();
-        periodeModifyController.setPeriodeToModify(selectedIndex);
-        loader.setController(periodeModifyController);
+        PeriodeModifyController periodModifyController = new PeriodeModifyController();
+        periodModifyController.setPeriodeToModify(selectedIndex);
+        loader.setController(periodModifyController);
         loader.setLocation(Tempus.class.getResource("view/periodeModify.fxml"));
         Tempus.getScene().setRoot(loader.load());
     }
