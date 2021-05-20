@@ -109,7 +109,7 @@ public class PeriodAddController {
     @FXML
     private void initialize() {
         try {
-            oblist.addAll(ModelTablePeriode.getAllPeriodeFromDB());
+            oblist.addAll(ModelTablePeriode.getAllPeriodFromDB());
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }

@@ -77,7 +77,7 @@ public class ModelEvenement {
      */
     private static ArrayList<ModelEvenement> getEventFromLessonAndPeriod(Date dayParameter) throws SQLException, ClassNotFoundException {
         ArrayList<ModelEvenement> events = new ArrayList<>();
-        ArrayList<ModelTablePeriode> periods = ModelTablePeriode.getAllPeriodeIn(dayParameter);
+        ArrayList<ModelTablePeriode> periods = ModelTablePeriode.getAllPeriodIn(dayParameter);
         ModelTablePeriode.Jour day;
         for (ModelTablePeriode period : periods){
             day = ModelTablePeriode.Jour.LUNDI;
