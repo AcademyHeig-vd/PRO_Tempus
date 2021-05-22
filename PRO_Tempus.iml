@@ -7,12 +7,14 @@
       <sourceFolder url="file://$MODULE_DIR$/images" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:16" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:16" level="project" />
+
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.15" level="project" />
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.6.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:16" level="project" />
@@ -21,5 +23,6 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:16" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:16" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:16" level="project" />
+
   </component>
 </module>

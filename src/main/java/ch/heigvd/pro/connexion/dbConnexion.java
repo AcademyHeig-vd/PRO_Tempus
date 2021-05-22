@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class dbConnexion {
     /* PARAMETRES CONNEXION */
-    private static final String DATABASE_URL = "jdbc:mysql://192.168.99.100:3306/PRO?serverTimezone=UTC&useSSL=false";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/PRO";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "root";
     /* FIN PARAMETRE CONNEXION
@@ -19,14 +19,14 @@ public class dbConnexion {
     public static final String DELETE_QUERY_COURS = "DELETE FROM Evenement WHERE idEvenement = ?";
     public static final String SELECT_QUERY_ALL_COURS =
             "SELECT * FROM Cours " +
-            "INNER JOIN Evenement " +
-            "   ON Cours.idEvenement = Evenement.idEvenement " +
-            "INNER JOIN Professeur " +
-            "   ON Cours.acronyme = Professeur.acronyme";
+                    "INNER JOIN Evenement " +
+                    "   ON Cours.idEvenement = Evenement.idEvenement " +
+                    "INNER JOIN Professeur " +
+                    "   ON Cours.acronyme = Professeur.acronyme";
     public static final String UPDATE_QUERY_COURS =
             "UPDATE Cours " +
-            "SET acronyme = ? " +
-            "WHERE idEvenement = ?";
+                    "SET acronyme = ? " +
+                    "WHERE idEvenement = ?";
 
     /* FIN QUERY COURS */
 
@@ -38,8 +38,8 @@ public class dbConnexion {
     public static final String SELECT_QUERY_ALL_PROF = "SELECT * FROM Professeur";
     public static final String UPDATE_QUERY_PROF =
             "UPDATE Professeur " +
-            "SET acronyme = ?, nom = ?, prenom = ?, mail = ?" +
-            "WHERE acronyme = ?";
+                    "SET acronyme = ?, nom = ?, prenom = ?, mail = ?" +
+                    "WHERE acronyme = ?";
     /* FIN QUERY PROFESSEUR */
 
     /* QUERY POUR PERIODE */
@@ -48,8 +48,8 @@ public class dbConnexion {
     public static final String DELETE_QUERY_PERIODE = "DELETE FROM Periode where idPeriode = ?";
     public static final String SELECT_QUERY_ALL_PERIODE =
             "SELECT * FROM Periode " +
-            "INNER JOIN Evenement " +
-            "   ON Periode.idCours = Evenement.idEvenement";
+                    "INNER JOIN Evenement " +
+                    "   ON Periode.idCours = Evenement.idEvenement";
 
     public static final String SELECT_QUERY_ALL_PERIODE_BETWEEN =
             "SELECT * FROM Periode " +
@@ -58,8 +58,8 @@ public class dbConnexion {
                     "WHERE ? BETWEEN dateDebut AND dateEcheance";
     public static final String UPDATE_QUERY_PERIODE =
             "UPDATE Periode " +
-            "SET idCours = ?, jourSemaine = ?, heureDebut = ?, heureFin = ?, salle = ? " +
-            "WHERE idPeriode = ?";
+                    "SET idCours = ?, jourSemaine = ?, heureDebut = ?, heureFin = ?, salle = ? " +
+                    "WHERE idPeriode = ?";
     /* FIN QUERY PERIODE */
 
 
@@ -68,7 +68,7 @@ public class dbConnexion {
             "INSERT INTO Evenement (titre,dateDebut,dateEcheance,description) VALUES (?, ?, ?, ?)";
     public static final String SELECT_QUERY_ALL_EVENEMENT_COURS =
             "SELECT * FROM Evenement " +
-            "INNER JOIN Cours " +
+                    "INNER JOIN Cours " +
                     "ON Evenement.idEvenement = Cours.idEvenement";
     public static final String UPDATE_QUERY_EVENEMENT =
             "UPDATE Evenement " +
@@ -80,9 +80,9 @@ public class dbConnexion {
     public static final String INSERT_QUERY_RAPPEL = "INSERT INTO Rappel (idEvenement,contenu,lien,heure) VALUES (?, ?, ?, ?)";
     public static final String DELETE_QUERY_RAPPEL = "DELETE FROM Evenement where idEvenement = ?";
     public static final String SELECT_QUERY_ALL_RAPPEL =
-                    "SELECT * FROM Rappel " +
+            "SELECT * FROM Rappel " +
                     "INNER JOIN Evenement " +
-                            "ON Rappel.idEvenement = Evenement.idEvenement";
+                    "ON Rappel.idEvenement = Evenement.idEvenement";
     public static final String SELECT_QUERY_RAPPEL_PER_DAY =
             "SELECT * FROM Rappel " +
                     "INNER JOIN Evenement " +
@@ -90,8 +90,8 @@ public class dbConnexion {
                     "WHERE dateDebut = ?";
     public static final String UPDATE_QUERY_RAPPEL =
             "UPDATE Rappel " +
-            "SET contenu = ?, lien = ?, heure = ? " +
-            "WHERE idEvenement = ?";
+                    "SET contenu = ?, lien = ?, heure = ? " +
+                    "WHERE idEvenement = ?";
     /* FIN QUERY RAPPEL */
     public static final String SELECT_QUERY_RAPPEL_PER_MONTH =
             "SELECT * FROM Rappel " +
