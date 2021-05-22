@@ -2,6 +2,7 @@
     -fx-background-color:transparent;
 }
 /*Forme arrondie*/
+
 .tab-pane > .tab-header-area > .headers-region > .tab {
     -fx-background-radius: 50;
 }
@@ -10,6 +11,8 @@
     -fx-border-radius: 50;
     -fx-border-color: transparent;
 }
+
+
 /*Forme trapèze */
 /*
 .tab-pane > .tab-header-area > .headers-region > .tab {
@@ -27,13 +30,23 @@
     -fx-tab-max-height:50px;
 }
 
+
 .tab {
     -fx-font-family: "Liberation Mono";
     -fx-font-size: 15;
-    -fx-background-color:gainsboro ;
+    -fx-background-color:#e2e2e2 ;
+}
+
+.tab-label {
+    -fx-text-fill: #4a4a4a  ;
 }
 
 .tab:selected {
-    -fx-background-color:transparent ;
+    -fx-background-color:#4a4a4a ;
 }
+
+.tab:selected .tab-label {
+    -fx-text-fill: #e2e2e2 ;
+}
+
 
