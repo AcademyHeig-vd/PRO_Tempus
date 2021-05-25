@@ -28,6 +28,10 @@ jobs:
         run: |
             chmod 777 start.sh
             ./start.sh
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+           time: '30s'
       - name: Run tests with Maven
         run: |
             mvn clean package
