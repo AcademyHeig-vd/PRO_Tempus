@@ -32,11 +32,11 @@ jobs:
         uses: jakejarvis/wait-action@master
         with:
            time: '10s'
-      - name: Check URLs
-        uses: paramt/url-checker@master
+      - name: Check the deployed service URL
+        uses: jtalk/url-health-check-action@v1.5
         with:
-            sites: '["http://localhost:606"]'
-            expected: '[200]'
+        # Check the following URLs one by one sequentially
+         url: http://localhost:6060
       - name: Run tests with Maven
         run: |
             mvn clean package
