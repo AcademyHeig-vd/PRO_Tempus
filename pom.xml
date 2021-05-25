@@ -74,6 +74,7 @@
                 <version>0.0.3</version>
                 <configuration>
                     <mainClass>ch.heigvd.pro.Tempus</mainClass>
+                    <testSourceDirectory>src/main/test/java/ch/heigvd/pro</testSourceDirectory>
                 </configuration>
             </plugin>
             <plugin>
