@@ -26,6 +26,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Run Database
         run: |
+            cd ../../../../../
             chmod 777 start.sh
             ./start.sh
       - name: Sleep for 10 seconds
