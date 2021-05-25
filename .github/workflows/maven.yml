@@ -24,6 +24,9 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
+      - name: Run Database
+        run: |
+            chmod 777 start.sh
+            ./start.sh
       - name: Run tests with Maven
-        run: ./start.sh
-              mvn -B test --file pom.xml
+        run: mvn -B test --file pom.xml
