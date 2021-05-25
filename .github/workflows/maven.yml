@@ -27,7 +27,7 @@ jobs:
       - name: Run Database
         run: |
             cd Docker/
-            docker-compose up  --build
+            docker-compose up -d --build
       - name: Sleep for 10 seconds
         uses: jakejarvis/wait-action@master
         with:
