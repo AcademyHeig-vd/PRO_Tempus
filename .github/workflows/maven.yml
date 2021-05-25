@@ -29,4 +29,6 @@ jobs:
             chmod 777 start.sh
             ./start.sh
       - name: Run tests with Maven
-        run: mvn -B test --file pom.xml
+        run: |
+            mvn clean package
+            mvn -B test --file pom.xml
