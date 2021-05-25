@@ -45,10 +45,10 @@
     </dependencies>
     <build>
         <finalName>${artifactId}</finalName>
+        <testSourceDirectory>src/main/test/java/ch/heigvd/pro</testSourceDirectory>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <testSourceDirectory>src/main/test/java/ch/heigvd/pro</testSourceDirectory>
             </resource>
         </resources>
         <plugins>
