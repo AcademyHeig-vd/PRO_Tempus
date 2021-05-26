@@ -44,16 +44,31 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>${artifactId}</finalName>
+        <finalName>${project.artifactId}</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
+            <resource>
+                <directory>src/main/test/java/ch/heigvd/pro</directory>
+             </resource>
         </resources>
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>2.19.1</version>
+                  <dependencies>
+                           <dependency>
+                                    <groupId>org.junit.platform</groupId>
+                                    <artifactId>junit-platform-surefire-provider</artifactId>
+                                    <version>1.0.3</version>
+                           </dependency>
+                           <dependency>
+                                    <groupId>org.junit.jupiter</groupId>
+                                    <artifactId>junit-jupiter-engine</artifactId>
+                                    <version>5.0.3</version>
+                           </dependency>
+                     </dependencies>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>

@@ -77,7 +77,11 @@ public class DayViewControler {
 
         evenementTable.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
-                switchToDetailedView();
+                try {
+                    switchToDetailedView();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         nameEvenement.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
@@ -114,8 +118,14 @@ public class DayViewControler {
         return (AnchorPane) loader.load();
     }
 
-    public void switchToDetailedView(){
-        System.out.println("go to detailed view");
+    public void switchToDetailedView() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        DayViewDetailedController dvc = new DayViewDetailedController();
+        dvc.setDate(this.date);
+        loader.setController(dvc);
+        loader.setLocation(Tempus.class.getResource("view/dayViewDetailed.fxml"));
+        Tempus.getScene().setRoot(loader.load());
+
     }
 
 }
