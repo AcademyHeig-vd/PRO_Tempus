@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -57,7 +56,8 @@ public class Tempus extends Application {
         v1.getChildren().addAll(tabPane);
         root = new AnchorPane();
         root.getChildren().addAll(v1);
-        scene = new Scene(root, 1150, 850);
+        scene = new Scene(root, 1150, 1000);
+        scene.getStylesheets().add("tabPane.css");
         stage.setScene(scene);
         // Icone de l'application, à tester
         //stage.getIcons().add(new Image("file:images/logo.png"));
