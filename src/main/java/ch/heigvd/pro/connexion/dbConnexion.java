@@ -32,8 +32,8 @@ public class dbConnexion {
             "   ON Cours.acronyme = Professeur.acronyme";
     public static final String UPDATE_QUERY_LESSON =
             "UPDATE Cours " +
-            "SET acronyme = ? " +
-            "WHERE idEvenement = ?";
+                    "SET acronyme = ? " +
+                    "WHERE idEvenement = ?";
 
     /* FIN REQUETES COURS */
 
@@ -55,8 +55,8 @@ public class dbConnexion {
     public static final String DELETE_QUERY_PERIOD = "DELETE FROM Periode where idPeriode = ?";
     public static final String SELECT_QUERY_ALL_PERIODS =
             "SELECT * FROM Periode " +
-            "INNER JOIN Evenement " +
-            "   ON Periode.idCours = Evenement.idEvenement";
+                    "INNER JOIN Evenement " +
+                    "   ON Periode.idCours = Evenement.idEvenement";
 
     public static final String SELECT_QUERY_ALL_PERIODS_BETWEEN =
             "SELECT * FROM Periode " +
@@ -69,13 +69,12 @@ public class dbConnexion {
             "WHERE idPeriode = ?";
     /* FIN REQUETES PERIODE */
 
-
     /* REQUETES POUR EVENEMENT */
     public static final String INSERT_QUERY_EVENT =
             "INSERT INTO Evenement (titre,dateDebut,dateEcheance,description) VALUES (?, ?, ?, ?)";
     public static final String SELECT_QUERY_ALL_EVENTS_LESSON =
             "SELECT * FROM Evenement " +
-            "INNER JOIN Cours " +
+                    "INNER JOIN Cours " +
                     "ON Evenement.idEvenement = Cours.idEvenement";
     public static final String UPDATE_QUERY_EVENT =
             "UPDATE Evenement " +
@@ -141,6 +140,7 @@ public class dbConnexion {
             e.printStackTrace();
         }
     }
+
 
     /**
      * Méthode d'insertion d'une entrée dans la table Evenement

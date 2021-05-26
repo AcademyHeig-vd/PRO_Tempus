@@ -1,0 +1,52 @@
+.tab-pane *.tab-header-area *.tab-header-background {
+    -fx-background-color:transparent;
+}
+/*Forme arrondie*/
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-radius: 50;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-radius: 50;
+    -fx-border-color: transparent;
+}
+
+
+/*Forme trapèze */
+/*
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-shape: "M300,290 L310,168 L410,168 L421,290 L300,290 z";
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-shape: "M300,290 L310,168 L410,168 L421,290 L300,290 z";
+}*/
+
+.tab-pane {
+    -fx-tab-min-width:170px;
+    -fx-tab-max-width:170px;
+    -fx-tab-min-height:50px;
+    -fx-tab-max-height:50px;
+}
+
+
+.tab {
+    -fx-font-family: "Liberation Mono";
+    -fx-font-size: 15;
+    -fx-background-color:#e2e2e2 ;
+}
+
+.tab-label {
+    -fx-text-fill: #4a4a4a  ;
+}
+
+.tab:selected {
+    -fx-background-color:#4a4a4a ;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #e2e2e2 ;
+}
+
+
