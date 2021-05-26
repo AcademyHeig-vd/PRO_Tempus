@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class dbConnexion {
     /* PARAMETRES CONNEXION */
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/PRO";
+    private static final String DATABASE_URL = "jdbc:mysql://192.168.99.100:3306/PRO";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "root";
     /* FIN PARAMETRE CONNEXION
@@ -130,10 +130,10 @@ public class dbConnexion {
     public int insertRecordEvenement(String titre, String dateDebut, String dateEcheance, String description){
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
-        try (Connection connection = getConnexion();
-
+        try {
+                Connection connection = getConnexion();
              // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_EVENEMENT, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_EVENEMENT, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, titre);
             preparedStatement.setString(2, dateDebut);
             preparedStatement.setString(3, dateEcheance);
