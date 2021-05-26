@@ -65,6 +65,10 @@ public class DayViewDetailedController {
         Tempus.setRoot("view/rappelRegister");
     }
 
+    /**
+     * Fonction appelée pour une modification d'élément
+     * @throws IOException
+     */
     @FXML
     private void modify() throws IOException {
 
@@ -97,7 +101,12 @@ public class DayViewDetailedController {
 
     }
 
-    public static boolean testToChargeDailyView() throws IOException {
+    /**
+     * Retour à la vue par jour
+     * @return
+     * @throws IOException
+     */
+    public static boolean testToLoadDailyView() throws IOException {
         if (returnDate != null){
             FXMLLoader loader = new FXMLLoader();
             DayViewDetailedController dvc = new DayViewDetailedController();
@@ -111,6 +120,10 @@ public class DayViewDetailedController {
         return false;
     }
 
+    /**
+     * Retour au calendrier
+     * @throws IOException
+     */
     @FXML
     private void returnToCalendar() throws IOException {
         Tempus.changeTab(5);
@@ -186,7 +199,6 @@ public class DayViewDetailedController {
 
     /**
      * Setter
-     * @param date
      */
     public void setDate(Date date) {
         this.date = date;

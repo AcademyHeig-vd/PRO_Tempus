@@ -67,10 +67,6 @@ public class ModelDay {
         return date;
     }
 
-    public Date dateProperty() {
-        return date;
-    }
-
     public void setDate(Date date) {
         this.date = date;
     }
@@ -79,23 +75,9 @@ public class ModelDay {
         return reminders;
     }
 
-    public void setReminders(List<ModelEvenement> reminders) {
-        this.reminders.addAll(reminders);
-    }
-
-    public void addRappel(ModelEvenement reminder){
-        reminders.add(reminder);
-    }
-
-    public void deleteRappel(ModelEvenement reminder) throws SQLException, ClassNotFoundException {
-        //Evenement.deleteRappel(reminder.getId());
-        reminders.remove(reminder);
-    }
-
     public boolean equals(ModelDay other){
         return date.equals(other.date);
     }
-
 
     public static ArrayList<ModelEvenement> selectRappelPerDay(Date day) throws SQLException, ClassNotFoundException {
         ArrayList<ModelEvenement> reminders = new ArrayList<>();
@@ -108,7 +90,6 @@ public class ModelDay {
 
         ResultSet rs = preparedStatement.executeQuery();
         while(rs.next()){
-            String test = day.toString();
             reminders.add(new ModelEvenement(rs.getInt("idEvenement"),
                     rs.getString("titre"),
                     rs.getDate("dateEcheance"),

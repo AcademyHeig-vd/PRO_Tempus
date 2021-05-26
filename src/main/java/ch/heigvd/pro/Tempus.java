@@ -102,15 +102,30 @@ public class Tempus extends Application {
         updateTab();
     }
 
+    /**
+     * Set la page principale de l'application (première page qui va s'afficher lors du lancement de l'application)
+     * @param fxml
+     * @throws IOException
+     */
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
+    /**
+     * Charge les fichiers FXML
+     * @param fxml
+     * @return
+     * @throws IOException
+     */
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Tempus.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
+    /**
+     * Obtenir la scène graphique
+     * @return
+     */
     public static Scene getScene() {
         return scene;
     }

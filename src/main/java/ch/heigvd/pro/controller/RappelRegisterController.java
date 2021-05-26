@@ -30,7 +30,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-import static ch.heigvd.pro.controller.DayViewDetailedController.testToChargeDailyView;
+import static ch.heigvd.pro.controller.DayViewDetailedController.testToLoadDailyView;
 
 public class RappelRegisterController {
     @FXML
@@ -165,7 +165,7 @@ public class RappelRegisterController {
      */
     @FXML
     private void OKButton() throws IOException {
-        if (testToChargeDailyView())
+        if (testToLoadDailyView())
             return;
         Tempus.changeTab(4);
     }
@@ -188,7 +188,7 @@ public class RappelRegisterController {
         alert.initOwner(owner);
         alert.show();
         if(menu){
-            if (testToChargeDailyView())
+            if (testToLoadDailyView())
                 return;
             Tempus.changeTab(4);
         }
