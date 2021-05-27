@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : CoursRegisterController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page d'ajout de cours
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.connexion.dbConnexion;
@@ -8,7 +19,6 @@ import ch.heigvd.pro.model.ModelTableCoursProf;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Window;
@@ -49,21 +59,21 @@ public class CoursRegisterController {
 
         Window owner = submitButton.getScene().getWindow();
 
-        ModelTableCoursProf coursProf = professeur.getSelectionModel().getSelectedItem();
+        ModelTableCoursProf lessonProf = professeur.getSelectionModel().getSelectedItem();
 
         if(!inputValid()) return;
 
-        String acronyme = coursProf.getAcronyme();
-        String titre = titreField.getText();
-        String dateDebut = dateDebutPicker.getValue().format(formatterEnglish);
-        String dateEcheance = dateEcheancePicker.getValue().format(formatterEnglish);
+        String acronym = lessonProf.getAcronyme();
+        String title = titreField.getText();
+        String dateBegin = dateDebutPicker.getValue().format(formatterEnglish);
+        String dateEnd = dateEcheancePicker.getValue().format(formatterEnglish);
         String description = descriptionField.getText();
 
         dbConnexion db = new dbConnexion();
-        //TODO : à déplacer quand merge avec Lev
-        int idEvenement = db.insertRecordEvenement(titre, dateDebut, dateEcheance, description);
+
+        int idEvenement = db.insertEntryEvent(title, dateBegin, dateEnd, description);
         //db.insertRecordCours(idEvenement, acronyme);
-        boolean ok_request = ModelTableCours.insertCoursInDB(idEvenement, acronyme);
+        boolean ok_request = ModelTableCours.insertCoursInDB(idEvenement, acronym);
         if (ok_request)
             showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
                     "La nouvelle entrée a été effectuée !", true);
@@ -142,7 +152,7 @@ public class CoursRegisterController {
     private boolean inputValid() throws IOException, ParseException {
         Window owner = submitButton.getScene().getWindow();
 
-        ModelTableCoursProf coursProf = professeur.getSelectionModel().getSelectedItem();
+        ModelTableCoursProf lessonProf = professeur.getSelectionModel().getSelectedItem();
 
         VerifyUserEntry verifyUserEntry = new VerifyUserEntry();
 
@@ -171,7 +181,7 @@ public class CoursRegisterController {
             return false;
         }
 
-        if (coursProf == null) {
+        if (lessonProf == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez un professeur", false);
             return false;

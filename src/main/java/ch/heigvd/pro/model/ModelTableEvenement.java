@@ -1,12 +1,21 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : ModelTableEvenement.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Modèle pour les événements de tout type
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.model;
 
 import ch.heigvd.pro.connexion.dbConnexion;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class ModelTableEvenement {
 
@@ -16,21 +25,36 @@ public class ModelTableEvenement {
     private String dateEcheance;
     private String description;
 
-    public ModelTableEvenement(int id, String titre, String dateDebut, String dateEcheance, String description) {
+    /**
+     * Constructeur
+     * @param id
+     * @param title
+     * @param dateBegin
+     * @param dateEnd
+     * @param description
+     */
+    public ModelTableEvenement(int id, String title, String dateBegin, String dateEnd, String description) {
         this.id = id;
-        this.titre = titre;
-        this.dateDebut = dateDebut;
-        this.dateEcheance = dateEcheance;
+        this.titre = title;
+        this.dateDebut = dateBegin;
+        this.dateEcheance = dateEnd;
         this.description = description;
     }
+
+    /**
+     * Méthode permettant de mettre à jour un événement
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean updateFromDB() throws SQLException, ClassNotFoundException {
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            Connection connection = db.getConnection();
 
             // Suppression database
             PreparedStatement stmt = null;
-            stmt = connection.prepareStatement(dbConnexion.UPDATE_QUERY_EVENEMENT);
+            stmt = connection.prepareStatement(dbConnexion.UPDATE_QUERY_EVENT);
 
             stmt.setString(1, titre);
             stmt.setString(2, dateDebut);
@@ -46,6 +70,9 @@ public class ModelTableEvenement {
         }
     }
 
+    /**
+     * Getters et Setters
+     */
     public int getId() {
         return id;
     }
@@ -81,11 +108,16 @@ public class ModelTableEvenement {
     public void setDescription(String description) {
         this.description = description;
     }
-    public boolean insertEvenementInDB() {
+
+    /**
+     * Méthode permettant d'insérer un événement dans la bdd
+     * @return
+     */
+    public boolean insertEventInDB() {
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
-            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_EVEN);
+            Connection connection = db.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_EVENT_LESSON);
             preparedStatement.setInt(1, this.id);
             preparedStatement.setString(2, this.titre);
             preparedStatement.setString(3, this.dateDebut);
@@ -103,14 +135,19 @@ public class ModelTableEvenement {
             return false;
         }
     }
+
+    /**
+     * Méthode permettant de supprimer un événement de la base de données
+     * @return
+     */
     public boolean deleteFromDB()  {
         try {
             // Connexion a la database
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            Connection connection = db.getConnection();
             // Suppression database
             PreparedStatement stmt = null;
-            stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_COURS);
+            stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_LESSON);
             stmt.setInt(1, id);
             stmt.execute();
             return true;

@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : ModelTableCoursProf.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Modèle pour les profs liés à un cours
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.model;
 
 import ch.heigvd.pro.connexion.dbConnexion;
@@ -10,8 +21,12 @@ import java.util.ArrayList;
 public class ModelTableCoursProf {
     private String acronyme;
 
-    public ModelTableCoursProf(String acronyme) {
-        this.acronyme = acronyme;
+    /**
+     * Constructeur
+     * @param acronym
+     */
+    public ModelTableCoursProf(String acronym) {
+        this.acronyme = acronym;
     }
 
     /**
@@ -23,7 +38,7 @@ public class ModelTableCoursProf {
     public static ArrayList<ModelTableCoursProf> getAllAcronymProf() throws SQLException, ClassNotFoundException {
         ArrayList<ModelTableCoursProf> oblist = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.getConnection();
 
         ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ACRONYM_PROF);
         while(rs.next()){
@@ -32,6 +47,9 @@ public class ModelTableCoursProf {
         return oblist;
     }
 
+    /**
+     * Getters et Setters
+     */
     public String getAcronyme() {
         return acronyme;
     }

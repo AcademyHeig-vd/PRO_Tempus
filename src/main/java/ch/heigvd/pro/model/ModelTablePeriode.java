@@ -1,7 +1,17 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : ModelTablePeriode.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Modèle pour les périodes
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.model;
 
 import ch.heigvd.pro.connexion.dbConnexion;
-import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,6 +25,9 @@ public class ModelTablePeriode {
     String heureFin;
     String salle;
 
+    /**
+     * Enum pour gérer les différents jours de la semaine
+     */
     public enum Jour {
         LUNDI("lundi"), MARDI("mardi"), MERCREDI("mercredi"), JEUDI("jeudi"), VENDREDI("vendredi"),
         SAMEDI("samedi"), DIMANCHE("dimanche");
@@ -43,17 +56,26 @@ public class ModelTablePeriode {
         }
     }
 
-    public ModelTablePeriode(int id, String nom, String jourSemaine, String heureDebut, String heureFin, String salle) {
+    /**
+     * Constructeur
+     * @param id
+     * @param name
+     * @param dayOfWeek
+     * @param hourBegin
+     * @param hourEnd
+     * @param room
+     */
+    public ModelTablePeriode(int id, String name, String dayOfWeek, String hourBegin, String hourEnd, String room) {
         this.id = id;
-        this.nom = nom;
-        this.jourSemaine = jourSemaine;
-        String[] heureDebutSeparee = heureDebut.split(":");
-        heureDebut = heureDebutSeparee[0] + ":" + heureDebutSeparee[1];
-        this.heureDebut = heureDebut;
-        String[] heureFinSeparee = heureFin.split(":");
-        heureFin = heureFinSeparee[0] + ":" + heureFinSeparee[1];
-        this.heureFin = heureFin;
-        this.salle = salle;
+        this.nom = name;
+        this.jourSemaine = dayOfWeek;
+        String[] hourBeginSplitted = hourBegin.split(":");
+        hourBegin = hourBeginSplitted[0] + ":" + hourBeginSplitted[1];
+        this.heureDebut = hourBegin;
+        String[] hourEndSplitted = hourEnd.split(":");
+        hourEnd = hourEndSplitted[0] + ":" + hourEndSplitted[1];
+        this.heureFin = hourEnd;
+        this.salle = room;
     }
 
     /**
@@ -63,19 +85,24 @@ public class ModelTablePeriode {
      */
     public void deleteFromDB() throws SQLException, ClassNotFoundException {
         dbConnexion db = new dbConnexion();
-        Connection connection = db.getConnexion();
+        Connection connection = db.getConnection();
         PreparedStatement stmt = null;
-        stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_PERIODE);
+        stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_PERIOD);
         stmt.setInt(1, id);
         stmt.execute();
     }
 
+    /**
+     * Méthode permettant de mettre à jour une période dans la bdd
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void updateFromDB() throws SQLException, ClassNotFoundException{
         dbConnexion db = new dbConnexion();
-        Connection connection = db.getConnexion();
+        Connection connection = db.getConnection();
 
         // Step 2:Create a statement using connection object
-        PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.UPDATE_QUERY_PERIODE);
+        PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.UPDATE_QUERY_PERIOD);
         preparedStatement.setInt(1, idCours);
         preparedStatement.setString(2, jourSemaine);
         preparedStatement.setString(3, heureDebut);
@@ -91,12 +118,12 @@ public class ModelTablePeriode {
      * @throws SQLException erreur avec la requête
      * @throws ClassNotFoundException classe non trouvée
      */
-    public static ArrayList<ModelTablePeriode> getAllPeriodeFromDB() throws SQLException, ClassNotFoundException {
+    public static ArrayList<ModelTablePeriode> getAllPeriodFromDB() throws SQLException, ClassNotFoundException {
         ArrayList<ModelTablePeriode> periodes = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.getConnection();
 
-        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_PERIODE);
+        ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_PERIODS);
         while (rs.next()) {
             ModelTablePeriode periode = new ModelTablePeriode(rs.getInt("idPeriode"),
                     rs.getString("titre"),
@@ -110,27 +137,34 @@ public class ModelTablePeriode {
         return periodes;
     }
 
-    public static ArrayList<ModelTablePeriode> getAllPeriodeIn(Date day) throws SQLException, ClassNotFoundException {
-        ArrayList<ModelTablePeriode> periodes = new ArrayList<>();
+    /**
+     * Méthode permettant d'obtenir les périodes d'un jour spécifique
+     * @param day
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public static ArrayList<ModelTablePeriode> getAllPeriodIn(Date day) throws SQLException, ClassNotFoundException {
+        ArrayList<ModelTablePeriode> periods = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.getConnection();
 
-        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.SELECT_QUERY_ALL_PERIODE_BETWEEN);
+        PreparedStatement preparedStatement = conn.prepareStatement(dbConnexion.SELECT_QUERY_ALL_PERIODS_BETWEEN);
 
         preparedStatement.setString(1, day.toString()); //date du debut
         System.out.println(preparedStatement);
         ResultSet rs = preparedStatement.executeQuery();
         while(rs.next()){
-            ModelTablePeriode periode = new ModelTablePeriode(rs.getInt("idPeriode"),
+            ModelTablePeriode period = new ModelTablePeriode(rs.getInt("idPeriode"),
                     rs.getString("titre"),
                     rs.getString("jourSemaine"),
                     rs.getString("heureDebut"),
                     rs.getString("heureFin"),
                     rs.getString("salle"));
-            periode.idCours = rs.getInt("idCours");
-            periodes.add(periode);
+            period.idCours = rs.getInt("idCours");
+            periods.add(period);
         }
-        return periodes;
+        return periods;
     }
 
     /**
@@ -147,9 +181,9 @@ public class ModelTablePeriode {
         // try-with-resource statement will auto close the connection.
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            Connection connection = db.getConnection();
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_PERIODE);
+            PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_PERIOD);
             preparedStatement.setInt(1, idCours);
             preparedStatement.setString(2, jourSemaine);
             preparedStatement.setString(3, heureDebut);
@@ -169,6 +203,9 @@ public class ModelTablePeriode {
         }
     }
 
+    /**
+     * Getters et Setters
+     */
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }

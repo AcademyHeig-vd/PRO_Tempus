@@ -1,7 +1,17 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : CoursModifyController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page de modification de cours
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
-import ch.heigvd.pro.connexion.dbConnexion;
 import ch.heigvd.pro.controller.validation.VerifyUserEntry;
 import ch.heigvd.pro.model.ModelTableCours;
 import ch.heigvd.pro.model.ModelTableCoursProf;
@@ -34,7 +44,7 @@ public class CoursModifyController {
     private Button submitButton;
 
 
-    ModelTableCours coursToModify;
+    ModelTableCours lessonToModify;
 
     ObservableList<ModelTableCoursProf> oblist = FXCollections.observableArrayList();
 
@@ -50,20 +60,20 @@ public class CoursModifyController {
 
         Window owner = submitButton.getScene().getWindow();
 
-        ModelTableCoursProf coursProf = professeur.getSelectionModel().getSelectedItem();
+        ModelTableCoursProf lessonProf = professeur.getSelectionModel().getSelectedItem();
 
         if(!inputValid()) return;
 
-        coursToModify.setTitre(titreField.getText());
-        coursToModify.setAcronyme(coursProf.getAcronyme());
+        lessonToModify.setTitre(titreField.getText());
+        lessonToModify.setAcronyme(lessonProf.getAcronyme());
 
-        coursToModify.setDescription(descriptionField.getText());
+        lessonToModify.setDescription(descriptionField.getText());
 
-        coursToModify.setDateDebut(dateDebutPicker.getValue().format(formatterEnglish));
-        coursToModify.setDateEcheance(dateEcheancePicker.getValue().format(formatterEnglish));
+        lessonToModify.setDateDebut(dateDebutPicker.getValue().format(formatterEnglish));
+        lessonToModify.setDateEcheance(dateEcheancePicker.getValue().format(formatterEnglish));
 
         boolean ok_request;
-        ok_request= coursToModify.updateFromDB();
+        ok_request= lessonToModify.updateFromDB();
 
         if (ok_request)
             showAlert(Alert.AlertType.INFORMATION, owner, "Modification réussie!",
@@ -80,11 +90,11 @@ public class CoursModifyController {
      */
     @FXML
     public void initialize(){
-        titreField.setText(coursToModify.getTitre());
-        descriptionField.setText(coursToModify.getDescription());
+        titreField.setText(lessonToModify.getTitre());
+        descriptionField.setText(lessonToModify.getDescription());
 
         Locale.setDefault(Locale.FRANCE);
-        LocalDate date = LocalDate.parse(coursToModify.getDateDebut(), formatterFrench);
+        LocalDate date = LocalDate.parse(lessonToModify.getDateDebut(), formatterFrench);
         dateDebutPicker.setShowWeekNumbers(false);
         dateDebutPicker.setEditable(false);
         dateDebutPicker.setValue(date);
@@ -108,7 +118,7 @@ public class CoursModifyController {
             }
         });
 
-        date = LocalDate.parse(coursToModify.getDateEcheance(), formatterFrench);
+        date = LocalDate.parse(lessonToModify.getDateEcheance(), formatterFrench);
         dateEcheancePicker.setShowWeekNumbers(false);
         dateEcheancePicker.setEditable(false);
         dateEcheancePicker.setValue(date);
@@ -138,7 +148,7 @@ public class CoursModifyController {
             e.getMessage();
         }
         professeur.setItems(oblist);
-        professeur.getSelectionModel().select(new ModelTableCoursProf(coursToModify.getAcronyme()));
+        professeur.getSelectionModel().select(new ModelTableCoursProf(lessonToModify.getAcronyme()));
     }
 
     /**
@@ -150,7 +160,7 @@ public class CoursModifyController {
     private boolean inputValid() throws IOException, ParseException {
         Window owner = submitButton.getScene().getWindow();
 
-        ModelTableCoursProf coursProf = professeur.getSelectionModel().getSelectedItem();
+        ModelTableCoursProf lessonProf = professeur.getSelectionModel().getSelectedItem();
 
         VerifyUserEntry verifyUserEntry = new VerifyUserEntry();
 
@@ -179,7 +189,7 @@ public class CoursModifyController {
             return false;
         }
 
-        if (coursProf == null) {
+        if (lessonProf == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez un professeur", false);
             return false;
@@ -197,8 +207,8 @@ public class CoursModifyController {
         Tempus.changeTab(1);
     }
 
-    public void setCoursToModify(ModelTableCours coursToModify) {
-        this.coursToModify = coursToModify;
+    public void setLessonToModify(ModelTableCours lessonToModify) {
+        this.lessonToModify = lessonToModify;
     }
 
     /**

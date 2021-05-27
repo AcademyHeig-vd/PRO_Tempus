@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : CoursAddController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page principale des cours
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import java.io.IOException;
@@ -59,7 +70,7 @@ public class CoursAddController {
 
             // Suppression application
             table.getItems().remove(selectedIndex);
-            // Update les onglets
+            // Mise à jour des onglets
             Tempus.updateTab();
 
         } catch (Exception e){
@@ -67,6 +78,10 @@ public class CoursAddController {
         }
     }
 
+    /**
+     * Méthode de modification utilisée par FXML
+     * @throws IOException
+     */
     @FXML
     public void modify() throws IOException {
         ModelTableCours selectedIndex = (ModelTableCours) table.getSelectionModel().getSelectedItem();
@@ -78,9 +93,9 @@ public class CoursAddController {
             return;
         }
         FXMLLoader loader = new FXMLLoader();
-        CoursModifyController coursModifyController = new CoursModifyController();
-        coursModifyController.setCoursToModify(selectedIndex);
-        loader.setController(coursModifyController);
+        CoursModifyController lessonModifyController = new CoursModifyController();
+        lessonModifyController.setLessonToModify(selectedIndex);
+        loader.setController(lessonModifyController);
         loader.setLocation(Tempus.class.getResource("view/coursModify.fxml"));
         Tempus.getScene().setRoot(loader.load());
     }
@@ -91,7 +106,7 @@ public class CoursAddController {
     @FXML
     private void initialize() {
         try {
-            oblist.addAll(ModelTableCours.getAllCoursFromDB());
+            oblist.addAll(ModelTableCours.getAllLessonsFromDB());
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }

@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : PeriodeModifyController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page de modification des périodes
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
@@ -36,7 +47,7 @@ public class PeriodeModifyController {
 
     ObservableList<ModelTableCoursEvenement> oblist = FXCollections.observableArrayList();
 
-    private ModelTablePeriode periodeToModify;
+    private ModelTablePeriode periodToModify;
     /**
      * Formulaire qui permet d'entrer toutes les informations liées à un cours
      * @throws IOException
@@ -49,15 +60,15 @@ public class PeriodeModifyController {
 
         if(!inputValid()) return;
 
-        periodeToModify.setJourSemaine(jourComboBox.getValue());
-        periodeToModify.setHeureDebut(heureDebutField.getText());
-        periodeToModify.setHeureFin(heureFinField.getText());
-        periodeToModify.setSalle(salleField.getText());
-        periodeToModify.setIdCours(coursEvenement.getIdEvenement());
+        periodToModify.setJourSemaine(jourComboBox.getValue());
+        periodToModify.setHeureDebut(heureDebutField.getText());
+        periodToModify.setHeureFin(heureFinField.getText());
+        periodToModify.setSalle(salleField.getText());
+        periodToModify.setIdCours(coursEvenement.getIdEvenement());
 
         boolean ok_request;
         try {
-            periodeToModify.updateFromDB();
+            periodToModify.updateFromDB();
             ok_request = true;
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
@@ -80,16 +91,16 @@ public class PeriodeModifyController {
     public void initialize(){
         // Ajout d'une liste déroulante avec les différents cours
 
-        heureDebutField.setText(periodeToModify.getHeureDebut());
-        heureFinField.setText(periodeToModify.getHeureFin());
-        salleField.setText(periodeToModify.getSalle());
+        heureDebutField.setText(periodToModify.getHeureDebut());
+        heureFinField.setText(periodToModify.getHeureFin());
+        salleField.setText(periodToModify.getSalle());
         try {
             oblist.addAll(ModelTableCoursEvenement.selectAllFromDB());
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }
         cours.setItems(oblist);
-        cours.getSelectionModel().select(new ModelTableCoursEvenement(periodeToModify.getId(),periodeToModify.getNom()));
+        cours.getSelectionModel().select(new ModelTableCoursEvenement(periodToModify.getId(), periodToModify.getNom()));
 
         ObservableList<String> options = FXCollections.observableArrayList();
         ModelTablePeriode.Jour[] jours = ModelTablePeriode.Jour.values();
@@ -97,7 +108,7 @@ public class PeriodeModifyController {
             options.add(j.getValue());
         }
         jourComboBox.setItems(options);
-        jourComboBox.getSelectionModel().select(periodeToModify.getJourSemaine());
+        jourComboBox.getSelectionModel().select(periodToModify.getJourSemaine());
 
     }
 
@@ -109,11 +120,11 @@ public class PeriodeModifyController {
     private boolean inputValid() throws IOException {
         Window owner = submitButton.getScene().getWindow();
 
-        ModelTableCoursEvenement coursEvenement = cours.getSelectionModel().getSelectedItem();
+        ModelTableCoursEvenement lessonEvent = cours.getSelectionModel().getSelectedItem();
 
         VerifyUserEntry verifyUserEntry = new VerifyUserEntry();
 
-       if (coursEvenement == null) {
+       if (lessonEvent == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez le nom du cours", false);
             return false;
@@ -189,12 +200,15 @@ public class PeriodeModifyController {
         if(menu) Tempus.changeTab(2);
     }
 
-    public ModelTablePeriode getPeriodeToModify() {
-        return periodeToModify;
+    /**
+     * Getter et Setter
+     */
+    public ModelTablePeriode getPeriodToModify() {
+        return periodToModify;
     }
 
-    public void setPeriodeToModify(ModelTablePeriode periodeToModify) {
-        this.periodeToModify = periodeToModify;
+    public void setPeriodToModify(ModelTablePeriode periodToModify) {
+        this.periodToModify = periodToModify;
     }
 
 }

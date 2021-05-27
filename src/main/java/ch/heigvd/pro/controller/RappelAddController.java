@@ -1,9 +1,19 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : RappelAddController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page principale des rappels
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-import ch.heigvd.pro.model.ModelTableProf;
 import ch.heigvd.pro.model.ModelTableRappel;
 import ch.heigvd.pro.Tempus;
 
@@ -73,6 +83,10 @@ public class RappelAddController {
         }
     }
 
+    /**
+     * Méthode afin de modifier une entrée
+     * @throws IOException
+     */
     @FXML
     private void modify() throws IOException {
         ModelTableRappel selectedIndex = (ModelTableRappel) table.getSelectionModel().getSelectedItem();
@@ -85,7 +99,7 @@ public class RappelAddController {
         }
         FXMLLoader loader = new FXMLLoader();
         RappelModifyController rappelModifyController = new RappelModifyController();
-        rappelModifyController.setRappelAModifier(selectedIndex);
+        rappelModifyController.setReminderToModify(selectedIndex);
         loader.setController(rappelModifyController);
         loader.setLocation(Tempus.class.getResource("view/rappelModify.fxml"));
         Tempus.getScene().setRoot(loader.load());

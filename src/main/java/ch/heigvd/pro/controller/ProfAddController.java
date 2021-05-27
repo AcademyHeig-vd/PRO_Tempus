@@ -1,10 +1,20 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : ProfAddController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page principale des professeurs
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 import ch.heigvd.pro.Tempus;
-import ch.heigvd.pro.model.ModelTablePeriode;
 import ch.heigvd.pro.model.ModelTableProf;
 
 import javafx.collections.FXCollections;
@@ -42,6 +52,10 @@ public class ProfAddController {
         Tempus.setRoot("view/profRegister");
     }
 
+    /**
+     * Méthode afin de modifier une entrée
+     * @throws IOException
+     */
     @FXML
     private void modify() throws IOException {
         ModelTableProf selectedIndex = (ModelTableProf) table.getSelectionModel().getSelectedItem();
@@ -54,7 +68,7 @@ public class ProfAddController {
         }
         FXMLLoader loader = new FXMLLoader();
         ProfModifyController profModifyController = new ProfModifyController();
-        profModifyController.setProfAModifier(selectedIndex);
+        profModifyController.setProfToModify(selectedIndex);
         loader.setController(profModifyController);
         loader.setLocation(Tempus.class.getResource("view/profModify.fxml"));
         Tempus.getScene().setRoot(loader.load());

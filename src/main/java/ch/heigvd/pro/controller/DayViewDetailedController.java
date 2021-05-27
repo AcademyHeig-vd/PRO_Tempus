@@ -1,8 +1,18 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : DayViewDetailedController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page de vue par jour détaillée des rappels
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
 import ch.heigvd.pro.model.ModelEvenement;
-import ch.heigvd.pro.model.ModelTablePeriode;
 import ch.heigvd.pro.model.ModelTableRappel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -55,6 +65,10 @@ public class DayViewDetailedController {
         Tempus.setRoot("view/rappelRegister");
     }
 
+    /**
+     * Fonction appelée pour une modification d'élément
+     * @throws IOException
+     */
     @FXML
     private void modify() throws IOException {
 
@@ -75,19 +89,24 @@ public class DayViewDetailedController {
         returnDate = date;
 
         ModelTableRappel modelTableRappel = new ModelTableRappel(selectedIndex.getId(),
-                selectedIndex.getTitre(), selectedIndex.getEcheance().toString(), selectedIndex.getHeure(),
-                selectedIndex.getDescritpion(), selectedIndex.getContenu(), selectedIndex.getLien());
+                selectedIndex.getTitle(), selectedIndex.getDateEnd().toString(), selectedIndex.getHour(),
+                selectedIndex.getDescription(), selectedIndex.getContent(), selectedIndex.getLink());
 
         FXMLLoader loader = new FXMLLoader();
         RappelModifyController rappelModifyController = new RappelModifyController();
-        rappelModifyController.setRappelAModifier(modelTableRappel);
+        rappelModifyController.setReminderToModify(modelTableRappel);
         loader.setController(rappelModifyController);
         loader.setLocation(Tempus.class.getResource("view/rappelModify.fxml"));
         Tempus.getScene().setRoot(loader.load());
 
     }
 
-    public static boolean testToChargeDailyView() throws IOException {
+    /**
+     * Retour à la vue par jour
+     * @return
+     * @throws IOException
+     */
+    public static boolean testToLoadDailyView() throws IOException {
         if (returnDate != null){
             FXMLLoader loader = new FXMLLoader();
             DayViewDetailedController dvc = new DayViewDetailedController();
@@ -101,6 +120,10 @@ public class DayViewDetailedController {
         return false;
     }
 
+    /**
+     * Retour au calendrier
+     * @throws IOException
+     */
     @FXML
     private void returnToCalendar() throws IOException {
         Tempus.changeTab(5);
@@ -119,7 +142,7 @@ public class DayViewDetailedController {
                 showAlert(Alert.AlertType.WARNING, "Aucune sélection",
                         "Aucun rappel n'a été séléctionnée !");
                 return;
-            } //on crée un objet temporaire pour le supprimer si c'est un rappel
+            } // On crée un objet temporaire pour le supprimer si c'est un rappel
             if (selectedIndex.isRappel())
                 new ModelTableRappel(selectedIndex.getId(), null, null, null, null, null, null).deleteFromDB();
             else {//dans l'autre cas, c'est une période TODO : décider si on supprime une période par la vue par jour, vu qu'elle n'est pas crée
@@ -144,7 +167,7 @@ public class DayViewDetailedController {
         String[] dateSplit = date.toString().split("-");
         titleLabel.setText("Rappels et cours du\n" + dateSplit[2] + "." + dateSplit[1] + "." + dateSplit[0]);
         try {
-            oblist.addAll(ModelEvenement.getAllEvenementPerDay(date));
+            oblist.addAll(ModelEvenement.getAllEventPerDay(date));
         } catch (SQLException | ClassNotFoundException e){
             e.getMessage();
         }
@@ -174,6 +197,9 @@ public class DayViewDetailedController {
         alert.show();
     }
 
+    /**
+     * Setter
+     */
     public void setDate(Date date) {
         this.date = date;
     }

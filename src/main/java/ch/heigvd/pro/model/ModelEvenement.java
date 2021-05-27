@@ -1,161 +1,164 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : ModelEvenement.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Modèle pour les événements
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.model;
 
-
-import ch.heigvd.pro.connexion.dbConnexion;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
-
-//TODO mettre en simpleStringProperty lors de l'initialisation pour pouvoir passer une string au constructeur
 public class ModelEvenement {
     private final int id;
-    private String titre;
-    private Date echeance;
-    private String heure;
-    private String descritpion;
-    private String contenu;
-    private String lien;
-    private String typeEvenement;
+    private String title;
+    private Date dateEnd;
+    private String hour;
+    private String description;
+    private String content;
+    private String link;
+    private String typeEvent;
 
 
-    public ModelEvenement(int id, String titre, Date echeance, String heure, String descritpion, String contenu, String lien){
+    /**
+     * Constructeur
+     * @param id
+     * @param title
+     * @param dateEnd
+     * @param hour
+     * @param description
+     * @param content
+     * @param link
+     */
+    public ModelEvenement(int id, String title, Date dateEnd, String hour, String description, String content, String link){
         this.id = id;
-        this.descritpion = descritpion;
-        this.titre = titre;
-        this.echeance = echeance;
-        this.heure = heure;
-        this.contenu = contenu;
-        this.lien = lien;
+        this.description = description;
+        this.title = title;
+        this.dateEnd = dateEnd;
+        this.hour = hour;
+        this.content = content;
+        this.link = link;
     }
 
-    public static ArrayList<ModelEvenement> getAllEvenementPerDay(Date day) throws SQLException, ClassNotFoundException {
-        ArrayList<ModelEvenement> evenements = ModelTableRappel.selectRappelPerDay(day);
-        for(ModelEvenement evenement : evenements) {
-            evenement.typeEvenement = "Rappel";
+    /**
+     * Méthode permettant de récupérer tous les événements d'une certaine date
+     * @param day
+     * @return liste des événements
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public static ArrayList<ModelEvenement> getAllEventPerDay(Date day) throws SQLException, ClassNotFoundException {
+        ArrayList<ModelEvenement> events = ModelTableRappel.selectRemindersPerDay(day);
+        for(ModelEvenement event : events) {
+            event.typeEvent = "Rappel";
         }
-        for(ModelEvenement evenement : getEvenementFromCoursAndPeriode(day))
+        for(ModelEvenement event : getEventFromLessonAndPeriod(day))
         {
-            evenement.typeEvenement = "Période";
-            evenements.add(evenement);
+            event.typeEvent = "Période";
+            events.add(event);
         }
-        return evenements;
+        return events;
     }
 
-    private static ArrayList<ModelEvenement> getEvenementFromCoursAndPeriode(Date day) throws SQLException, ClassNotFoundException {
-        ArrayList<ModelEvenement> evenements = new ArrayList<>();
-        ArrayList<ModelTablePeriode> periodes = ModelTablePeriode.getAllPeriodeIn(day);
-        ModelTablePeriode.Jour jour;
-        for (ModelTablePeriode periode : periodes){
-            jour = ModelTablePeriode.Jour.LUNDI;
-            jour = jour.getJour(periode.getJourSemaine());
+    /**
+     * Méthode permettant de récupérer les cours et périodes
+     * @param dayParameter
+     * @return liste des événements
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    private static ArrayList<ModelEvenement> getEventFromLessonAndPeriod(Date dayParameter) throws SQLException, ClassNotFoundException {
+        ArrayList<ModelEvenement> events = new ArrayList<>();
+        ArrayList<ModelTablePeriode> periods = ModelTablePeriode.getAllPeriodIn(dayParameter);
+        ModelTablePeriode.Jour day;
+        for (ModelTablePeriode period : periods){
+            day = ModelTablePeriode.Jour.LUNDI;
+            day = day.getJour(period.getJourSemaine());
             //getDayOfWeek from 1 to 7 and jour.ordinal 0 to 6
-            if (jour != null && day.toLocalDate().getDayOfWeek().getValue() == jour.ordinal() + 1){
-                evenements.add(new ModelEvenement(periode.getId(), periode.getNom(), day,
-                        periode.getHeureDebut() + " à " + periode.getHeureFin(),
-                        "Salle : " + periode.getSalle(), null, null));
+            if (day != null && dayParameter.toLocalDate().getDayOfWeek().getValue() == day.ordinal() + 1){
+                events.add(new ModelEvenement(period.getId(), period.getNom(), dayParameter,
+                        period.getHeureDebut() + " à " + period.getHeureFin(),
+                        "Salle : " + period.getSalle(), null, null));
             }
         }
-        return evenements;
+        return events;
     }
 
+    /**
+     * Getters et Setters
+     */
     public int getId() {
         return id;
     }
 
-    public String getDescritpion() {
-        return descritpion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescritpion(String descritpion) {
-        this.descritpion = descritpion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getTitre() {
-        return titre;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Date getEcheance() {
-        return echeance;
+    public Date getDateEnd() {
+        return dateEnd;
     }
 
-    public void setEcheance(Date echeance) {
-        this.echeance = echeance;
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
     }
 
-    public String getHeure() {
-        return heure;
+    public String getHour() {
+        return hour;
     }
 
-    public void setHeure(String heure) {
-        this.heure = heure;
+    public void setHour(String hour) {
+        this.hour = hour;
     }
 
-    public String getContenu() {
-        return contenu;
+    public String getContent() {
+        return content;
     }
 
-    public void setContenu(String contenu) {
-        this.contenu = contenu;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public String getLien() {
-        return lien;
+    public String getLink() {
+        return link;
     }
 
-    public void setLien(String lien) {
-        this.lien = lien;
+    public void setLink(String link) {
+        this.link = link;
     }
 
-    public String getTypeEvenement() {
-        return typeEvenement;
+    public String getTypeEvent() {
+        return typeEvent;
     }
 
-    public void setTypeEvenement(String typeEvenement) {
-        this.typeEvenement = typeEvenement;
+    public void setTypeEvent(String typeEvent) {
+        this.typeEvent = typeEvent;
     }
 
 
+    /**
+     * Méthode permettant de savoir si un événement est un rappel
+     * @return
+     */
     public boolean isRappel() {
-        return typeEvenement.equals("Rappel");
+        return typeEvent.equals("Rappel");
     }
-    /*
-
-    public static void deleteRappel(int id) throws SQLException, ClassNotFoundException {
-        // Connexion a la database
-        dbConnexion db = new dbConnexion();
-        Connection connection = db.getConnexion();
-
-        //suppression du rappel
-        PreparedStatement stmt = connection.prepareStatement("DELETE FROM Evenement where idEvenement = ?");
-        stmt.setInt(1, id);
-        stmt.execute();
-
-    }
-
-    public static List<Evenement> initializeAllRappel(Date date) throws SQLException, ClassNotFoundException {
-        List<Evenement> rappels = new ArrayList<>();
-        String SQL = "SELECT * FROM pro.Rappel INNER JOIN Evenement ON Rappel.idEvenement = Evenement.idEvenement";
-
-        dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
-
-        ResultSet rs = conn.createStatement().executeQuery(SQL);
-        while(rs.next()){
-            rappels.add(new Evenement(rs.getInt("idEvenement"), rs.getString("titre"), rs.getDate("dateEcheance"), rs.getString("heure"), rs.getString("description"), rs.getString("contenu"), rs.getString("lien")));
-        }
-        return rappels;
-
-    }*/
-
 }

@@ -1,12 +1,9 @@
 package ch.heigvd.pro.controller.validation;
 
-import ch.heigvd.pro.model.ModelDay;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Date;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;

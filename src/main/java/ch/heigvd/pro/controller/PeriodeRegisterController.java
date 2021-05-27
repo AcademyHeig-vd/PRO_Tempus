@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : PeriodeRegisterController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page d'ajout des périodes
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.controller.validation.VerifyUserEntry;
@@ -41,18 +52,18 @@ public class PeriodeRegisterController {
     public void register(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
 
         Window owner = submitButton.getScene().getWindow();
-        ModelTableCoursEvenement  coursEvenement = cours.getSelectionModel().getSelectedItem();
+        ModelTableCoursEvenement  lessonEvent = cours.getSelectionModel().getSelectedItem();
 
         if(!inputValid()) return;
 
-        int id = coursEvenement.getIdEvenement();
-        String jour = jourComboBox.getValue();
-        String heureDebut = heureDebutField.getText();
-        String heureFin = heureFinField.getText();
-        String salle = salleField.getText();
+        int id = lessonEvent.getIdEvenement();
+        String day = jourComboBox.getValue();
+        String hourBegin = heureDebutField.getText();
+        String hourEnd = heureFinField.getText();
+        String room = salleField.getText();
 
-        // Connexion a la database
-        boolean ok_request = ModelTablePeriode.insertRecordPeriode(id, jour, heureDebut, heureFin, salle);
+        // Connexion a la base de données
+        boolean ok_request = ModelTablePeriode.insertRecordPeriode(id, day, hourBegin, hourEnd, room);
         if (ok_request)
         showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
                 "La nouvelle entrée a été effectuée !", true);
@@ -92,11 +103,11 @@ public class PeriodeRegisterController {
     private boolean inputValid() throws IOException {
         Window owner = submitButton.getScene().getWindow();
 
-        ModelTableCoursEvenement coursEvenement = cours.getSelectionModel().getSelectedItem();
+        ModelTableCoursEvenement lessonEvent = cours.getSelectionModel().getSelectedItem();
 
         VerifyUserEntry verifyUserEntry = new VerifyUserEntry();
 
-       if (coursEvenement == null) {
+       if (lessonEvent == null) {
             showAlert(Alert.AlertType.ERROR, owner, "Erreur de formulaire",
                     "S'il-vous-plaît entrez le nom du cours", false);
             return false;

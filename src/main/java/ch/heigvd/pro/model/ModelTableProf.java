@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : ModelTableProf.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Modèle pour les professeurs
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.model;
 
 import ch.heigvd.pro.connexion.dbConnexion;
@@ -15,23 +26,36 @@ public class ModelTableProf {
     String mail;
     String oldAcronyme;
 
-    public ModelTableProf(String acronyme, String nom, String prenom, String mail) {
-        this.acronyme = acronyme;
-        this.nom = nom;
-        this.prenom = prenom;
+    /**
+     * Constructeur
+     * @param acronym
+     * @param name
+     * @param firstName
+     * @param mail
+     */
+    public ModelTableProf(String acronym, String name, String firstName, String mail) {
+        this.acronyme = acronym;
+        this.nom = name;
+        this.prenom = firstName;
         this.mail = mail;
-        this.oldAcronyme=acronyme;
+        this.oldAcronyme=acronym;
     }
 
-    public static boolean findByAcro(String acronyme) throws SQLException, ClassNotFoundException {
-        ArrayList<ModelTableProf> profs = new ArrayList<>();
+    /**
+     * Recherche d'un prof par son acronyme
+     * @param acronym
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public static boolean findByAcro(String acronym) throws SQLException, ClassNotFoundException {
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.getConnection();
 
 
         PreparedStatement stmt = null;
         stmt = conn.prepareStatement(dbConnexion.SELECT_QUERY_ACRONYM_ONE_PROF);
-        stmt.setString(1, acronyme);
+        stmt.setString(1, acronym);
         stmt.execute();
         ResultSet rs =stmt.getResultSet();
         return  rs != null;
@@ -44,23 +68,27 @@ public class ModelTableProf {
         try{
         // Connexion a la database
         dbConnexion db = new dbConnexion();
-        Connection connection = db.getConnexion();
+        Connection connection = db.getConnection();
 
         PreparedStatement stmt = null;
         stmt = connection.prepareStatement(dbConnexion.DELETE_QUERY_PROF);
         stmt.setString(1, acro);
         stmt.execute();
         return  true;
-    }catch (Exception e){
-        return  false;
-    }
+        }catch (Exception e){
+            return  false;
+        }
 
     }
 
+    /**
+     * Mise à jour d'un prof dans la bdd
+     * @return
+     */
     public boolean updateFromDB() {
        try{
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            Connection connection = db.getConnection();
 
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.UPDATE_QUERY_PROF);
@@ -86,7 +114,7 @@ public class ModelTableProf {
     public static ArrayList<ModelTableProf> selectAllProfFromDB() throws SQLException, ClassNotFoundException {
         ArrayList<ModelTableProf> profs = new ArrayList<>();
         dbConnexion db = new dbConnexion();
-        Connection conn = db.getConnexion();
+        Connection conn = db.getConnection();
 
         ResultSet rs = conn.createStatement().executeQuery(dbConnexion.SELECT_QUERY_ALL_PROF);
 
@@ -111,7 +139,7 @@ public class ModelTableProf {
         // try-with-resource statement will auto close the connection.
         try {
             dbConnexion db = new dbConnexion();
-            Connection connection = db.getConnexion();
+            Connection connection = db.getConnection();
 
              // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(dbConnexion.INSERT_QUERY_PROF);
@@ -133,15 +161,15 @@ public class ModelTableProf {
         }
     }
 
+    /**
+     * Getters et Setters
+     */
     public String getAcronyme() {
         return acronyme;
     }
 
     public void setAcronyme(String acronyme)  {
-       // boolean res=findByAcro(acronyme);
-       // if(res) {
-            this.acronyme = acronyme;
-       // }
+        this.acronyme = acronyme;
     }
 
     public String getNom() {

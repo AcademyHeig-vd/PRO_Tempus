@@ -13,7 +13,7 @@ class dbConnexionTest {
     @DisplayName("Connect to the database.")
     static public void connect() throws SQLException, ClassNotFoundException {
         dbConnexion db = new dbConnexion();
-        Connection connection = db.getConnexion();
+        Connection connection = db.getConnection();
         assertNotEquals(null,connection,"database connection problem");
     }
 

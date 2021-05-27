@@ -1,3 +1,14 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : PRO - Projet de semestre
+ Fichier     : ProfRegisterController.java
+ Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
+ Date        : 20.05.2021
+ But         : Controlleur pour la page d'ajout d'un professeur
+ Remarque(s) : -
+ -----------------------------------------------------------------------------------
+*/
+
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
@@ -37,12 +48,12 @@ public class ProfRegisterController {
 
         if(!inputValid()) return;
 
-        String acronyme = acronymeField.getText();
-        String nom = nomField.getText();
-        String prenom = prenomField.getText();
+        String acronym = acronymeField.getText();
+        String name = nomField.getText();
+        String firstName = prenomField.getText();
         String mail = mailField.getText();
 
-        boolean ok_request = ModelTableProf.insertProfInDB(acronyme, nom, prenom, mail);
+        boolean ok_request = ModelTableProf.insertProfInDB(acronym, name, firstName, mail);
         if (ok_request)
             showAlert(Alert.AlertType.INFORMATION, owner, "Ajout réussi!",
                     "La nouvelle entrée a été effectuée !", true);
