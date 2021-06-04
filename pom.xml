@@ -106,6 +106,8 @@
                                     <mainClass>ch.heigvd.pro.fakeMain</mainClass>
                                 </transformer>
                             </transformers>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>Final</shadedClassifierName>
                         </configuration>
                     </execution>
                 </executions>
