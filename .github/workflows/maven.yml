@@ -21,13 +21,5 @@ jobs:
         run: |
             cd Docker/
             docker-compose up -d --build
-      - name: Sleep for 10 seconds
-        uses: jakejarvis/wait-action@master
-        with:
-           time: '10s'
-      - name: Check the deployed service URL
-        uses: jtalk/url-health-check-action@v1.5
-        with:
-            url: http://localhost:6060
       - name: Run the Maven verify phase
         run: mvn --batch-mode --update-snapshots verify
