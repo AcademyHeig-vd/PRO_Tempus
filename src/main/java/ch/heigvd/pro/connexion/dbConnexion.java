@@ -15,7 +15,7 @@ import java.sql.*;
 
 public class dbConnexion {
     /* PARAMETRES CONNEXION */
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/PRO?serverTimezone=UTC&useSSL=false";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/PRO?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true&useSSL=false";
     private static final String DATABASE_USER = "root";
     private static final String DATABASE_PASSWORD = "root";
     /* FIN PARAMETRE CONNEXION
