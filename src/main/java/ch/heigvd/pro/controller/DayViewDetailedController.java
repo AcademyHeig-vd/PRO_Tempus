@@ -1,18 +1,8 @@
-/*
- -----------------------------------------------------------------------------------
- Laboratoire : PRO - Projet de semestre
- Fichier     : DayViewDetailedController.java
- Auteur(s)   : Robin Gaudin, Walid Massaoudi, Noémie Plancherel, Lev Pozniakoff, Axel Vallon
- Date        : 20.05.2021
- But         : Controlleur pour la page de vue par jour détaillée des rappels
- Remarque(s) : -
- -----------------------------------------------------------------------------------
-*/
-
 package ch.heigvd.pro.controller;
 
 import ch.heigvd.pro.Tempus;
 import ch.heigvd.pro.model.ModelEvenement;
+import ch.heigvd.pro.model.ModelTablePeriode;
 import ch.heigvd.pro.model.ModelTableRappel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,10 +55,6 @@ public class DayViewDetailedController {
         Tempus.setRoot("view/rappelRegister");
     }
 
-    /**
-     * Fonction appelée pour une modification d'élément
-     * @throws IOException
-     */
     @FXML
     private void modify() throws IOException {
 
@@ -101,12 +87,7 @@ public class DayViewDetailedController {
 
     }
 
-    /**
-     * Retour à la vue par jour
-     * @return
-     * @throws IOException
-     */
-    public static boolean testToLoadDailyView() throws IOException {
+    public static boolean testToChargeDailyView() throws IOException {
         if (returnDate != null){
             FXMLLoader loader = new FXMLLoader();
             DayViewDetailedController dvc = new DayViewDetailedController();
@@ -120,10 +101,6 @@ public class DayViewDetailedController {
         return false;
     }
 
-    /**
-     * Retour au calendrier
-     * @throws IOException
-     */
     @FXML
     private void returnToCalendar() throws IOException {
         Tempus.changeTab(5);
@@ -142,7 +119,7 @@ public class DayViewDetailedController {
                 showAlert(Alert.AlertType.WARNING, "Aucune sélection",
                         "Aucun rappel n'a été séléctionnée !");
                 return;
-            } // On crée un objet temporaire pour le supprimer si c'est un rappel
+            } //on crée un objet temporaire pour le supprimer si c'est un rappel
             if (selectedIndex.isRappel())
                 new ModelTableRappel(selectedIndex.getId(), null, null, null, null, null, null).deleteFromDB();
             else {//dans l'autre cas, c'est une période TODO : décider si on supprime une période par la vue par jour, vu qu'elle n'est pas crée
@@ -172,13 +149,13 @@ public class DayViewDetailedController {
             e.getMessage();
         }
 
-        col_titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
-        col_date.setCellValueFactory(new PropertyValueFactory<>("echeance"));
-        col_heure.setCellValueFactory(new PropertyValueFactory<>("heure"));
-        col_description.setCellValueFactory(new PropertyValueFactory<>("descritpion"));
-        col_contenu.setCellValueFactory(new PropertyValueFactory<>("contenu"));
-        col_lien.setCellValueFactory(new PropertyValueFactory<>("lien"));
-        col_type.setCellValueFactory(new PropertyValueFactory<>("typeEvenement"));
+        col_titre.setCellValueFactory(new PropertyValueFactory<>("title"));
+        col_date.setCellValueFactory(new PropertyValueFactory<>("dateEnd"));
+        col_heure.setCellValueFactory(new PropertyValueFactory<>("hour"));
+        col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        col_contenu.setCellValueFactory(new PropertyValueFactory<>("content"));
+        col_lien.setCellValueFactory(new PropertyValueFactory<>("link"));
+        col_type.setCellValueFactory(new PropertyValueFactory<>("typeEvent"));
 
         table.setItems(oblist);
     }
@@ -197,9 +174,6 @@ public class DayViewDetailedController {
         alert.show();
     }
 
-    /**
-     * Setter
-     */
     public void setDate(Date date) {
         this.date = date;
     }
