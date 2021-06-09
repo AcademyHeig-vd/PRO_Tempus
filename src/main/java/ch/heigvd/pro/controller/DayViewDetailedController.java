@@ -172,13 +172,13 @@ public class DayViewDetailedController {
             e.getMessage();
         }
 
-        col_titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
-        col_date.setCellValueFactory(new PropertyValueFactory<>("echeance"));
-        col_heure.setCellValueFactory(new PropertyValueFactory<>("heure"));
-        col_description.setCellValueFactory(new PropertyValueFactory<>("descritpion"));
-        col_contenu.setCellValueFactory(new PropertyValueFactory<>("contenu"));
-        col_lien.setCellValueFactory(new PropertyValueFactory<>("lien"));
-        col_type.setCellValueFactory(new PropertyValueFactory<>("typeEvenement"));
+        col_titre.setCellValueFactory(new PropertyValueFactory<>("title"));
+        col_date.setCellValueFactory(new PropertyValueFactory<>("dateEnd"));
+        col_heure.setCellValueFactory(new PropertyValueFactory<>("hour"));
+        col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        col_contenu.setCellValueFactory(new PropertyValueFactory<>("content"));
+        col_lien.setCellValueFactory(new PropertyValueFactory<>("link"));
+        col_type.setCellValueFactory(new PropertyValueFactory<>("typeEvent"));
 
         table.setItems(oblist);
     }

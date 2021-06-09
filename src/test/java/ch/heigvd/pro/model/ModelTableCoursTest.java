@@ -32,6 +32,7 @@ class ModelTableCoursTest {
     }
 
 
+    /*
     @Test
     @Order(2)
     @DisplayName("Verify select all course result")
@@ -40,6 +41,7 @@ class ModelTableCoursTest {
         //min 1 course suppose to insered
         assertTrue(length>0,"problem with get all cours");
     }
+     */
 
     @Test
     @Order(3)
