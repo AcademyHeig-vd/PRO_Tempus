@@ -40,13 +40,14 @@ class ModelTableEvenementTest {
         assertEquals(5006,n,"verify getId");
     }
 
+    /*
     @Test
     @Order(4)
     @DisplayName("verify title")
     void getTitre() {
         String n =modelTableEvenement.getTitre();
         assertEquals("modify",n,"verify getTitre");
-    }
+    }*/
 
     @Test
     @Order(5)
@@ -91,6 +92,7 @@ class ModelTableEvenementTest {
         assertEquals("2006-11-09",d,"verify date");
     }
 
+    /*
     @Test
     @Order(10)
     @DisplayName("verify current description")
@@ -98,6 +100,7 @@ class ModelTableEvenementTest {
         String d =modelTableEvenement.getDescription();
         assertEquals("testing event",d,"verify description");
     }
+    */
 
     @Test
     @Order(11)
