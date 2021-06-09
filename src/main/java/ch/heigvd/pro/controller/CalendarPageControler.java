@@ -36,10 +36,6 @@ public class CalendarPageControler {
 
     @FXML
     private
-    Button toMainMenu; //bouton vers menu principal
-
-    @FXML
-    private
     AnchorPane calendarSpace; //espace pour la grille du calendrier
 
     @FXML
@@ -113,15 +109,6 @@ public class CalendarPageControler {
                 ex.printStackTrace();
             }
         });
-        // Menu principal
-        toMainMenu.setOnAction(e -> {
-            try {
-                switchToPrimary();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
-
 
         //Pour l'affichage du mois et année
         monthLabel.setText(currentYearMonth.getMonth().getDisplayName(TextStyle.FULL, Locale.FRANCE));
@@ -173,7 +160,6 @@ public class CalendarPageControler {
      * Méthode pour désactiver tous les boutons
      */
     private void disableAllButtons(){
-        toMainMenu.setDisable(true);
         previousMonth.setDisable(true);
         previousYear.setDisable(true);
         nextMonth.setDisable(true);
@@ -184,7 +170,6 @@ public class CalendarPageControler {
      * Méthode pour activer tous les boutons
      */
     private void enableAllButtons(){
-        toMainMenu.setDisable(false);
         previousMonth.setDisable(false);
         previousYear.setDisable(false);
         nextMonth.setDisable(false);
