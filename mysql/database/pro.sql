@@ -44,20 +44,6 @@ CREATE TABLE Periode (
                          CONSTRAINT PK_Periode PRIMARY KEY (idPeriode)
 )ENGINE = InnoDB;
 
-CREATE TABLE Projet (
-                        idEvenement INTEGER UNSIGNED,
-                        contenu VARCHAR(255),
-                        CONSTRAINT PK_Projet PRIMARY KEY (idEvenement)
-)ENGINE = InnoDB;
-
-CREATE TABLE TodoListe (
-                           idTodoListe INTEGER UNSIGNED AUTO_INCREMENT,
-                           idProjet INTEGER UNSIGNED,
-                           titre VARCHAR(50) NOT NULL,
-                           description VARCHAR(255),
-                           CONSTRAINT PK_TodoListe PRIMARY KEY (idTodoListe)
-)ENGINE = InnoDB;
-
 /* Contraintes */
 ALTER TABLE Rappel
     ADD CONSTRAINT FK_Rappel_idEvenement
@@ -76,25 +62,12 @@ ALTER TABLE Cours
 		FOREIGN KEY (acronyme)
 		REFERENCES Professeur (acronyme)
 		ON DELETE SET NULL
-		ON UPDATE SET NULL;
+		ON UPDATE CASCADE;
 
-ALTER TABLE Projet
-    ADD CONSTRAINT FK_Projet_idEvenement
-        FOREIGN KEY (idEvenement)
-            REFERENCES Evenement (idEvenement)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE;
-/*
+
 ALTER TABLE Periode
 	ADD CONSTRAINT FK_Periode_idCours
 		FOREIGN KEY (idCours)
 		REFERENCES Cours (idEvenement)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE;
-	*/
-ALTER TABLE TodoListe
-    ADD CONSTRAINT FK_TodoListe_idProjet
-        FOREIGN KEY (idProjet)
-            REFERENCES Projet (idEvenement)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE;
