@@ -37,15 +37,15 @@ Afin d'essayer l'application via la VM. Il faudra avoir les capacités suivantes
 2. Double cliquer sur le fichier télécharger pour l'importer dans VirtualBox
 3. Lancer la machine virtuelle
 4. Installer les additions invité pour profiter de la VM en plein écran, puis redémarrer
-5. Au redémarrage, il faut lancer `mysql-workbench`.![image-20210604220212137](../Manuel/figures/image-20210604220212137.png)
-6. Ensuite, il faudra se connecter à MYSQLWorkbench avec l'utilisateur `root` avec le mot de passe `root`![image-20210604220404100](../Manuel/figures/image-20210604220404100.png)
+5. Au redémarrage, il faut lancer `mysql-workbench`.![image-20210604220212137](./figures/image-20210604220212137.png)
+6. Ensuite, il faudra se connecter à MYSQLWorkbench avec l'utilisateur `root` avec le mot de passe `root`![image-20210604220404100](figures/image-20210604220404100.png)
 7. à partir de là, vous pourrez double cliquer sur l'application PRO_Tempus.jar afin de démarrer l'application
 
-![image-20210604220442328](../Manuel/figures/image-20210604220442328.png)
+![image-20210604220442328](figures/image-20210604220442328.png)
 
 7. L'application devrait s'allumer
 
-![image-20210604222825739](../Manuel/figures/image-20210604222825739.png)
+![image-20210604222825739](figures/image-20210604222825739.png)
 
 ### Problème d'installation
 
@@ -84,11 +84,11 @@ En cas de problème lors de cette installation, veuillez vérifier les points su
 
 - Installation de java jdk 11
 
-  ![image-20210604224852424](../Manuel/figures/image-20210604224852424.png)
+  ![image-20210604224852424](figures/image-20210604224852424.png)
 
 - Installation de maven
 
-  ![image-20210604224928424](../Manuel/figures/image-20210604224928424.png)
+  ![image-20210604224928424](figures/image-20210604224928424.png)
 
 - Docker installé
 
@@ -115,7 +115,7 @@ En cas de problème lors de cette installation, veuillez vérifier les points su
 3. Modifier dans l'adresse du serveur sql dans les source du projet 
 
    1. Fichier à modifier : `./src/main/java/ch/heigvd/pro/connexion/dbConnexion.java`
-   2. Modifier l'adresse IP pour l'adresse utilisée par Docker-Compose.![image-20210604230403999](../Manuel/figures/image-20210604230403999.png)
+   2. Modifier l'adresse IP pour l'adresse utilisée par Docker-Compose.![image-20210604230403999](figures/image-20210604230403999.png)
 
 4. Exécuter `mvn clean package`. Cette commande Maven va générer le fichier .jar avec toutes les libraires inclues dans celui-ci
 
